@@ -4,9 +4,6 @@
 
 @section('content')
     <h1>{{ $game->console }}: {{ $game->title }}</h1>
-    <div class="toast toast-alert" style="margin-bottom: 20px">
-    Hej
-    </div>
     <span style="text-decoration: underline solid">Superdb ID:</span> #{{ $game->id }}<br>
     <span style="text-decoration: underline solid">import:</span> {{ $game->import }}<br>
     <span style="text-decoration: underline solid">genre:</span> {{ $game->genre }}<br>
