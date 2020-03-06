@@ -18,7 +18,7 @@
        @if($game->console == 'snes')
         <span style="text-decoration: underline solid">snes_central:</span> <a href="{{ $game->snes_central ?? 'http://www.google.com' }}">LINK</a><br>
        @endif
-    <span style="text-decoration: underline solid">wikipedia_url:</span> <a href="{{ $game->wikipedia_url ?? 'http://www.google.com' }}">LINK</a><br>
+    <span style="text-decoration: underline solid">wikipedia_url:</span> <a href="{{ $game->wikipedia_url ?? "https://www.google.com/search?q=" . $game->title . "+wikipedia+" .  $game->console }}">LINK</a><br>
     <span style="text-decoration: underline solid">releaser:</span> {{ $game->releases->count() }}<br>
     <span style="text-decoration: underline solid">description:</span> {{ $game->description }}<br>
 
