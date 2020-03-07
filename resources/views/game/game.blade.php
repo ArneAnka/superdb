@@ -4,6 +4,10 @@
 
 @section('content')
     <h1>{{ $game->console }}: {{ $game->title }}</h1>
+    <span style="text-decoration: underline solid">Tillagd:</span> {{ $game->created_at->diffForhumans() }} ({{ $game->created_at }})<br>
+    <span style="text-decoration: underline solid">Senaste uppdaterad:</span> {{ $game->updated_at->diffForHumans() }} ({{ $game->updated_at }})<br>
+    <br>
+
     <span style="text-decoration: underline solid">Superdb ID:</span> #{{ $game->id }}<br>
     <span style="text-decoration: underline solid">import:</span> {{ $game->import }}<br>
     <span style="text-decoration: underline solid">genre:</span> {{ $game->genre }}<br>

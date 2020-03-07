@@ -23,6 +23,13 @@
     Genomsnittlig radlängd: ~199 <br>
     Dumpad databasstorlek: ~6,2M <br>
     </p>
+<hr>
+<div>
+    <p><b>2020-03-07- 11:31:44</b></p>
+    <p>Efter mycket mödosamt arbete så börjar databasen ta form! Det stora arbetet som har varit är datum, att ändra datumen till ISO 8601 med manuell handpåläggning men också automatsikt med divere pythonskript. Det arbete som fortskrider kontinuerligt är bland annat att lägga in releaser, uppdatera utgivare, genre och modes. Ja, ni fattar.</p>
+    <p>Är du också entusiast? Maila mig!</p>
+</div>
+<hr>
 
     <p>
     <a href="mailto:info@superdb.cc">info@superdb.cc</a>
