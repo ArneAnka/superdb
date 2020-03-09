@@ -10,12 +10,12 @@
     </div>
 
     <ul>
-        <li>NES, {{ $nes_count }} titlar</li>
-        <li>SNES, {{ $snes_count }} titlar</li>
-        <li>N64, {{ $n64_count }} titlar</li>
-        <li>GC, {{ $ngc_count }} titlar</li>
-        <li>GBA, {{ $gba_count }} titlar</li>
-        <li>GBC, {{ $gbc_count }} titlar</li>
+        <li><a href="{{ route('nes') }}">NES</a>, {{ $nes_count }} titlar</li>
+        <li><a href="{{ route('snes') }}">SNES</a>, {{ $snes_count }} titlar</li>
+        <li><a href="{{ route('n64') }}">N64</a>, {{ $n64_count }} titlar</li>
+        <li><a href="{{ route('ngc') }}">NGC</a>, {{ $ngc_count }} titlar</li>
+        <li><a href="{{ route('gba') }}">GBA</a>, {{ $gba_count }} titlar</li>
+        <li><a href="{{ route('gbc') }}">GBC</a>, {{ $gbc_count }} titlar</li>
     </ul>
     
     <p>

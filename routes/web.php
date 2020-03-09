@@ -28,14 +28,14 @@ Route::get('/gba', 'GbaController@index')->name('gba');
 Route::get('/gbc', 'GbcController@index')->name('gbc');
 
 /**
- * Game
+ * Enskilda spel-sida
  */
 Route::prefix('g')->group(function () {
     Route::get('{game}', 'GameController@show')->name('game.show');
 });
 
 /**
- * Info
+ * Om-sidan
  */
 Route::get('om', function(){
     return view('om');
