@@ -2,6 +2,10 @@
 
 use App\Game;
 
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
 Route::get('/', function () {
     $games = Game::all();
     $nes_count = $games->where('console', 'nes')->count();
@@ -12,10 +16,6 @@ Route::get('/', function () {
     $gbc_count = $games->where('console', 'gbc')->count();
     return view('welcome', compact('nes_count', 'snes_count', 'n64_count', 'ngc_count', 'gba_count', 'gbc_count'));
 })->name('welcome');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
 
 /**
  * Landing page for games
@@ -34,6 +34,9 @@ Route::prefix('g')->group(function () {
     Route::get('{game}', 'GameController@show')->name('game.show');
 });
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+/**
+ * Info
+ */
+Route::get('om', function(){
+    return view('om');
+})->name('om');
