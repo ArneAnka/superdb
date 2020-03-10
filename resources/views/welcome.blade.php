@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'välkommen')
+
 @section('content')
     <h1>superdb.cc 🍻</h1>
     <h3>Databas över Nintendo titlar till NES, SNES, N64, GC, GBA och GBC</h3>
