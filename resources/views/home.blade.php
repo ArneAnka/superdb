@@ -4,8 +4,6 @@
 
 @section('content')
 <div class="">
-    <div class="">Dashboard</div>
-
     <div class="">
         @if (session('status'))
         <div class="" role="alert">
@@ -13,7 +11,7 @@
         </div>
         @endif
 
-        You are logged in!
+        {{ auth()->user()->name }}, you are logged in!
     </div>
 </div>
 @endsection
