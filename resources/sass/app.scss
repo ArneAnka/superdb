@@ -35,6 +35,27 @@ main {
     height: 100%;
 }
 
+ul.list {
+    list-style-type: none;
+}
+
+ul.list > li.list-element {
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    padding: 3px
+}
+
+ ul.list > li.list-element:first-child {
+    border-top: 1px solid black;
+  }
+
+ul.list > li.list-element:hover {
+    background: $bg-secondary;
+    color: $text-secondary;
+}
+
+
 h1 {
     text-decoration: underline dotted;
 }
@@ -217,6 +238,10 @@ h1 {
     main {
         margin: 0;
     }
+    ul.list {
+            width: 100%;
+            padding-inline-start: 0;
+        }
 }
 
 /* stora skärmar */
@@ -232,5 +257,8 @@ h1 {
     .navbar:hover .link-text {
         display: inline;
         transition: opacity $transition-speed;
+    }
+    ul.list {
+        width: auto;
     }
 }

@@ -10,7 +10,6 @@ body {
   background-color: white;
   margin: 0;
   padding: 0;
-  height: 100%;
 }
 
 body::-webkit-scrollbar {
@@ -30,6 +29,26 @@ main {
   margin-right: 2rem;
   padding: 1rem;
   height: 100%;
+}
+
+ul.list {
+  list-style-type: none;
+}
+
+ul.list > li.list-element {
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+  border-bottom: 1px solid black;
+  padding: 3px;
+}
+
+ul.list > li.list-element:first-child {
+  border-top: 1px solid black;
+}
+
+ul.list > li.list-element:hover {
+  background: #141418;
+  color: #ececec;
 }
 
 h1 {
@@ -213,6 +232,12 @@ h1 {
   main {
     margin: 0;
   }
+
+  ul.list {
+    width: 100%;
+    -webkit-padding-start: 0;
+            padding-inline-start: 0;
+  }
 }
 
 /* stora skärmar */
@@ -231,6 +256,10 @@ h1 {
   .navbar:hover .link-text {
     display: inline;
     transition: opacity 600ms;
+  }
+
+  ul.list {
+    width: auto;
   }
 }
 
