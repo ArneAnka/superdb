@@ -57,6 +57,24 @@
 </li>
 </ul>
 
+@if(!$game->releases->isEmpty())
+  @guest
+    Logga in för att se releaser.
+  @endguest
+  @auth
+    @foreach($game->releases as $game)
+      #id: {{ $game->id }}<br>
+      manual: {{ $game->manual }}<br>
+      @foreach(json_decode($game->misc) as $key => $text)
+        {{ $key }}: {{ $text }}<br>
+      @endforeach
+      <br>
+    @endforeach
+  @endauth
+@else
+  <p>Releaser?</p>
+  <p>¯\_(ツ)_/¯</p>
+@endif
 
 @can('update')
   edit

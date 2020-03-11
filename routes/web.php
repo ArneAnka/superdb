@@ -4,6 +4,22 @@ use App\Game;
 
 Auth::routes();
 
+/**
+ * Normalt sätt så är utloggningen en POST.
+ * Ta bort denna för att återgå till normalt.
+ */
+Route::get('/logout', 'Auth\LoginController@logout');
+
+/**
+ * Omöjliggör för nyregistrering
+ */
+Route::get('/register', function(){
+    return 'not today good sir.';
+});
+Route::post('/register', function(){
+    return 'not today good sir.';
+});
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/', function () {

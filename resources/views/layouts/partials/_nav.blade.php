@@ -199,7 +199,12 @@
         </li>
         <li class="nav-item">
           <p class="link-text">
-            <a href="{{ route('login') }}" class="sign-in">sign-in</a>
+            @guest
+              <a href="{{ route('login') }}" class="sign-in">sign-in</a>
+            @endguest
+            @auth
+              <a href="{{ route('logout') }}" class="sign-in">logout</a>
+            @endauth
           </p>
         </li>
     </ul>
