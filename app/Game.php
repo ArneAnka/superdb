@@ -2,11 +2,16 @@
 
 namespace App;
 
+use App\Traits\Historyable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 
 class Game extends Model
 {
+
+    use Historyable;
+
+    protected $guarded = [];
 
     protected static function boot()
     {
