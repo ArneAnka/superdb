@@ -15,11 +15,13 @@ class CreateHistoriesTable extends Migration
     {
         Schema::create('histories', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained();
             $table->morphs('historyable');
             $table->string('changed_column');
             $table->text('changed_value_from')->nullable();
             $table->text('changed_value_to')->nullable();
             $table->timestamps();
+
         });
     }
 

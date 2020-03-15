@@ -2,6 +2,10 @@
 
 @section('title', 'Om superdb.cc')
 
+@section('css')
+
+@endsection
+
 @section('content')
 <div>
     <h1>Om SuperDB.cc 🥳</h1>
@@ -13,7 +17,8 @@
 
     <h1>Hjälp till</h1>
     <p>Har du idéer på förbättringar eller vill hjälpa till i projektet? Hör av dig via mejl.</p>
-    <p>Projektet är byggt med Laravel 7, körs på nginx på en digitalocean ubuntu droplet. Projektet använder givetvis git.</p>
+    <p>Projektet är byggt med <a href="https://laravel.com/">Laravel</a>, <a href="https://css.gg/">css.gg</a>, körs på nginx på en <a href="https://www.digitalocean.com/">digitalocean</a> ubuntu droplet.</p>
+    <p>Projektet använder givetvis git för versionshantering 🔥</p>
 </div>
 
 <p>

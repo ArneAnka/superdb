@@ -1,11 +1,14 @@
 @extends('layouts.app')
 
 @section('title', $game->title)
+<link href='https://css.gg/calendar-today.css' rel='stylesheet'>
+@section('css')
+@endsection
 
 @section('content')
 <h1>{{ $game->console }}: {{ $game->title }}</h1>
-    <span style="text-decoration: underline solid">Tillagd:</span> {{ $game->created_at->diffForhumans() }} ({{ $game->created_at }})<br>
-    <span style="text-decoration: underline solid">Senaste uppdaterad:</span> {{ $game->updated_at->diffForHumans() }} ({{ $game->updated_at }})<br>
+<i class="gg-calendar-today" style="display: inline-flex;"></i> <span style="text-decoration: underline solid">Tillagd:</span> {{ $game->created_at->diffForhumans() }} ({{ $game->created_at }})<br>
+<i class="gg-calendar-today" style="display: inline-flex;"></i> <span style="text-decoration: underline solid">Senaste uppdaterad:</span> {{ $game->updated_at->diffForHumans() }} ({{ $game->updated_at }})<br>
 
 <ul class="list">
   <li class="list-element">
