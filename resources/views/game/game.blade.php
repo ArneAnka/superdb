@@ -68,6 +68,7 @@
   <h3>Releaser:</h3>
     @foreach($game->releases as $release)
       Superdb ID: #{{ $release->id }}<br>
+      release: {{ $release->release }}<br>
       manual: {{ $release->manual }}<br>
       box: {{ $release->box }}<br>
       cartridge_front: {{ $release->cartridge_front }}<br>
@@ -83,18 +84,18 @@
 @endif
 
 @if(!$game->history->isEmpty())
-<h3>Ändringar i databasen för detta spel</h3>
+<h3>Ändringar i databasen för "{{ $game->title }}"</h3>
 @endif
 
 @forelse($game->history as $item)
-  {{ $item->user->name }} ändrade {{ $item->changed_column }} från {{ $item->changed_value_from }} till {{ $item->changed_value_to }} den {{ $item->created_at }}
+  <p>{{ $item->user->name }} ändrade {{ $item->changed_column }} från, "{{ $item->changed_value_from }}" till, "{{ $item->changed_value_to }}" den {{ $item->created_at }} </p>
 @empty
   <p>Inga ändringar för detta spel.</p>
 @endforelse
 
 
-@can('update')
-  edit
+@can('update', $game)
+  <a href="{{ route('game.show.edit', $game) }}">edit</a>
 @endcan
 
 @endsection

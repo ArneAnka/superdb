@@ -52,7 +52,8 @@ class GameController extends Controller
      */
     public function edit(Game $game)
     {
-        //
+        $this->authorize('update', $game);
+        return view('game.edit.index', compact("game"));
     }
 
     /**
@@ -64,7 +65,12 @@ class GameController extends Controller
      */
     public function update(Request $request, Game $game)
     {
-        //
+        $this->authorize('update', $game);
+        $game->update($request->all());
+
+        return redirect()
+        ->route('game.show', $game)
+        ->with('success', 'Your email was successfully changed!');
     }
 
     /**

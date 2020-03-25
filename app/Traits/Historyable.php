@@ -2,6 +2,7 @@
 
 namespace App\Traits;
 
+use Auth;
 use App\History;
 use App\ColumnChange;
 use Illuminate\Support\Arr;
@@ -30,6 +31,7 @@ trait Historyable {
             'changed_column' => $change->column,
             'changed_value_from' => $change->from,
             'changed_value_to' => $change->to,
+            'user_id' => Auth::user()->id
         ]);
     }
 

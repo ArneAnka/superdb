@@ -50,6 +50,8 @@ Route::get('/gbc', 'GbcController@index')->name('gbc');
  */
 Route::prefix('g')->group(function () {
     Route::get('{game}', 'GameController@show')->name('game.show');
+    Route::get('/edit/{game}', 'GameController@edit')->name('game.show.edit');
+    Route::post('/edit/{game}/save', 'GameController@update')->name('game.save.edit');
 });
 
 /**
