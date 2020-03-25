@@ -62,12 +62,15 @@
 
 @if(!$game->releases->isEmpty())
   @guest
-    Logga in för att se releaser.
+    <a href="{{ route('login') }}">Logga in</a> för att se releaser.
   @endguest
   @auth
     @foreach($game->releases as $game)
       #id: {{ $game->id }}<br>
       manual: {{ $game->manual }}<br>
+      box: {{ $game->box }}<br>
+      cartridge_front: {{ $game->cartridge_front }}<br>
+      special: {{ $game->special }}<br>
       @foreach(json_decode($game->misc) as $key => $text)
         {{ $key }}: {{ $text }}<br>
       @endforeach
@@ -75,9 +78,14 @@
     @endforeach
   @endauth
 @else
-  <p>Releaser?</p>
-  <p>¯\_(ツ)_/¯</p>
+  <p>Inga registrerade releaser</p>
 @endif
+
+@forelse($game->history as $item)
+  {{ $item->user->name }} ändrade {{ $item->changed_column }} från {{ $item->changed_value_from }} till {{ $item->changed_value_to }} den {{ $item->created_at }}
+@empty
+  <p>Inga ändringar för detta spel.</p>
+@endforelse
 
 @can('update')
   edit

@@ -36,7 +36,11 @@ class GameController extends Controller
      */
     public function show(Game $game)
     {
-        $game->load('releases');
+        $game->load(['releases', 'history' => function($q){
+            return $q->with('user');
+            }
+        ]);
+
         return view('game.game', compact('game'));
     }
 
