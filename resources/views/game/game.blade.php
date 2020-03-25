@@ -65,13 +65,14 @@
     <a href="{{ route('login') }}">Logga in</a> för att se releaser.
   @endguest
   @auth
-    @foreach($game->releases as $game)
-      #id: {{ $game->id }}<br>
-      manual: {{ $game->manual }}<br>
-      box: {{ $game->box }}<br>
-      cartridge_front: {{ $game->cartridge_front }}<br>
-      special: {{ $game->special }}<br>
-      @foreach(json_decode($game->misc) as $key => $text)
+  <h3>Releaser:</h3>
+    @foreach($game->releases as $release)
+      Superdb ID: #{{ $release->id }}<br>
+      manual: {{ $release->manual }}<br>
+      box: {{ $release->box }}<br>
+      cartridge_front: {{ $release->cartridge_front }}<br>
+      special: {{ $release->special }}<br>
+      @foreach(json_decode($release->misc) as $key => $text)
         {{ $key }}: {{ $text }}<br>
       @endforeach
       <br>
@@ -81,11 +82,16 @@
   <p>Inga registrerade releaser</p>
 @endif
 
+@if(!$game->history->isEmpty())
+<h3>Ändringar i databasen för detta spel</h3>
+@endif
+
 @forelse($game->history as $item)
   {{ $item->user->name }} ändrade {{ $item->changed_column }} från {{ $item->changed_value_from }} till {{ $item->changed_value_to }} den {{ $item->created_at }}
 @empty
   <p>Inga ändringar för detta spel.</p>
 @endforelse
+
 
 @can('update')
   edit
