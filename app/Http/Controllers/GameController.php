@@ -53,6 +53,7 @@ class GameController extends Controller
     public function edit(Game $game)
     {
         $this->authorize('update', $game);
+
         return view('game.edit.index', compact("game"));
     }
 
@@ -66,11 +67,24 @@ class GameController extends Controller
     public function update(Request $request, Game $game)
     {
         $this->authorize('update', $game);
+
+        $messages = [
+            'title.required' => 'Spelet måste ha en titel',
+        ];
+
+        $request->validate([
+            'title' => 'required',
+            'sweden_release' => 'date_format:Y-m-d',
+            'europe_release' => 'date_format:Y-m-d',
+            'japan_release' => 'date_format:Y-m-d',
+            'usa_release' => 'date_format:Y-m-d',
+        ], $messages);
+
         $game->update($request->all());
 
         return redirect()
         ->route('game.show', $game)
-        ->with('success', 'Your email was successfully changed!');
+        ->with('success', 'Spelet uppdaterades!');
     }
 
     /**

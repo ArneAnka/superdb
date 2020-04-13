@@ -88,7 +88,7 @@
 @endif
 
 @forelse($game->history as $item)
-  <p>{{ $item->user->name }} ändrade {{ $item->changed_column }} från, "{{ $item->changed_value_from }}" till, "{{ $item->changed_value_to }}" den {{ $item->created_at }} </p>
+  <p><u>{{ $item->user->name }}</u> ändrade <u>{{ $item->changed_column }}</u> till, "{{ $item->changed_value_to }}" den {{ $item->created_at }} </p>
 @empty
   <p>Inga ändringar för detta spel.</p>
 @endforelse
