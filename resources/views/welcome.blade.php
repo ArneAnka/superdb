@@ -37,7 +37,14 @@
     Genomsnittlig radlängd: ~199 <br>
     Dumpad databasstorlek: ~6,2M <br>
 </p>
-<hr>
+
+<h2><u>De 10 senaste ändringarna i speldatabasen</u></h2>
+@forelse($games_history as $game)
+    <a href="{{ route('game.show', $game) }}">{{ $game->title }}</a> ({{ $game->updated_at->diffForHumans() }})<br>
+@empty
+@endforelse
+
+<h2><u>Uppdateringar</u></h2>
 <div>
     <p style="margin-bottom: 0px"><b>Tis  5 Maj 2020 10:21:40</b></p>
     <p style="margin-top: 0px;">Mer information om andra spel visas nu när du visar ett specefikt spel. Enklare navigering på sidor där alla spel visas. //JNI</p>

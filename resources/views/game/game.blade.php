@@ -8,7 +8,7 @@
 @endsection
 
 @section('content')
-<h1>{{ $game->console }}: {{ $game->title }}</h1>
+<h1 style="margin-bottom: 5px;">{{ $game->console }}: {{ $game->title }}</h1>
 <i class="gg-calendar-today" style="display: inline-flex;"></i> <span style="text-decoration: underline solid">Tillagd:</span> {{ $game->created_at->diffForhumans() }} ({{ $game->created_at }})<br>
 <i class="gg-calendar-today" style="display: inline-flex;"></i> <span style="text-decoration: underline solid">Senaste uppdaterad:</span> {{ $game->updated_at->diffForHumans() }} ({{ $game->updated_at }})<br>
 
@@ -91,7 +91,10 @@
 @endif
 
 @forelse($game->history as $item)
-  <p><u>{{ $item->user->name }}</u> ändrade <u>{{ $item->changed_column }}</u> till, "{{ $item->changed_value_to }}" den {{ $item->created_at }} </p>
+  <p><u>{{ $item->user->name }}</u> ändrade <u>{{ $item->changed_column }}</u> till: "{{ $item->changed_value_to }}" den {{ $item->created_at }} </p>
+     @if($loop->last)
+         <hr>
+     @endif
 @empty
   <p><i class="gg-info" style="display: inline-flex;"></i> Inga ändringar för detta spel.</p>
 @endforelse
@@ -101,7 +104,7 @@
   <p><i class="gg-file-document" style="display: inline-flex;"></i> <a href="{{ route('game.show.edit', $game) }}">edit</a>
 @endcan
 
-<h3 style="margin-bottom: 5px">Andra spel i samma genre</h3>
+<h3 style="margin-bottom: 0px;">Andra spel i samma genre</h3>
 @forelse($gamesOfSameGenre as $game)
     <p><a href="{{ route('game.show', $game) }}">{{ $game->title }}</a> ({{ $game->import }})</p>
 @empty
