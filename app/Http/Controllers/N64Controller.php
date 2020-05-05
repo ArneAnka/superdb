@@ -15,6 +15,18 @@ class N64Controller extends Controller
     public function index()
     {
         $games = Game::where('console', 'n64')->withCount('releases')->get();
+
+        // Group all games by the first letter
+        $games = $games->reduce(function ($carry, $games) {
+            // get first letter
+            $first_letter = $games['title'][0];
+            if ( !isset($carry[$first_letter]) ) {
+                $carry[$first_letter] = [];
+            }
+            $carry[$first_letter][] = $games;
+            return $carry;
+        }, []);
+        
         return view('game.n64', compact('games'));
     }
 }

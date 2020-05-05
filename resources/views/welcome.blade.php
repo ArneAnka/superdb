@@ -40,7 +40,7 @@
 <hr>
 <div>
     <p style="margin-bottom: 0px"><b>Tis  5 Maj 2020 10:21:40</b></p>
-    <p style="margin-top: 0px;">Mer information om andra spel visas nu när du visar ett specefikt spel. //JNI</p>
+    <p style="margin-top: 0px;">Mer information om andra spel visas nu när du visar ett specefikt spel. Enklare navigering på sidor där alla spel visas. //JNI</p>
 <hr>
     <p style="margin-bottom: 0px"><b>Ons 25 Mar 2020 06:01:32</b></p>
     <p style="margin-top: 0px;">Ändringshistorik tillagd //JNI</p>
