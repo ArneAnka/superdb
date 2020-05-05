@@ -2,6 +2,8 @@
 
 @section('title', $game->title)
 <link href='https://css.gg/calendar-today.css' rel='stylesheet'>
+<link href='https://css.gg/info.css' rel='stylesheet'>
+<link href='https://css.gg/file-document.css' rel='stylesheet'>
 @section('css')
 @endsection
 
@@ -62,7 +64,7 @@
 
 @if(!$game->releases->isEmpty())
   @guest
-    <a href="{{ route('login') }}">Logga in</a> för att se releaser.
+    <i class="gg-info" style="display: inline-flex;"></i> <a href="{{ route('login') }}">Logga in</a> för att se releaser.
   @endguest
   @auth
   <h3>Releaser:</h3>
@@ -76,6 +78,7 @@
       @foreach(json_decode($release->misc) as $key => $text)
         {{ $key }}: {{ $text }}<br>
       @endforeach
+      <hr>
       <br>
     @endforeach
   @endauth
@@ -90,12 +93,19 @@
 @forelse($game->history as $item)
   <p><u>{{ $item->user->name }}</u> ändrade <u>{{ $item->changed_column }}</u> till, "{{ $item->changed_value_to }}" den {{ $item->created_at }} </p>
 @empty
-  <p>Inga ändringar för detta spel.</p>
+  <p><i class="gg-info" style="display: inline-flex;"></i> Inga ändringar för detta spel.</p>
 @endforelse
 
 
 @can('update', $game)
-  <a href="{{ route('game.show.edit', $game) }}">edit</a>
+  <p><i class="gg-file-document" style="display: inline-flex;"></i> <a href="{{ route('game.show.edit', $game) }}">edit</a>
 @endcan
+
+<h3 style="margin-bottom: 5px">Andra spel i samma genre</h3>
+@forelse($gamesOfSameGenre as $game)
+    <p><a href="{{ route('game.show', $game) }}">{{ $game->title }}</a> ({{ $game->import }})</p>
+@empty
+  Verkar tomt här...
+@endforelse
 
 @endsection

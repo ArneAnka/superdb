@@ -41,7 +41,9 @@ class GameController extends Controller
             }
         ]);
 
-        return view('game.game', compact('game'));
+        $gamesOfSameGenre = Game::where('id', '!=', $game->id)->where('genre', '!=', null)->where('genre', $game->genre)->where('console', $game->console)->get();
+
+        return view('game.game', compact('game', 'gamesOfSameGenre'));
     }
 
     /**
