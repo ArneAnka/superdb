@@ -36,13 +36,13 @@ class GameController extends Controller
      */
     public function show(Game $game)
     {
-        $game->load(['releases','history' => function($q){
+        $game->load(['releases', 'urls', 'history' => function($q){
             return $q->with('user');
             }
         ]);
 
         $gamesOfSameGenre = Game::where('id', '!=', $game->id)->where('genre', '!=', null)->where('genre', $game->genre)->where('console', $game->console)->get();
-
+        
         return view('game.game', compact('game','gamesOfSameGenre'));
     }
 

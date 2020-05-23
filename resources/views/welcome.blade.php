@@ -46,6 +46,9 @@
 
 <h2><u>Uppdateringar</u></h2>
 <div>
+    <p style="margin-bottom: 0px"><b>Lör 23 Maj 2020 14:16:42</b></p>
+    <p style="margin-top: 0px;">Ändrat database layout. Lagt till `games_urls` tabell. //JNI</p>
+<hr>
     <p style="margin-bottom: 0px"><b>Tis  5 Maj 2020 10:21:40</b></p>
     <p style="margin-top: 0px;">Mer information om andra spel visas nu när du visar ett specefikt spel. Enklare navigering på sidor där alla spel visas. //JNI</p>
 <hr>

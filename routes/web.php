@@ -17,7 +17,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', function () {
     $games = Game::all();
     $games_history = Game::whereHas('history')->orderBy('updated_at', 'desc')->limit(10)->get();
-
     $nes_count = $games->where('console', 'nes')->count();
     $snes_count = $games->where('console', 'snes')->count();
     $n64_count = $games->where('console', 'n64')->count();

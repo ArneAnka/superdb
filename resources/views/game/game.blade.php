@@ -46,14 +46,16 @@
  <li class="list-element">
   <span style="">save:</span> {{ $game->save }}
 </li>
- @if($game->console == 'snes')
- <li class="list-element">
-  <span style="">snes_central:</span> <a href="{{ $game->snes_central ?? 'http://www.google.com' }}">LINK</a>
+@forelse($game->urls as $key => $url)
+  <li class="list-element">
+    <span style="">{{ $url->host }}</span> <a href="{{ $url->url }}">LINK</a>
+  </li>
+@empty
+<li class="list-element">
+  <a href="https://www.google.com/search?q={{ $game->title }} wikipedia {{ $game->console }}">googla</a>
 </li>
- @endif
- <li class="list-element">
-  <span style="">wikipedia_url:</span> <a href="{{ $game->wikipedia_url ?? "https://www.google.com/search?q=" . $game->title . "+wikipedia+" .  $game->console }}">LINK</a>
-</li>
+@endforelse
+
 <li class="list-element">
   <span style="">releaser:</span> {{ $game->releases->count() }}
 </li>
@@ -90,15 +92,16 @@
 <h3>Ändringar i databasen för "{{ $game->title }}"</h3>
 @endif
 
+
 @forelse($game->history as $item)
-  <p><u>{{ $item->user->name }}</u> ändrade <u>{{ $item->changed_column }}</u> till: "{{ $item->changed_value_to }}" den {{ $item->created_at }} </p>
+  <p><u>{{ $item->user->name }}, {{ $item->created_at }} ändrade {{ $item->changed_column }} till</u>:</p>
+  <p>"{{ $item->changed_value_to }}"</p>
      @if($loop->last)
          <hr>
      @endif
 @empty
   <p><i class="gg-info" style="display: inline-flex;"></i> Inga ändringar för detta spel.</p>
 @endforelse
-
 
 @can('update', $game)
   <p><i class="gg-file-document" style="display: inline-flex;"></i> <a href="{{ route('game.show.edit', $game) }}">edit</a>
@@ -108,7 +111,7 @@
 @forelse($gamesOfSameGenre as $game)
     <p><a href="{{ route('game.show', $game) }}">{{ $game->title }}</a> ({{ $game->import }})</p>
 @empty
-  Verkar tomt här...
+  Inga andra spel i samma genre funnet.
 @endforelse
 
 @endsection
