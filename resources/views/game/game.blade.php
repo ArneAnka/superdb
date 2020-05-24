@@ -38,7 +38,7 @@
    <img src="{{ asset('images/us.png') }}" class="image"> <span style="">usa_release:</span> {{ $game->usa_release }}
  </li>
   <li class="list-element">
-    <span style="">genre:</span> {{ $game->genre }}
+    <span style="">genre:</span> {{ $game->genre->genre }}
   </li>
   <li class="list-element">
     <span style="">modes:</span> {{ $game->modes }}
@@ -92,10 +92,8 @@
 <h3>Ändringar i databasen för "{{ $game->title }}"</h3>
 @endif
 
-
 @forelse($game->history as $item)
-  <p><u>{{ $item->user->name }}, {{ $item->created_at }} ändrade {{ $item->changed_column }} till</u>:</p>
-  <p>"{{ $item->changed_value_to }}"</p>
+@include('game.partials.edits._' . $item->changed_column, $item)
      @if($loop->last)
          <hr>
      @endif

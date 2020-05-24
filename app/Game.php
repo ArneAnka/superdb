@@ -50,7 +50,19 @@ class Game extends Model
         return $this->hasMany(Release::class);
     }
 
+    /**
+     * [urls description]
+     * @return [type] [description]
+     */
     public function urls(){
         return $this->hasMany(Url::class);
+    }
+
+    /**
+     * [genre description]
+     * @return [type] [description]
+     */
+    public function genre(){
+        return $this->belongsTo(Genre::class);
     }
 }

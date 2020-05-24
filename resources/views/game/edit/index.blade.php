@@ -21,12 +21,87 @@
             </div>
         </div>
 
+
+
+        <div class="">
+            <label for="genre" class="">Genre</label>
+            <div class="">
+                <select name="genre_id" id="genre_id">
+                    @foreach($genres as $genre)
+                      <option value="{{ $genre->id }}" {{ $game->genre_id == $genre->id ? 'selected="selected"' : '' }}>{{ $genre->genre }}</option>
+                    @endforeach
+                </select>
+
+                @error('genre')
+                <span class="" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+        </div>
+
+        <div class="">
+            <label for="save" class="">save</label>
+            <div class="">
+                <select name="save" id="save">
+                    @foreach($saves as $save)
+                      <option value="{{ $save }}" {{ $game->save == $save ? 'selected="selected"' : '' }}>{{ $save }}</option>
+                    @endforeach
+                </select>
+
+                @error('save')
+                <span class="" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+        </div>
+
         <div class="">
             <label for="import" class="">Import</label>
             <div class="">
                 <input id="import" type="text" class="@error('import') is-invalid @enderror" name="import" value="{{ old('import', $game->import) }}" autocomplete="import">
 
                 @error('import')
+                <span class="" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+        </div>
+
+        <div class="">
+            <label for="publisher" class="">Publisher</label>
+            <div class="">
+                <input id="publisher" type="text" class="@error('publisher') is-invalid @enderror" name="publisher" value="{{ old('publisher', $game->publisher) }}" required autocomplete="publisher">
+
+                @error('publisher')
+                <span class="" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+        </div>
+
+        <div class="">
+            <label for="developer" class="">Developer</label>
+            <div class="">
+                <input id="developer" type="text" class="@error('developer') is-invalid @enderror" name="developer" value="{{ old('developer', $game->developer) }}" required autocomplete="developer">
+
+                @error('developer')
+                <span class="" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+        </div>
+
+        <div class="">
+            <label for="modes" class="">Playing modes ex. singleplayer</label>
+            <div class="">
+                <input id="modes" type="text" class="@error('modes') is-invalid @enderror" name="modes" value="{{ old('modes', $game->modes) }}" required autocomplete="modes">
+
+                @error('modes')
                 <span class="" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
