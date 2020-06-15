@@ -26,16 +26,16 @@
     <span style="">developer:</span> {{ $game->developer }}
   </li>
   <li class="list-element">
-    <img src="{{ asset('images/se.png') }}" class="image"> <span style="">sweden_release:</span> {{ $game->sweden_release }}
+    <img src="{{ asset('images/se.png') }}" class="image"> <span style="">Sweden release:</span> {{ $game->sweden_release }}
   </li>
   <li class="list-element">
-   <img src="{{ asset('images/eu.png') }}" class="image"> <span style="">europe_release:</span> {{ $game->europe_release }}
+   <img src="{{ asset('images/eu.png') }}" class="image"> <span style="">Europe release:</span> {{ $game->europe_release }}
  </li>
  <li class="list-element">
-   <img src="{{ asset('images/jp.png') }}" class="image"> <span style="">japan_release:</span> {{ $game->japan_release }}
+   <img src="{{ asset('images/jp.png') }}" class="image"> <span style="">Japan release:</span> {{ $game->japan_release }}
  </li>
  <li class="list-element">
-   <img src="{{ asset('images/us.png') }}" class="image"> <span style="">usa_release:</span> {{ $game->usa_release }}
+   <img src="{{ asset('images/us.png') }}" class="image"> <span style="">Usa release:</span> {{ $game->usa_release }}
  </li>
   <li class="list-element">
     <span style="">genre:</span> {{ $game->genre->genre }}
@@ -57,7 +57,7 @@
 @endforelse
 
 <li class="list-element">
-  <span style="">releaser:</span> {{ $game->releases->count() }}
+  <span style="">release count:</span> {{ $game->releases->count() }}
 </li>
 <li class="list-element">
   <span style="">description:</span> {{ $game->description }}  
@@ -71,14 +71,14 @@
   @auth
   <h3>Releaser:</h3>
     @foreach($game->releases as $release)
-      Superdb ID: #{{ $release->id }}<br>
-      release: {{ $release->release }}<br>
-      manual: {{ $release->manual }}<br>
-      box: {{ $release->box }}<br>
-      cartridge_front: {{ $release->cartridge_front }}<br>
-      special: {{ $release->special }}<br>
+      <u>Superdb ID</u>: #{{ $release->id }}<br>
+      <u>release</u>: {{ $release->release }}<br>
+      <u>manual</u>: {{ $release->manual }}<br>
+      <u>box</u>: {{ $release->box }}<br>
+      <u>cartridge_front</u>: {{ $release->cartridge_front }}<br>
+      <u>special</u>: {{ $release->special }}<br>
       @foreach(json_decode($release->misc) as $key => $text)
-        {{ $key }}: {{ $text }}<br>
+        <u>{{ $key }}</u>: {{ $text }}<br>
       @endforeach
       <hr>
       <br>

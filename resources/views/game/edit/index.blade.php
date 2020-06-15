@@ -28,7 +28,7 @@
             <div class="">
                 <select name="genre_id" id="genre_id">
                     @foreach($genres as $genre)
-                      <option value="{{ $genre->id }}" {{ $game->genre_id == $genre->id ? 'selected="selected"' : '' }}>{{ $genre->genre }}</option>
+                      <option value="{{ $genre->id }}" {{ old('genre_id', $game->genre_id) == $genre->id ? 'selected' : '' }}>{{ $genre->genre }}</option>
                     @endforeach
                 </select>
 
@@ -45,7 +45,7 @@
             <div class="">
                 <select name="save" id="save">
                     @foreach($saves as $save)
-                      <option value="{{ $save }}" {{ $game->save == $save ? 'selected="selected"' : '' }}>{{ $save }}</option>
+                      <option value="{{ $save }}" {{ old('save', $game->save) == $save ? 'selected' : '' }}>{{ $save }}</option>
                     @endforeach
                 </select>
 
@@ -73,7 +73,7 @@
         <div class="">
             <label for="publisher" class="">Publisher</label>
             <div class="">
-                <input id="publisher" type="text" class="@error('publisher') is-invalid @enderror" name="publisher" value="{{ old('publisher', $game->publisher) }}" required autocomplete="publisher">
+                <input id="publisher" type="text" class="@error('publisher') is-invalid @enderror" name="publisher" value="{{ old('publisher', $game->publisher) }}" autocomplete="publisher">
 
                 @error('publisher')
                 <span class="" role="alert">
@@ -86,7 +86,7 @@
         <div class="">
             <label for="developer" class="">Developer</label>
             <div class="">
-                <input id="developer" type="text" class="@error('developer') is-invalid @enderror" name="developer" value="{{ old('developer', $game->developer) }}" required autocomplete="developer">
+                <input id="developer" type="text" class="@error('developer') is-invalid @enderror" name="developer" value="{{ old('developer', $game->developer) }}" autocomplete="developer">
 
                 @error('developer')
                 <span class="" role="alert">
@@ -99,7 +99,7 @@
         <div class="">
             <label for="modes" class="">Playing modes ex. singleplayer</label>
             <div class="">
-                <input id="modes" type="text" class="@error('modes') is-invalid @enderror" name="modes" value="{{ old('modes', $game->modes) }}" required autocomplete="modes">
+                <input id="modes" type="text" class="@error('modes') is-invalid @enderror" name="modes" value="{{ old('modes', $game->modes) }}" autocomplete="modes">
 
                 @error('modes')
                 <span class="" role="alert">

@@ -5,11 +5,13 @@ namespace App;
 use App\Traits\Historyable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Game extends Model
 {
 
     use Historyable;
+    use SoftDeletes;
 
     protected $guarded = [];
 
