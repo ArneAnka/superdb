@@ -48,7 +48,7 @@
 </li>
 @forelse($game->urls as $key => $url)
   <li class="list-element">
-    <span style="">{{ $url->host }}</span> <a href="{{ $url->url }}">LINK</a>
+    <span style="">{{ $url->host }}</span>: <a href="{{ $url->url }}">LINK</a>
   </li>
 @empty
 <li class="list-element">

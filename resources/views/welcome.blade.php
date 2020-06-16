@@ -33,15 +33,16 @@
 </ul>
 
 <p>
-    Antal rader: 2010 <br>
-    Genomsnittlig radlängd: ~199 <br>
-    Dumpad databasstorlek: ~6,2M <br>
+    Antal rader: 2072 <br>
+    Genomsnittlig radlängd: 2858 <br>
+    Dumpad databasstorlek: 3,5M <br>
 </p>
 
 <h2><u>De 10 senaste ändringarna i speldatabasen</u></h2>
 @forelse($games_history as $game)
     <a href="{{ route('game.show', $game) }}">{{ $game->title }}</a> ({{ $game->updated_at->diffForHumans() }})<br>
 @empty
+    Inga ändringar gjorda...
 @endforelse
 
 <h2><u>Uppdateringar</u></h2>

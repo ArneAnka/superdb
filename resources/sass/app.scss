@@ -237,11 +237,15 @@ h1 {
     }
     main {
         margin: 0;
+        margin-bottom: 4em;
     }
     ul.list {
-            width: 100%;
-            padding-inline-start: 0;
+        width: 100%;
+        padding-inline-start: 0;
         }
+    .footer {
+        display: none;
+    }
 }
 
 /* stora skärmar */

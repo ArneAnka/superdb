@@ -1,6 +1,8 @@
+<h2>
 @foreach($games as $letter => $group)
         <a href="#game-starts-with-{{ $letter }}">{{ $letter }}</a>
 @endforeach
+</h2>
 
 @foreach($games as $letter => $group)
         <a id="game-starts-with-{{ $letter }}"> <h3>{{ $letter }} ({{ sizeof($group) }} titlar)</h3>
