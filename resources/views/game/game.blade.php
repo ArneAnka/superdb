@@ -48,11 +48,11 @@
 </li>
 @forelse($game->urls as $key => $url)
   <li class="list-element">
-    <span style="">{{ $url->host }}</span>: <a href="{{ $url->url }}">LINK</a>
+    <span style="">{{ $url->host }}</span>: <a href="{{ $url->url }}" target="_blank">LINK</a>
   </li>
 @empty
 <li class="list-element">
-  <a href="https://www.google.com/search?q={{ $game->title }} wikipedia {{ $game->console }}">googla</a>
+  <a href="https://www.google.com/search?q={{ $game->title }} wikipedia {{ $game->console }}" target="_blank">googla</a>
 </li>
 @endforelse
 
