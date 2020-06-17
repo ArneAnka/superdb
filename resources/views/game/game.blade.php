@@ -8,9 +8,9 @@
 @endsection
 
 @section('content')
-<h1 style="margin-bottom: 5px;">{{ $game->console }}: {{ $game->title }}</h1>
-<i class="gg-calendar-today" style="display: inline-flex;"></i> <span style="text-decoration: underline solid">Tillagd:</span> {{ $game->created_at->diffForhumans() }} ({{ $game->created_at }})<br>
-<i class="gg-calendar-today" style="display: inline-flex;"></i> <span style="text-decoration: underline solid">Senaste uppdaterad:</span> {{ $game->updated_at->diffForHumans() }} ({{ $game->updated_at }})<br>
+<h1 style="margin-bottom: 5px;">{{ $game->console->name }}: {{ $game->title }}</h1>
+<i class="gg-calendar-today" style="display: inline-flex; align-items: center;"></i> <span style="text-decoration: underline solid">Tillagd:</span> {{ $game->created_at->diffForhumans() }} ({{ $game->created_at }})<br>
+<i class="gg-calendar-today" style="display: inline-flex; align-items: center;"></i> <span style="text-decoration: underline solid">Senaste uppdaterad:</span> {{ $game->updated_at->diffForHumans() }} ({{ $game->updated_at }})<br>
 
 <ul class="list">
   <li class="list-element">
@@ -52,7 +52,7 @@
   </li>
 @empty
 <li class="list-element">
-  <a href="https://www.google.com/search?q={{ $game->title }} wikipedia {{ $game->console }}" target="_blank">googla</a>
+  <a href="https://www.google.com/search?q={{ $game->title }} {{ $game->console->name }} wikipedia video game" target="_blank">googla</a>
 </li>
 @endforelse
 

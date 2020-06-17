@@ -1,6 +1,7 @@
 <?php
 
 use App\Game;
+use App\Console;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,18 +16,17 @@ Route::get('/logout', 'Auth\LoginController@logout');
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/', function () {
-    $games = Game::all();
+    $games_count = Console::withCount(['games' => function($q){
+        return $q->where('deleted_at','=', null);
+    }])->get();
     $games_history = Game::whereHas('history')->orderBy('updated_at', 'desc')->limit(10)->get();
-    $nes_count = $games->where('console', 'nes')->count();
-    $snes_count = $games->where('console', 'snes')->count();
-    $n64_count = $games->where('console', 'n64')->count();
-    $ngc_count = $games->where('console', 'ngc')->count();
-    $gba_count = $games->where('console', 'gba')->count();
-    $gbc_count = $games->where('console', 'gbc')->count();
-
-    return view('welcome', compact('games_history', 'nes_count', 'snes_count', 'n64_count', 'ngc_count', 'gba_count', 'gbc_count'));
-
+    return view('welcome', compact('games_history', 'games_count'));
 })->name('welcome');
+
+/*
+ALTER TABLE games
+ADD FOREIGN KEY (console_id) REFERENCES consoles_games(id);
+*/
 
 /**
  * Landing page for games

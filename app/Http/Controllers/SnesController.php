@@ -14,7 +14,9 @@ class SnesController extends Controller
      */
     public function index()
     {
-        $games = Game::where('console', 'snes')->withCount('releases')->orderBy('title', 'asc')->get();
+        $games = Game::whereHas('console', function ($query) {
+            return $query->where('short', '=', 'snes');
+        })->withCount('releases')->get();
 
         // Group all games by the first letter
         $games = $games->reduce(function ($carry, $games) {

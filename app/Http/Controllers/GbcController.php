@@ -14,7 +14,9 @@ class GbcController extends Controller
      */
     public function index()
     {
-        $games = Game::where('console', 'gbc')->withCount('releases')->get();
+        $games = Game::whereHas('console', function ($query) {
+            return $query->where('short', '=', 'gbc');
+        })->withCount('releases')->get();
 
         // Group all games by the first letter
         $games = $games->reduce(function ($carry, $games) {

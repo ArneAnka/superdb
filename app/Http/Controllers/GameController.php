@@ -45,7 +45,9 @@ class GameController extends Controller
         // https://stackoverflow.com/a/49160894/4892914
         $gamesOfSameGenre = Game::whereHas('genre', function($query) use($game) {
             $query->whereGenreId($game->genre_id)->where('genre', '!=', 'unknown');
-        })->where('id', '!=', $game->id)->where('console', $game->console)->get();
+        })->where('id', '!=', $game->id)->whereHas('console', function($query) use($game) {
+            $query->whereConsoleId($game->console_id);
+        })->get();
         
         return view('game.game', compact('game','gamesOfSameGenre'));
     }

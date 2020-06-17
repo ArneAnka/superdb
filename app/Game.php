@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Game extends Model
 {
-
     use Historyable;
     use SoftDeletes;
 
@@ -66,5 +65,13 @@ class Game extends Model
      */
     public function genre(){
         return $this->belongsTo(Genre::class);
+    }
+
+    /**
+     * [console description]
+     * @return [type] [description]
+     */
+    public function console(){
+        return $this->belongsTo(Console::class);
     }
 }

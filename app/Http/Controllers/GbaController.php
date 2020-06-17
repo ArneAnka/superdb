@@ -14,7 +14,9 @@ class GbaController extends Controller
      */
     public function index()
     {
-        $games = Game::where('console', 'gba')->withCount('releases')->get();
+        $games = Game::whereHas('console', function ($query) {
+            return $query->where('short', '=', 'gba');
+        })->withCount('releases')->get();
 
         // Group all games by the first letter
         $games = $games->reduce(function ($carry, $games) {

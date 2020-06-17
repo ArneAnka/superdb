@@ -4,32 +4,19 @@
 
 @section('content')
 <h1>superdb.cc 🍻</h1>
-<h3>Databas över Nintendo titlar till NES, SNES, N64, GC, GBA och GBC</h3>
+<h3>Databas över Nintendo titlar till NES, SNES, N64, NGC, GBA och GBC</h3>
 
 <div class="toast toast-primary">
     (Observera att databasen gör ett försök till att enbart innehålla titlar utgivna i Norden.
-    Dessvärre är N64, GC, GBA och GBC inte långt gågna i den processen.)
+    Dessvärre är N64 och NES inte långt gången i den processen.)
 </div>
 
 <ul>
-    <li>
-        <a href="{{ route('nes') }}">NES</a>, {{ $nes_count }} titlar
-    </li>
-    <li>
-        <a href="{{ route('snes') }}">SNES</a>, {{ $snes_count }} titlar
-    </li>
-    <li>
-        <a href="{{ route('n64') }}">N64</a>, {{ $n64_count }} titlar
-    </li>
-    <li>
-        <a href="{{ route('ngc') }}">NGC</a>, {{ $ngc_count }} titlar
-    </li>
-    <li>
-        <a href="{{ route('gba') }}">GBA</a>, {{ $gba_count }} titlar
-    </li>
-    <li>
-        <a href="{{ route('gbc') }}">GBC</a>, {{ $gbc_count }} titlar
-    </li>
+@foreach($games_count as $console)
+<li>
+    <a href="{{ route($console->short) }}">{{ $console->name }}</a>, {{ $console->games_count }} titlar
+</li>
+@endforeach
 </ul>
 
 <p>
@@ -47,6 +34,12 @@
 
 <h2><u>Uppdateringar</u></h2>
 <div>
+    <p style="margin-bottom: 0px"><b><u>Ons 17 Jun 2020 12:37:22</u></b></p>
+    <p style="margin-top: 0px;">Uppdaterat GBC-avdelningen. 6 titlar raderade och 13 rader tillagda, även ändrat några felstavade titlar. Totala antalet spel på svenska marknaden är nu 186 st. Större delen importerade av Bergsala. //JNI</p>
+<hr>
+    <p style="margin-bottom: 0px"><b><u>Tis 16 Jun 2020 13:41:52</u></b></p>
+    <p style="margin-top: 0px;">Uppdaterat GBA-avdelningen. 21 titlar raderade och 30 rader tillagda. Totala antalet spel på svenska marknaden är nu 718 st. Större delen importerade av Bergsala. //JNI</p>
+<hr>
     <p style="margin-bottom: 0px"><b><u>Mån 15 Jun 2020 18:50:15</u></b></p>
     <p style="margin-top: 0px;">Uppdaterat NGC-avdelningen med att lägga till titlar utgivna av Bergsala och att ta bort spel ej utgivna på den svenska marknaden. Exempelvis så raderades 70 titlar ej utgivna i Sverige. Hittade till och med ett Xbox spel, Tom Clancy's Rainbow Six 3: Black Arrow. Nu återstår det extremt mödosamma arbetet att lägga till releaser till respektive title. //JNI</p>
 <hr>
