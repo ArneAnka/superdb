@@ -20,7 +20,7 @@
 </ul>
 
 <p>
-    Antal rader: 2072 <br>
+    Antal rader: 2121 <br>
     Genomsnittlig radlängd: 2858 <br>
     Dumpad databasstorlek: 3,5M <br>
 </p>
