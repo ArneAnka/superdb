@@ -3,12 +3,17 @@
 @section('title', 'välkommen')
 
 @section('content')
+
+@markdown
+
+@endmarkdown
+
 <h1>superdb.cc 🍻</h1>
 <h3>Databas över Nintendo titlar till NES, SNES, N64, NGC, GBA och GBC</h3>
 
 <div class="toast toast-primary">
     (Observera att databasen gör ett försök till att enbart innehålla titlar utgivna i Norden.
-    Dessvärre är N64 och NES inte långt gången i den processen.)
+    Dessvärre NES-spelen inte långt gångna i den processen.)
 </div>
 
 <ul>
@@ -34,6 +39,9 @@
 
 <h2><u>Uppdateringar</u></h2>
 <div>
+    <p style="margin-bottom: 0px"><b><u>Ons 15 Jul 2020 08:24:07</u></b></p>
+    <p style="margin-top: 0px;">Uppdaterat N64-avdelningen. 8 titlar radera och 3 tillagda, totalt 222 (med raderade) från 219 innan.//JNI</p>
+<hr>
     <p style="margin-bottom: 0px"><b><u>Ons 17 Jun 2020 12:37:22</u></b></p>
     <p style="margin-top: 0px;">Uppdaterat GBC-avdelningen. 6 titlar raderade och 13 rader tillagda, även ändrat några felstavade titlar. Totala antalet spel på svenska marknaden är nu 186 st. Större delen importerade av Bergsala. //JNI</p>
 <hr>
