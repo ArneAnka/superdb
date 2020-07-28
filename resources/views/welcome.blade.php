@@ -3,11 +3,6 @@
 @section('title', 'välkommen')
 
 @section('content')
-
-@markdown
-
-@endmarkdown
-
 <h1>superdb.cc 🍻</h1>
 <h3>Databas över Nintendo titlar till NES, SNES, N64, NGC, GBA och GBC</h3>
 
