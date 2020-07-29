@@ -24,7 +24,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        $this->authorize('create', Post::class);
+
+        return view('post.create');
     }
 
     /**
@@ -35,7 +37,24 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->authorize('create', Post::class);
+
+        $request->validate([
+            'topic' => 'required',
+            'body' => 'required'
+        ]);
+
+        $post = new Post;
+
+        $post->topic = $request->get('topic');
+        $post->body = $request->get('body');
+        $post->user_id = $request->user()->id;
+
+        $post->save();
+
+        return redirect()
+        ->route('welcome')
+        ->with('success', 'Du la till en post');
     }
 
     /**
@@ -57,7 +76,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view('post.edit', compact('post'));
     }
 
     /**
@@ -69,7 +88,21 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $this->authorize('update', $post);
+
+        $request->validate([
+            'topic' => 'required',
+            'body' => 'required'
+        ]);
+
+        $post->topic = $request->get('topic');
+        $post->body = $request->get('body');
+
+        $post->update();
+
+        return redirect()
+        ->route('welcome')
+        ->with('success', 'Du ändrade en post');
     }
 
     /**
@@ -80,6 +113,12 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $this->authorize('delete', $post);
+        
+        $post->delete();
+
+        return redirect()
+        ->route('welcome')
+        ->with('success', 'Du raderade en post');
     }
 }

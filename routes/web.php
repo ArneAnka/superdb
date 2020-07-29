@@ -1,11 +1,19 @@
 <?php
 
-use App\Game;
-use App\Console;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 Auth::routes(['register' => false]);
+
+Route::get('/test', function(){
+    $games = App\Game::with(['releases'=> function($q){
+        return $q->where('pcb', '=', NULL)->get();
+    }])
+    ->where('console_id', 2)
+    ->get();
+
+    return view('test', compact('games'));
+});
 
 /**
  * Normalt sätt så är utloggningen en POST.
@@ -13,27 +21,11 @@ Auth::routes(['register' => false]);
  */
 Route::get('/logout', 'Auth\LoginController@logout');
 
+# Landing page
+Route::get('/', 'WelcomeController@index')->name('welcome');
+
+# Landing page for logged in users
 Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/', function () {
-    # Count games for each console
-    $games_count = Console::withCount(['games' => function($q){
-        return $q->where('deleted_at','=', null);
-    }])->get();
-
-    # Count all rows in DB
-    $all_games_count = Game::withTrashed()->count();
-
-    # Retrive the 10 last editet games
-    $games_history = Game::with('console')->whereHas('history')->orderBy('updated_at', 'desc')->limit(10)->get();
-
-    # Retrive Birthdays! :)
-    // $date = date_create("2013-07-28");
-    // $birthdays = Game::with('console')->releasedOn($date)->get();
-    $birthdays = Game::releasedOnThisDay()->get();
-
-    return view('welcome', compact('games_history', 'games_count', 'birthdays', 'all_games_count'));
-})->name('welcome');
 
 /**
  * Landing page for games
@@ -53,6 +45,17 @@ Route::prefix('g')->group(function () {
     Route::get('/edit/{game}', 'GameController@edit')->name('game.show.edit');
     Route::post('/edit/{game}/update', 'GameController@update')->name('game.update.edit');
     Route::post('/url/{game}/save', 'UrlController@store')->name('game.save.url');
+});
+
+/**
+ * Post
+ */
+Route::prefix('post')->group(function () {
+    Route::get('/', 'PostController@create')->name('post.create');
+    Route::get('/edit/{post}', 'PostController@edit')->name('post.edit');
+    Route::post('/url/save', 'PostController@store')->name('post.store');
+    Route::post('/edit/{post}/update', 'PostController@update')->name('post.update');
+    Route::get('/delete/{post}', 'PostController@destroy')->name('post.delete');
 });
 
 /**
