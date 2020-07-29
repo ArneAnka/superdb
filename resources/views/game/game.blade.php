@@ -52,7 +52,7 @@
   </li>
 @empty
 <li class="list-element">
-  <a href="https://www.google.com/search?q={{ $game->title }} {{ $game->console->name }} wikipedia video game" target="_blank">googla</a>
+  <a href="https://www.google.com/search?q={{ str_replace(' ', '+', $game->title) }}+{{ str_replace(' ', '+', $game->console->name) }} wikipedia video game" target="_blank">googla</a>
 </li>
 @endforelse
 

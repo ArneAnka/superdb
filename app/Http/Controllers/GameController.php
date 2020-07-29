@@ -61,10 +61,9 @@ class GameController extends Controller
     public function edit(Game $game)
     {
         $this->authorize('update', $game);
-        
         $genres = Genre::all();
-        
         $saves = ['unknown','battery','password','unsaveable'];
+        $game->load('urls');
 
         return view('game.edit.index', compact('game', 'genres', 'saves'));
     }
@@ -93,7 +92,26 @@ class GameController extends Controller
             'genre_id' => 'required|exists:games_genres,id'
         ], $messages);
 
-        $game->update($request->all());
+        foreach ($request->url as $host => $url) {
+            if ($gameUrl = $game->urls()->firstWhere('host', $host)) {
+                $gameUrl->update(['url' => $url]);
+            }
+        }
+
+        $game->update([
+            'title' => $request->get('title'),
+            'genre_id' => $request->get('genre_id'),
+            'publisher' => $request->get('publisher'),
+            'developer' => $request->get('developer'),
+            'sweden_release' => $request->get('sweden_release'),
+            'europe_release' => $request->get('europe_release'),
+            'japan_release' => $request->get('japan_release'),
+            'usa_release' => $request->get('usa_release'),
+            'save' => $request->get('save'),
+            'import' => $request->get('import'),
+            'modes' => $request->get('modes'),
+            'description' => $request->get('description'),
+        ]);
 
         return redirect()
         ->route('game.show', $game)

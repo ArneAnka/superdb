@@ -8,7 +8,6 @@
 
 <div class="toast toast-primary">
     (Observera att databasen gör ett försök till att enbart innehålla titlar utgivna i Norden.
-    Dessvärre NES-spelen inte långt gångna i den processen.)
 </div>
 
 <ul>
@@ -20,20 +19,30 @@
 </ul>
 
 <p>
-    Antal rader: 2121 <br>
+    Antal rader: {{ $all_games_count }} <br>
     Genomsnittlig radlängd: 2858 <br>
     Dumpad databasstorlek: 3,5M <br>
 </p>
 
 <h2><u>De 10 senaste ändringarna i speldatabasen</u></h2>
 @forelse($games_history as $game)
-    <a href="{{ route('game.show', $game) }}">{{ $game->title }}</a> ({{ $game->updated_at->diffForHumans() }})<br>
+    ({{ $game->console->short }}) <a href="{{ route('game.show', $game) }}">{{ $game->title }}</a> ({{ $game->updated_at->diffForHumans() }})<br>
 @empty
     Inga ändringar gjorda...
 @endforelse
 
+<h2><u>Årsdagar 🎂</u></h2>
+@forelse($birthdays as $birthday)
+    ({{ $birthday->console->short }}) <a href="{{ route('game.show', $birthday) }}">{{ $birthday->title }}</a> ({{ $birthday->sweden_release }})<br>
+@empty
+    Inga årsdagar funna för idag :(
+@endforelse
+
 <h2><u>Uppdateringar</u></h2>
 <div>
+    <p style="margin-bottom: 0px"><b><u>Ons 29 Jul 2020 08:49:08</u></b></p>
+    <p style="margin-top: 0px;">Uppdaterat NES-avdelningen, uppdaterat wikipedia-länkar för N64-spel. //JNI</p>
+<hr>
     <p style="margin-bottom: 0px"><b><u>Ons 15 Jul 2020 08:24:07</u></b></p>
     <p style="margin-top: 0px;">Uppdaterat N64-avdelningen. 8 titlar radera och 3 tillagda, totalt 222 (med raderade) från 219 innan.//JNI</p>
 <hr>

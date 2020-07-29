@@ -2,10 +2,44 @@
 
 @section('title', "ändra $game->title")
 
+@section('css')
+<style>
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+form {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+</style>
+@endsection
 @section('content')
 <h1>editera: {{ $game->title }}</h1>
 
-<form method="POST" action="{{ route('game.save.edit', $game) }}">
+<form method="POST" action="{{ route('game.update.edit', $game) }}" autocomplete="off">
     {{ csrf_field() }}
     {{ method_field('POST') }}
         <div class="">
@@ -173,7 +207,60 @@
                 @enderror
             </div>
         </div>
+        @forelse($game->urls as $url)
+        <div class="">
+            <label for="url" class="">{{ $url->host }}</label>
+            <div class="">
+                <input id="url"
+                type="text"
+                class="@error('url') is-invalid @enderror"
+                name="url[{{ $url->host }}]"
+                value="{{ old('url->url', $url->url) }}">
 
-    <button type="submit">Skicka</button>
+                @error('url')
+                <span class="" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+        </div>
+        @empty
+            No links
+        @endforelse
+
+    <input type="submit" value="Ändra">
+</form>
+
+<form method="POST" action="{{ route('game.save.url', $game) }}" autocomplete="off">
+    {{ csrf_field() }}
+    {{ method_field('POST') }}
+        <div class="">
+            <label for="url_host" class="">Add link</label>
+            <div class="">
+                <input id="url_host"
+                type="text"
+                class="@error('url_host') is-invalid @enderror"
+                name="url_host"
+                value="{{ old('url_host') }}" placeholder="ex: wikipedia_url">
+                @error('url_host')
+                <span class="" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+
+                <input id="new_url"
+                type="text"
+                class="@error('new_url') is-invalid @enderror"
+                name="new_url"
+                value="{{ old('new_url') }}" placeholder="http://en.wikipedia.org/xxx">
+
+                @error('new_url')
+                <span class="" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+        </div>
+    <input type="submit" value="Lägg till">
 </form>
 @endsection

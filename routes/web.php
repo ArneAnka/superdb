@@ -9,24 +9,31 @@ Auth::routes(['register' => false]);
 
 /**
  * Normalt sätt så är utloggningen en POST.
- * Ta bort denna för att återgå till normalt.
+ * (Ta bort denna för att återgå till normalt.)
  */
 Route::get('/logout', 'Auth\LoginController@logout');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/', function () {
+    # Count games for each console
     $games_count = Console::withCount(['games' => function($q){
         return $q->where('deleted_at','=', null);
     }])->get();
-    $games_history = Game::whereHas('history')->orderBy('updated_at', 'desc')->limit(10)->get();
-    return view('welcome', compact('games_history', 'games_count'));
-})->name('welcome');
 
-/*
-ALTER TABLE games
-ADD FOREIGN KEY (console_id) REFERENCES consoles_games(id);
-*/
+    # Count all rows in DB
+    $all_games_count = Game::withTrashed()->count();
+
+    # Retrive the 10 last editet games
+    $games_history = Game::with('console')->whereHas('history')->orderBy('updated_at', 'desc')->limit(10)->get();
+
+    # Retrive Birthdays! :)
+    // $date = date_create("2013-07-28");
+    // $birthdays = Game::with('console')->releasedOn($date)->get();
+    $birthdays = Game::releasedOnThisDay()->get();
+
+    return view('welcome', compact('games_history', 'games_count', 'birthdays', 'all_games_count'));
+})->name('welcome');
 
 /**
  * Landing page for games
@@ -44,7 +51,8 @@ Route::get('/gbc', 'GbcController@index')->name('gbc');
 Route::prefix('g')->group(function () {
     Route::get('{game}', 'GameController@show')->name('game.show');
     Route::get('/edit/{game}', 'GameController@edit')->name('game.show.edit');
-    Route::post('/edit/{game}/save', 'GameController@update')->name('game.save.edit');
+    Route::post('/edit/{game}/update', 'GameController@update')->name('game.update.edit');
+    Route::post('/url/{game}/save', 'UrlController@store')->name('game.save.url');
 });
 
 /**

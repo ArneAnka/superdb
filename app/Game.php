@@ -2,6 +2,7 @@
 
 namespace App;
 
+use DateTimeInterface;
 use App\Traits\Historyable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -73,5 +74,17 @@ class Game extends Model
      */
     public function console(){
         return $this->belongsTo(Console::class);
+    }
+
+    public function scopeReleasedOn(Builder $query, DateTimeInterface $date)
+    {
+        return $query
+            ->whereDay('sweden_release', '=', $date->format('d'))
+            ->whereMonth('sweden_release', '=', $date->format('m'));
+    }
+
+    public function scopeReleasedOnThisDay($query)
+    {
+        return $this->releasedOn($this->freshTimestamp());
     }
 }
