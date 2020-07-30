@@ -153,9 +153,9 @@ h1 {
   border-radius: 3px;
   color: #fefffe;
   background-color: #febb0b;
-  display: block;
+  display: inline-block;
   padding: 2px;
-  width: 100%;
+  width: auto;
   padding: 5px;
 }
 

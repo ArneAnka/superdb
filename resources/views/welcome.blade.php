@@ -7,7 +7,7 @@
 <h3>Databas över Nintendo titlar till NES, SNES, N64, NGC, GBA och GBC</h3>
 
 <div class="toast toast-primary">
-    (Observera att databasen gör ett försök till att enbart innehålla titlar utgivna i Norden.
+    Observera att databasen gör ett försök till att enbart innehålla titlar utgivna i Norden.
 </div>
 
 <ul>
@@ -26,14 +26,14 @@
 
 <h2><u>De 10 senaste ändringarna i speldatabasen</u></h2>
 @forelse($games_history as $game)
-    ({{ $game->console->short }}) <a href="{{ route('game.show', $game) }}">{{ $game->title }}</a> ({{ $game->updated_at->diffForHumans() }})<br>
+    <img src="{{ asset("images/{$game->console->icon_path}") }}" style="width: 15px;"> <a href="{{ route('game.show', $game) }}">{{ $game->title }}</a> ({{ $game->updated_at->diffForHumans() }})<br>
 @empty
     Inga ändringar gjorda...
 @endforelse
 
 <h2><u>Årsdagar 🎂</u></h2>
 @forelse($birthdays as $birthday)
-    ({{ $birthday->console->short }}) <a href="{{ route('game.show', $birthday) }}">{{ $birthday->title }}</a> ({{ $birthday->sweden_release }})<br>
+    <img src="{{ asset("images/{$game->console->icon_path}") }}" style="width: 15px;"> <a href="{{ route('game.show', $birthday) }}">{{ $birthday->title }}</a> ({{ $birthday->sweden_release }})<br>
 @empty
     Inga årsdagar funna för idag :(
 @endforelse
