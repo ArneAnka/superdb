@@ -41,6 +41,7 @@ form {
 <form method="POST" action="{{ route('post.store') }}">
     {{ csrf_field() }}
     {{ method_field('POST') }}
+    @trix(\App\Post::class, 'body')
         <div class="">
             <label for="topic" class="">Add post</label>
             <div class="">

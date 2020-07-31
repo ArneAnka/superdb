@@ -30,7 +30,7 @@ class WelcomeController extends Controller
         # Retrive Birthdays! :)
         // $date = date_create("2013-07-28");
         // $birthdays = Game::with('console')->releasedOn($date)->get();
-        $birthdays = Game::releasedOnThisDay()->get();
+        $birthdays = Game::releasedOnThisDay()->with('console')->get();
 
         # Post
         $posts = Post::with('user')->orderBy('created_at', 'desc')->get();
