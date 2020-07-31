@@ -92,9 +92,11 @@ class GameController extends Controller
             'genre_id' => 'required|exists:games_genres,id'
         ], $messages);
 
-        foreach ($request->url as $host => $url) {
-            if ($gameUrl = $game->urls()->firstWhere('host', $host)) {
-                $gameUrl->update(['url' => $url]);
+        if ($request->has('url')) {
+            foreach ($request->url as $host => $url) {
+                if ($gameUrl = $game->urls()->firstWhere('host', $host)) {
+                    $gameUrl->update(['url' => $url]);
+                }
             }
         }
 

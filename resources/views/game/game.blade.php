@@ -6,7 +6,10 @@
 @endsection
 
 @section('content')
-<h1 style="margin-bottom: 5px;">{{ $game->console->name }}: {{ $game->title }}</h1>
+<h1 style="margin-bottom: 5px;">
+  <img src="{{ asset("images/{$game->console->icon_path}") }}">
+  {{ $game->console->name }}: {{ $game->title }}
+</h1>
 
 <svg viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" width="15" height="15"><path d="M3.5 0v5m8-5v5M5 8.5l2 2 3.5-4m-9-4h12a1 1 0 011 1v10a1 1 0 01-1 1h-12a1 1 0 01-1-1v-10a1 1 0 011-1z" stroke="currentColor"></path></svg> <span style="text-decoration: underline solid">Tillagd:</span> {{ $game->created_at->diffForhumans() }} ({{ $game->created_at }})<br>
 
