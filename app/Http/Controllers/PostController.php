@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Tag;
 use App\Post;
 use Illuminate\Http\Request;
 
@@ -76,7 +77,16 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('post.edit', compact('post'));
+
+    // Get the tags associated with this post and convert to a comma seperated string
+    if ($post->has('tags')) {
+        $tags = $post->tags->pluck('name')->toArray();
+        $tags = implode(', ', $tags);
+    } else {
+        $tags = "";
+    }
+
+        return view('post.edit', compact('post', 'tags'));
     }
 
     /**
@@ -100,6 +110,9 @@ class PostController extends Controller
 
         $post->update();
 
+        // Handle Tags 
+        $this->handleTags($request, $post);
+
         return redirect()
         ->route('welcome')
         ->with('success', 'Du ändrade en post');
@@ -120,5 +133,41 @@ class PostController extends Controller
         return redirect()
         ->route('welcome')
         ->with('success', 'Du raderade en post');
+    }
+
+    /**
+     * Handle Tags for Post
+     * https://stackoverflow.com/questions/50529715/a-solution-for-adding-tags-in-laravel
+     * @param  \Illuminate\Http\Request  $request
+     * @param \App\Post $post
+     * @return void
+     */
+    public function handleTags(Request $request, Post $post){
+
+        /**
+         * Once the post has been saved, we deal with the tag logic.
+         * Grab the tag or tags from the field, sync them with the post
+         */
+        $tagsNames = explode(',', $request->get('tags'));
+        
+        $trimmedTags = [];
+        foreach ($tagsNames as $key => $tag) {
+            if(empty($tag)){
+                continue;
+            }
+            array_push($trimmedTags, trim($tag));
+        }
+
+        // Create all tags (unassociet)
+        foreach($trimmedTags as $tagName){
+            Tag::firstOrCreate([
+                'name' => $tagName
+            ])->save();
+        }
+
+        // Once all tags are created we can query them
+        $tags = Tag::whereIn('name', $trimmedTags)->get()->pluck('id');
+
+        $post->tags()->sync($tags);
     }
 }

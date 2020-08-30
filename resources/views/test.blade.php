@@ -1,12 +1,13 @@
-<ul>
-@foreach($games as $game)
-<li>
-    {{ $game->title }} ({{ $game->releases->count() }})
-    <ul>
-        @foreach($game->releases as $release)
-        <li>Releaes nummer: {{ $release->release }}. Front: {{ $release->cartridge_front }}</li>
-        @endforeach
-    </ul>
-</li>
-@endforeach
-</ul>
+@extends('layouts.app')
+
+@section('title', 'Om superdb.cc')
+
+@section('content')
+<div class="container mx-auto px-4">
+    <div class="space-y-5">
+        <h2 class="text-blue-500 uppercase tracking-wide font-semibold">
+            Test
+        </h2>
+    </div> <!-- end container -->
+</div>
+@endsection

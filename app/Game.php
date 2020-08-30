@@ -14,6 +14,7 @@ class Game extends Model
     use SoftDeletes;
 
     protected $guarded = [];
+    protected $hidden = ['data'];
 
     protected static function boot()
     {
@@ -76,6 +77,21 @@ class Game extends Model
         return $this->belongsTo(Console::class);
     }
 
+    /**
+     * [images description]
+     * @return [type] [description]
+     */
+    public function images()
+    {
+        return $this->morphToMany(Image::class, 'imageable');
+    }
+    
+    /**
+     * [scopeReleasedOn description]
+     * @param  Builder           $query [description]
+     * @param  DateTimeInterface $date  [description]
+     * @return [type]                   [description]
+     */
     public function scopeReleasedOn(Builder $query, DateTimeInterface $date)
     {
         return $query
@@ -83,6 +99,11 @@ class Game extends Model
             ->whereMonth('sweden_release', '=', $date->format('m'));
     }
 
+    /**
+     * [scopeReleasedOnThisDay description]
+     * @param  [type] $query [description]
+     * @return [type]        [description]
+     */
     public function scopeReleasedOnThisDay($query)
     {
         return $this->releasedOn($this->freshTimestamp());

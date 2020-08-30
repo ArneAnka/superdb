@@ -37,7 +37,7 @@ class GameController extends Controller
      */
     public function show(Game $game)
     {
-        $game->load(['releases', 'urls', 'genre', 'history' => function($q){
+        $game->load(['releases', 'urls', 'genre', 'images', 'history' => function($q){
             return $q->with('user');
             }
         ]);

@@ -34,4 +34,22 @@ class Post extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * [tags description]
+     * @return [type] [description]
+     */
+    public function tags()
+    {
+        return $this->morphToMany(Tag::class, 'taggable');
+    }
+
+    /**
+     * [images description]
+     * @return [type] [description]
+     */
+    public function images()
+    {
+        return $this->morphToMany(Image::class, 'imageable');
+    }
 }

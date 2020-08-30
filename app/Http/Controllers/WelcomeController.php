@@ -33,7 +33,7 @@ class WelcomeController extends Controller
         $birthdays = Game::releasedOnThisDay()->with('console')->get();
 
         # Post
-        $posts = Post::with('user')->orderBy('created_at', 'desc')->get();
+        $posts = Post::with(['user', 'tags', 'images'])->orderBy('created_at', 'desc')->simplePaginate(15);
 
         return view('welcome', compact('games_history', 'games_count', 'birthdays', 'all_games_count', 'posts'));
     }

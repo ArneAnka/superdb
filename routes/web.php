@@ -6,13 +6,31 @@ use Illuminate\Support\Facades\Auth;
 Auth::routes(['register' => false]);
 
 Route::get('/test', function(){
-    $games = App\Game::with(['releases'=> function($q){
-        return $q->where('pcb', '=', NULL)->get();
-    }])
-    ->where('console_id', 2)
-    ->get();
+$games = [
+];
+# "id" => 19 // SNES
+# "id" => 18 // NES
+# "id" => 21 // NGC
+# "id" => 4 // N64
+# "id" => 24" //GBA
+# "id" => 22 //GBC
+$lista = [];
+foreach($games as $game){
+    $response = Http::withHeaders([
+        'user-key' => '3e75e6c502e1f2ccfb06529bd77c363e'
+    ])->withOptions([
+    'body' => "
+        search \"{$game}\";
+        fields name, cover.url, popularity, platforms.abbreviation, rating;
+        where platforms = (18,19,4,21,24,22);
+        limit 1;
+    "])
+    ->get('https://api-v3.igdb.com/games')
+    ->json();
+    array_push($lista, $response);
+}
 
-    return view('test', compact('games'));
+    dd($lista);
 });
 
 /**
@@ -59,8 +77,33 @@ Route::prefix('post')->group(function () {
 });
 
 /**
+ * USer
+ */
+Route::prefix('u')->group(function () {
+    Route::get('{user}', 'UserController@show')->name('user.show');
+});
+
+/**
  * Om-sidan
  */
 Route::get('om', function(){
     return view('om');
 })->name('om');
+
+/**
+ * Search
+ */
+Route::post('/search',function(Request $request){
+    $q = $request->get('q');
+
+    $games = \App\Game::where('title','LIKE','%'.$q.'%')->orWhere('developer','LIKE','%'.$q.'%')->with('console')->limit('20')->get();
+    // array_walk_recursive($games, function(&$item) { $item = mb_convert_encoding($item, 'UTF-8', 'UTF-8'); });
+    return view('search', compact('games'));
+
+    // For later
+    if(count($games)>0){
+        return response()->json($games);
+    }else{
+        return response()->json(['error'=>'Inga spel funna. Försök igen.']);
+    }
+})->name('search.game');

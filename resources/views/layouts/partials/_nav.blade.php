@@ -1,211 +1,55 @@
-<nav class="navbar">
-    <ul class="navbar-nav">
-        <li class="logo">
-            <a href="{{ route('welcome') }}" class="nav-link">
-                <span class="link-text">superdb</span>
-                <svg
-            aria-hidden="true"
-            focusable="false"
-            data-prefix="fad"
-            data-icon="angle-double-right"
-            role="img"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 448 512"
-            class="svg-inline--fa fa-angle-double-right fa-w-14 fa-5x"
-          >
-            <g class="fa-group">
-              <path
-                fill="currentColor"
-                d="M224 273L88.37 409a23.78 23.78 0 0 1-33.8 0L32 386.36a23.94 23.94 0 0 1 0-33.89l96.13-96.37L32 159.73a23.94 23.94 0 0 1 0-33.89l22.44-22.79a23.78 23.78 0 0 1 33.8 0L223.88 239a23.94 23.94 0 0 1 .1 34z"
-                class="fa-secondary"
-              ></path>
-              <path
-                fill="currentColor"
-                d="M415.89 273L280.34 409a23.77 23.77 0 0 1-33.79 0L224 386.26a23.94 23.94 0 0 1 0-33.89L320.11 256l-96-96.47a23.94 23.94 0 0 1 0-33.89l22.52-22.59a23.77 23.77 0 0 1 33.79 0L416 239a24 24 0 0 1-.11 34z"
-                class="fa-primary"
-              ></path>
-            </g>
-          </svg>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="{{ route('nes') }}" class="nav-link">
-                <svg
-            aria-hidden="true"
-            focusable="false"
-            data-prefix="fad"
-            data-icon="angle-double-right"
-            role="img"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 448 512"
-            class="svg-inline--fa fa-angle-double-right fa-w-14 fa-5x"
-          >
-            <g class="fa-group">
-              <path
-                fill="currentColor"
-                d="M224 273L88.37 409a23.78 23.78 0 0 1-33.8 0L32 386.36a23.94 23.94 0 0 1 0-33.89l96.13-96.37L32 159.73a23.94 23.94 0 0 1 0-33.89l22.44-22.79a23.78 23.78 0 0 1 33.8 0L223.88 239a23.94 23.94 0 0 1 .1 34z"
-                class="fa-secondary"
-              ></path>
-              <path
-                fill="currentColor"
-                d="M415.89 273L280.34 409a23.77 23.77 0 0 1-33.79 0L224 386.26a23.94 23.94 0 0 1 0-33.89L320.11 256l-96-96.47a23.94 23.94 0 0 1 0-33.89l22.52-22.59a23.77 23.77 0 0 1 33.79 0L416 239a24 24 0 0 1-.11 34z"
-                class="fa-primary"
-              ></path>
-            </g>
-          </svg>
-          <span class="link-text">NES</span>
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a href="{{ route('snes') }}" class="nav-link">
-            <svg
-            aria-hidden="true"
-            focusable="false"
-            data-prefix="fad"
-            data-icon="angle-double-right"
-            role="img"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 448 512"
-            class="svg-inline--fa fa-angle-double-right fa-w-14 fa-5x"
-          >
-            <g class="fa-group">
-              <path
-                fill="currentColor"
-                d="M224 273L88.37 409a23.78 23.78 0 0 1-33.8 0L32 386.36a23.94 23.94 0 0 1 0-33.89l96.13-96.37L32 159.73a23.94 23.94 0 0 1 0-33.89l22.44-22.79a23.78 23.78 0 0 1 33.8 0L223.88 239a23.94 23.94 0 0 1 .1 34z"
-                class="fa-secondary"
-              ></path>
-              <path
-                fill="currentColor"
-                d="M415.89 273L280.34 409a23.77 23.77 0 0 1-33.79 0L224 386.26a23.94 23.94 0 0 1 0-33.89L320.11 256l-96-96.47a23.94 23.94 0 0 1 0-33.89l22.52-22.59a23.77 23.77 0 0 1 33.79 0L416 239a24 24 0 0 1-.11 34z"
-                class="fa-primary"
-              ></path>
-            </g>
-          </svg>
-                <span class="link-text">SNES</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="{{ route('n64') }}" class="nav-link">
-            <svg
-            aria-hidden="true"
-            focusable="false"
-            data-prefix="fad"
-            data-icon="angle-double-right"
-            role="img"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 448 512"
-            class="svg-inline--fa fa-angle-double-right fa-w-14 fa-5x"
-          >
-            <g class="fa-group">
-              <path
-                fill="currentColor"
-                d="M224 273L88.37 409a23.78 23.78 0 0 1-33.8 0L32 386.36a23.94 23.94 0 0 1 0-33.89l96.13-96.37L32 159.73a23.94 23.94 0 0 1 0-33.89l22.44-22.79a23.78 23.78 0 0 1 33.8 0L223.88 239a23.94 23.94 0 0 1 .1 34z"
-                class="fa-secondary"
-              ></path>
-              <path
-                fill="currentColor"
-                d="M415.89 273L280.34 409a23.77 23.77 0 0 1-33.79 0L224 386.26a23.94 23.94 0 0 1 0-33.89L320.11 256l-96-96.47a23.94 23.94 0 0 1 0-33.89l22.52-22.59a23.77 23.77 0 0 1 33.79 0L416 239a24 24 0 0 1-.11 34z"
-                class="fa-primary"
-              ></path>
-            </g>
-          </svg>
-                <span class="link-text">N64</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="{{ route('ngc') }}" class="nav-link">
-            <svg
-            aria-hidden="true"
-            focusable="false"
-            data-prefix="fad"
-            data-icon="angle-double-right"
-            role="img"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 448 512"
-            class="svg-inline--fa fa-angle-double-right fa-w-14 fa-5x"
-          >
-            <g class="fa-group">
-              <path
-                fill="currentColor"
-                d="M224 273L88.37 409a23.78 23.78 0 0 1-33.8 0L32 386.36a23.94 23.94 0 0 1 0-33.89l96.13-96.37L32 159.73a23.94 23.94 0 0 1 0-33.89l22.44-22.79a23.78 23.78 0 0 1 33.8 0L223.88 239a23.94 23.94 0 0 1 .1 34z"
-                class="fa-secondary"
-              ></path>
-              <path
-                fill="currentColor"
-                d="M415.89 273L280.34 409a23.77 23.77 0 0 1-33.79 0L224 386.26a23.94 23.94 0 0 1 0-33.89L320.11 256l-96-96.47a23.94 23.94 0 0 1 0-33.89l22.52-22.59a23.77 23.77 0 0 1 33.79 0L416 239a24 24 0 0 1-.11 34z"
-                class="fa-primary"
-              ></path>
-            </g>
-          </svg>
-                <span class="link-text">NGC</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="{{ route('gba') }}" class="nav-link">
-            <svg
-            aria-hidden="true"
-            focusable="false"
-            data-prefix="fad"
-            data-icon="angle-double-right"
-            role="img"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 448 512"
-            class="svg-inline--fa fa-angle-double-right fa-w-14 fa-5x"
-          >
-            <g class="fa-group">
-              <path
-                fill="currentColor"
-                d="M224 273L88.37 409a23.78 23.78 0 0 1-33.8 0L32 386.36a23.94 23.94 0 0 1 0-33.89l96.13-96.37L32 159.73a23.94 23.94 0 0 1 0-33.89l22.44-22.79a23.78 23.78 0 0 1 33.8 0L223.88 239a23.94 23.94 0 0 1 .1 34z"
-                class="fa-secondary"
-              ></path>
-              <path
-                fill="currentColor"
-                d="M415.89 273L280.34 409a23.77 23.77 0 0 1-33.79 0L224 386.26a23.94 23.94 0 0 1 0-33.89L320.11 256l-96-96.47a23.94 23.94 0 0 1 0-33.89l22.52-22.59a23.77 23.77 0 0 1 33.79 0L416 239a24 24 0 0 1-.11 34z"
-                class="fa-primary"
-              ></path>
-            </g>
-          </svg>
-                <span class="link-text">GBA</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="{{ route('gbc') }}" class="nav-link">
-            <svg
-            aria-hidden="true"
-            focusable="false"
-            data-prefix="fad"
-            data-icon="angle-double-right"
-            role="img"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 448 512"
-            class="svg-inline--fa fa-angle-double-right fa-w-14 fa-5x"
-          >
-            <g class="fa-group">
-              <path
-                fill="currentColor"
-                d="M224 273L88.37 409a23.78 23.78 0 0 1-33.8 0L32 386.36a23.94 23.94 0 0 1 0-33.89l96.13-96.37L32 159.73a23.94 23.94 0 0 1 0-33.89l22.44-22.79a23.78 23.78 0 0 1 33.8 0L223.88 239a23.94 23.94 0 0 1 .1 34z"
-                class="fa-secondary"
-              ></path>
-              <path
-                fill="currentColor"
-                d="M415.89 273L280.34 409a23.77 23.77 0 0 1-33.79 0L224 386.26a23.94 23.94 0 0 1 0-33.89L320.11 256l-96-96.47a23.94 23.94 0 0 1 0-33.89l22.52-22.59a23.77 23.77 0 0 1 33.79 0L416 239a24 24 0 0 1-.11 34z"
-                class="fa-primary"
-              ></path>
-            </g>
-          </svg>
-                <span class="link-text">GBC</span>
-            </a>
-        </li>
-        <li class="nav-item">
-          <p class="link-text">
-            @guest
-              <a href="{{ route('login') }}" class="sign-in">sign-in</a>
-            @endguest
-            @auth
-              <a href="{{ route('logout') }}" class="sign-in">logout</a>
-            @endauth
-          </p>
-        </li>
-    </ul>
-</nav>
+    <nav class="container mx-auto flex flex-col lg:flex-row items-center justify-between px-4 py-6">
+    <div class="flex flex-col lg:flex-row items-center"> <!-- start -->
+        <a href="/">
+          <img class="w-32 flex-none" src="{{ asset('images/logo.png') }}">
+        </a>
+        <ul class="flex ml-0 lg:ml-16 space-x-8 mt-6 lg:mt-0">
+          <li>
+            <a class="hover:text-gray-400 uppercase" href="{{ route('nes') }}">NES</a>
+          </li>
+          <li>
+            <a class="hover:text-gray-400 uppercase" href="{{ route('snes') }}">SNES</a>
+          </li>
+          <li>
+            <a class="hover:text-gray-400 uppercase" href="{{ route('n64') }}">N64</a>
+          </li>
+          <li>
+            <a class="hover:text-gray-400 uppercase" href="{{ route('ngc') }}">NGC</a>
+          </li>
+          <li>
+            <a class="hover:text-gray-400 uppercase" href="{{ route('gba') }}">GBA</a>
+          </li>
+          <li>
+            <a class="hover:text-gray-400 uppercase" href="{{ route('gbc') }}">GBC</a>
+          </li>
+        </ul>
+      </div> <!-- /start -->
+      <div class="flex items-center mt-6 lg:mt-0"> <!-- search -->
+        <div class="relative">
+          <form method="POST" action="{{ route('search.game') }}">
+            {{ csrf_field() }}
+            {{ method_field('POST') }}
+            <input type="text" class="bg-gray-800 text-small rounded-full focus:outline-none focus:shadow-outline w-64 px-3 pl-8 py-1" placeholder="Search..." name="q" autocomplete="off">
+          </form>
+          <div class="absolute top-0 flex items-center h-full ml-2"><svg class="text-gray-400 w-4" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.5 14.5l-4-4m-4 2a6 6 0 110-12 6 6 0 010 12z" stroke="currentColor"></path></svg></div>
+        </div>
+        @if (Route::has('login'))
+        @auth
+        <div class="ml-6">
+          <a href="{{ route('user.show', Auth::user()) }}">
+            <img class="rounded-full w-8" src="{{ asset('images/avatar.jpg') }}" alt="avatar">
+          </a>
+        </div>
+        @else
+        <div class="ml-6">
+          <a href="{{ route('login') }}">Login</a>
+        </div>
+        @if (Route::has('register'))
+        <div class="ml-6">
+          <a href="{{ route('register') }}">Register</a>
+        </div>
+        @endif
+        @endauth
+      </div>  <!-- /search -->
+      @endif
+  </nav>
