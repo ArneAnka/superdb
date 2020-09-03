@@ -117,7 +117,7 @@
                 <img src="{{ asset('images/placeholder.png') }}" alt="game cover" class="w-16 hover:opacity-75 transition ease-in-out duration-150">
             </a>
             <div class="ml-4">
-                <a class="hover:text-gray-300" href="{{ route('game.show', $game) }}">{{ $game->title }}</a> ({{ $game->import }})
+                <a class="hover:text-gray-300 underline" href="{{ route('game.show', $game) }}">{{ $game->title }}</a> ({{ $game->import }})
             </div>
         </div>
     </div>

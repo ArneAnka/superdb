@@ -53,6 +53,9 @@ class PostController extends Controller
 
         $post->save();
 
+        // Handle Tags
+        $this->handleTags($request, $post);
+
         return redirect()
         ->route('welcome')
         ->with('success', 'Du la till en post');

@@ -13,7 +13,12 @@
             {{ session('status') }}
         </div>
         @endif
-        <i>content goes here</i>
+        <p>
+            <i>content goes here...</i>
+        </p>
+        @can('update', Auth::user())
+            <a class="underline" href="{{ route('user.edit', Auth::user()) }}">Edit profile</a>
+        @endcan
         </div>
     </div> <!-- end container -->
 @endsection

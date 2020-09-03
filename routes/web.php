@@ -80,7 +80,9 @@ Route::prefix('post')->group(function () {
  * USer
  */
 Route::prefix('u')->group(function () {
-    Route::get('{user}', 'UserController@show')->name('user.show');
+    Route::get('/{user}', 'UserController@show')->name('user.show');
+    Route::get('/{user}/edit', 'ProfileController@edit')->name('user.edit');
+    Route::patch('/{user}/edit', 'ProfileController@update')->name('user.edit.update');
 });
 
 /**

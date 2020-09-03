@@ -37,7 +37,7 @@
         @auth
         <div class="ml-6">
           <a href="{{ route('user.show', Auth::user()) }}">
-            <img class="rounded-full w-8" src="{{ asset('images/avatar.jpg') }}" alt="avatar">
+            <img class="rounded-full w-8" src="{{ Auth::user()->avatar }}" alt="avatar">
           </a>
         </div>
         @else

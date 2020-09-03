@@ -21,7 +21,7 @@
           <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           id="topic"
           type="text"
-          class="@error('topic') is-invalid @enderror"
+          class="@error('topic') border-red-500 @enderror"
           name="topic"
           value="{{ old('topic', $post->topic) }}" placeholder="Topic"
           autocomplete="off">
@@ -51,7 +51,7 @@
           <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           id="tags"
           type="text"
-          class="@error('tags') is-invalid @enderror"
+          class="@error('tags') border-red-500 @enderror"
           name="tags"
           value="{{ old('tags', $tags) }}" placeholder="tags"
           autocomplete="off">
