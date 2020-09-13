@@ -80,7 +80,7 @@
         @forelse($birthdays as $birthday)
         <div class="birthday-container space-y-10 mt-8">
         <div class="game flex">
-            <a href="{{ route('game.show', $birthday) }}">
+            <a href="{{ route('game.show', $birthday) }}" class="flex-shrink-0">
                 <img src="{{ asset('images/placeholder.png') }}" alt="game cover" class="w-16 hover:opacity-75 transition ease-in-out duration-150">
             </a>
             <div class="ml-4">

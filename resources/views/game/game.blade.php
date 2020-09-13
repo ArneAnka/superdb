@@ -106,19 +106,20 @@
         </a>
       </div>
     </div> <!-- end images grid -->
-
   </div> <!-- end images-container -->
-  <div class="similar-games border-b border-gray-800 pb-12 mt-8"> <!-- start similar games -->
-    <h2 class="text-blue-500 uppercase tracking-wide font-semibold">Liknande spel</h2>
+
+<div>
+<h2 class="text-blue-500 uppercase tracking-wide font-semibold">Liknande spel</h2>
+  <div class="similar-games text-sm grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-12 border-b border-gray-800 pb-16"> <!-- start similar games -->
     @forelse($gamesOfSameGenre as $game)
-        <div class="similar-games-container space-y-10 mt-8">
-        <div class="game flex">
-            <a href="{{ route('game.show', $game) }}">
-                <img src="{{ asset('images/placeholder.png') }}" alt="game cover" class="w-16 hover:opacity-75 transition ease-in-out duration-150">
-            </a>
-            <div class="ml-4">
-                <a class="hover:text-gray-300 underline" href="{{ route('game.show', $game) }}">{{ $game->title }}</a> ({{ $game->import }})
-            </div>
+        <div class="game mt-8 text-left">
+            <div class="relative inline-block">
+              <a href="{{ route('game.show', $game) }}" class="flex-shrink-0">
+                  <img src="{{ asset('images/placeholder.png') }}" alt="game cover" class="w-16 hover:opacity-75 transition ease-in-out duration-150">
+              </a>
+              <div class="">
+                  <a class="hover:opacity-75 transition ease-in-out duration-150" href="{{ route('game.show', $game) }}">{{ $game->title }}</a> ({{ $game->import }})
+              </div>
         </div>
     </div>
       @empty
@@ -127,6 +128,7 @@
       </div>
       @endforelse
   </div> <!-- end similar-container -->
+</div>
 
   @include('game.partials._iterate_edits')
 
