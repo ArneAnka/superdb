@@ -2,12 +2,15 @@
 
 namespace App;
 
+use App\Traits\Historyable;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
     protected $fillable = ['topic', 'body', 'user_id'];
 
+    use Historyable;
+    
     /**
      * nothing in line
      * @return bool
