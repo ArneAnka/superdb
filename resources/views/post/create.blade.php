@@ -8,7 +8,7 @@
 
 @section('content')
 <div class="container mx-auto px-4">
-  <div class="w-full max-w-xs">
+  <div class="w-full">
     <form class="w-full max-w-lg" method="POST" action="{{ route('post.store') }}">
       {{ csrf_field() }}
       {{ method_field('POST') }}

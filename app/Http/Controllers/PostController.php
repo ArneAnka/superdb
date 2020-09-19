@@ -69,7 +69,11 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        $post = $post->load(['comments' => function($q){
+            return $q->with('user');
+        }, 'user']);
+        
+        return view('post.show', compact('post'));
     }
 
     /**

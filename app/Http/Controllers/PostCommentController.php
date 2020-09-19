@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Game;
+use App\Post;
 use App\Comment;
 use Illuminate\Http\Request;
 
-class GameCommentController extends Controller
+class PostCommentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class GameCommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Game $game)
+    public function store(Request $request, Post $post)
     {
         $request->validate([
             'body' => 'required'
@@ -45,17 +45,17 @@ class GameCommentController extends Controller
         $comment->user_id = $request->user()->id;
         $comment->body = $request->get('body');
 
-        $game->comments()->save($comment);
+        $post->comments()->save($comment);
         return back();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Comment  $comment
+     * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Comment $comment)
+    public function show(Post $post)
     {
         //
     }
@@ -63,10 +63,10 @@ class GameCommentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Comment  $comment
+     * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Comment $comment)
+    public function edit(Post $post)
     {
         //
     }
@@ -75,10 +75,10 @@ class GameCommentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Comment  $comment
+     * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comment $comment)
+    public function update(Request $request, Post $post)
     {
         //
     }
@@ -86,14 +86,15 @@ class GameCommentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Comment  $comment
+     * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Game $game, Comment $comment)
+    public function destroy(Post $post, Comment $comment)
     {
         $this->authorize('delete', $comment);
         
         $comment->delete();
+
         return back()->with('success', 'Kommentar raderad');
     }
 }

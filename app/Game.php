@@ -46,6 +46,14 @@ class Game extends Model
     }
 
     /**
+     * [comments description]
+     * @return [type] [description]
+     */
+    public function comments(){
+        return $this->morphMany(Comment::class, 'commentable');
+    }
+
+    /**
      * A game has many releases
      * @return collection
      */

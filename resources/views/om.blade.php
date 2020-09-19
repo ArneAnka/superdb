@@ -5,19 +5,16 @@
 @section('content')
 <div class="container mx-auto px-4">
     <div class="space-y-5">
-        <h2 class="text-blue-500 uppercase tracking-wide font-semibold">
+        <h2 class="text-blue-500 uppercase tracking-wide font-semibold mb">
             Om SuperDB.cc
         </h2>
         <div>
-            Denna sida är till för att ge en överblick över de spel som framförallt Bergsala har släppt i Sverige. Sidan är skapad eftersom att det inte finns en för alla tillgänglig databas över dessa speltitlar.
+            Denna sida är till för att ge en överblick över de spel som framförallt Bergsala har släppt i Sverige. Sidan är skapad eftersom att det inte finns/fanns en för alla tillgänglig databas över dessa speltitlar.
         </div>
 
         <h2 class="text-blue-500 uppercase tracking-wide font-semibold">Data</h2>
         <div>
-            Datan är insamlad under en lång tidshorisont i en mängd olika format. Ha som utgångspunkt att datan som presenteras <i>kan</i> vara direkt felaktig.
-        </div>
-        <div>
-            Förhoppningsvis kommer SuperDB att ge redigeringsmöjligheter av databasen till användare i framtiden.
+            Datan är insamlad under en lång tidshorisont i en mängd olika format. SuperDB är i nuläget en "crowdsource-ad" databas då det finns möjlighet för enskilda användare att redigera enskild speltitlar. Ha som utgångspunkt att datan som presenteras <i>kan</i> vara direkt felaktig.
         </div>
         <div>
             <ul>

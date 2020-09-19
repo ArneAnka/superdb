@@ -63,6 +63,9 @@ Route::prefix('g')->group(function () {
     Route::get('/edit/{game}', 'GameController@edit')->name('game.show.edit');
     Route::post('/edit/{game}/update', 'GameController@update')->name('game.update.edit');
     Route::post('/url/{game}/save', 'UrlController@store')->name('game.save.url');
+    # Comments
+    Route::post('/{game}/comment/save', 'GameCommentController@store')->middleware(['auth'])->name('game.save.comment');
+    Route::get('/{game}/comment/{comment}/delete', 'GameCommentController@destroy')->middleware(['auth'])->name('game.destory.comment');
 });
 
 /**
@@ -74,10 +77,14 @@ Route::prefix('post')->group(function () {
     Route::post('/url/save', 'PostController@store')->name('post.store');
     Route::post('/edit/{post}/update', 'PostController@update')->name('post.update');
     Route::get('/delete/{post}', 'PostController@destroy')->name('post.delete');
+    Route::get('/show/{post}', 'PostController@show')->name('post.show');
+    # Comments
+    Route::post('/{post}/comment/save', 'PostCommentController@store')->middleware(['auth'])->name('post.save.comment');
+    Route::get('/{post}/comment/{comment}/delete', 'PostCommentController@destroy')->middleware(['auth'])->name('post.destory.comment');
 });
 
 /**
- * USer
+ * User
  */
 Route::prefix('u')->group(function () {
     Route::get('/{user}', 'UserController@show')->name('user.show');
