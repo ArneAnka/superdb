@@ -52,6 +52,7 @@ Route::get('/nes', 'NesController@index')->name('nes');
 Route::get('/snes', 'SnesController@index')->name('snes');
 Route::get('/n64', 'N64Controller@index')->name('n64');
 Route::get('/ngc', 'NgcController@index')->name('ngc');
+Route::get('/gb', 'GbController@index')->name('gb');
 Route::get('/gba', 'GbaController@index')->name('gba');
 Route::get('/gbc', 'GbcController@index')->name('gbc');
 
@@ -98,6 +99,13 @@ Route::prefix('u')->group(function () {
 Route::get('om', function(){
     return view('om');
 })->name('om');
+
+/**
+ * Integritetspolicy
+ */
+Route::get('tos', function(){
+    return view('tos');
+})->name('tos');
 
 /**
  * Search

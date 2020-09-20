@@ -17,11 +17,12 @@
             Datan är insamlad under en lång tidshorisont i en mängd olika format. SuperDB är i nuläget en "crowdsource-ad" databas då det finns möjlighet för enskilda användare att redigera enskild speltitlar. Ha som utgångspunkt att datan som presenteras <i>kan</i> vara direkt felaktig.
         </div>
         <div>
-            <ul>
+            <ul class="list-disc">
                 <li>Nintendo Entertainment System, 223 titlar</li>
                 <li>Super Nintendo Entertainment System, 247 titlar</li>
                 <li>Nintendo 64, 213 titlar</li>
                 <li>Nintendo Gamecube, 445 titlar</li>
+                <li>Game Boy, 247 titlar</li>
                 <li>Game Boy Advance, 718 titlar</li>
                 <li>Game Boy Color, 186 titlar</li>
             </ul>

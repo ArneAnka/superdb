@@ -17,6 +17,9 @@
             <a class="hover:text-gray-400 uppercase" href="{{ route('ngc') }}">NGC</a>
           </li>
           <li>
+            <a class="hover:text-gray-400 uppercase" href="{{ route('gb') }}">GB</a>
+          </li>
+          <li>
             <a class="hover:text-gray-400 uppercase" href="{{ route('gba') }}">GBA</a>
           </li>
           <li>
