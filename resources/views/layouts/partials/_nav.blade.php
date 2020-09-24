@@ -3,7 +3,7 @@
         <a href="/">
           <img class="w-32 flex-none" src="{{ asset('images/logo.png') }}">
         </a>
-        <ul class="flex ml-0 lg:ml-16 space-x-8 mt-6 lg:mt-0">
+        <ul class="flex ml-0 lg:ml-16 space-x-5 mt-6 lg:mt-0">
           <li>
             <a class="hover:text-gray-400 uppercase" href="{{ route('nes') }}">NES</a>
           </li>

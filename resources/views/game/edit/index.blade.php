@@ -3,256 +3,320 @@
 @section('title', "ändra $game->title")
 
 @section('css')
-<style>
-input[type=text], select {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
 
-input[type=submit] {
-  width: 100%;
-  background-color: #4CAF50;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-input[type=submit]:hover {
-  background-color: #45a049;
-}
-
-form {
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 20px;
-}
-</style>
 @endsection
+
 @section('content')
-<h1>editera: {{ $game->title }}</h1>
+<div class="container mx-auto px-4">
+  <div class="w-full">
+    <h2 class="text-blue-500 uppercase tracking-wide font-semibold">editera: {{ $game->title }}</h2>
+    <form class="w-full max-w-lg" method="POST" action="{{ route('game.update.edit', $game) }}">
+      {{ csrf_field() }}
+      {{ method_field('POST') }}
 
-<form method="POST" action="{{ route('game.update.edit', $game) }}" autocomplete="off">
-    {{ csrf_field() }}
-    {{ method_field('POST') }}
-        <div class="">
-            <label for="title" class="">Title</label>
-            <div class="">
-                <input id="title" type="text" class="@error('title') is-invalid @enderror" name="title" value="{{ old('title', $game->title) }}" required autocomplete="title">
-
-                @error('title')
-                <span class="" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-                @enderror
-            </div>
+      <!-- title-->
+      <div class="flex flex-wrap mx-0 mb-6">
+        <div class="w-full px-3">
+          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="title">
+            Edit Game Title
+          </label>
+          <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          id="title"
+          type="text"
+          class="@error('title') border-red-500 @enderror"
+          name="title"
+          value="{{ old('title', $game->title) }}" placeholder="Title"
+          autocomplete="off">
+          @error('title')
+          <p class="text-red-500 text-xs italic">{{ $message }}</p>
+          @enderror
         </div>
+      </div>
 
-
-
-        <div class="">
-            <label for="genre" class="">Genre</label>
-            <div class="">
-                <select name="genre_id" id="genre_id">
-                    @foreach($genres as $genre)
-                      <option value="{{ $genre->id }}" {{ old('genre_id', $game->genre_id) == $genre->id ? 'selected' : '' }}>{{ $genre->genre }}</option>
-                    @endforeach
-                </select>
-
-                @error('genre')
-                <span class="" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-                @enderror
+      <!-- genre -->
+      <div class="flex flex-wrap mx-0 mb-6">
+        <div class="w-full px-3">
+          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="genre_id">
+            Edit Game Genre
+          </label>
+          <div class="relative">
+            <select
+            class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            name="genre_id"
+            id="genre_id">
+                @foreach($genres as $genre)
+                  <option value="{{ $genre->id }}" {{ old("genre_id", $game->genre_id) == $genre->id ? 'selected' : '' }}>{{ $genre->genre }}</option>
+                @endforeach
+            </select>
+           <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
             </div>
+          </div>
+          @error('genre_id')
+          <p class="text-red-500 text-xs italic">{{ $message }}</p>
+          @enderror
         </div>
+      </div>
 
-        <div class="">
-            <label for="save" class="">save</label>
-            <div class="">
-                <select name="save" id="save">
+      <!-- save -->
+      <div class="flex flex-wrap mx-0 mb-6">
+        <div class="w-full px-3">
+          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="save">
+            Edit Game Save modes
+          </label>
+          <div class="relative">
+                <select
+                class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                name="save"
+                id="save">
                     @foreach($saves as $save)
                       <option value="{{ $save }}" {{ old('save', $game->save) == $save ? 'selected' : '' }}>{{ $save }}</option>
                     @endforeach
                 </select>
-
-                @error('save')
-                <span class="" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-                @enderror
+           <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
             </div>
+          </div>
+          @error('save')
+          <p class="text-red-500 text-xs italic">{{ $message }}</p>
+          @enderror
         </div>
+      </div>
 
-        <div class="">
-            <label for="import" class="">Import</label>
-            <div class="">
-                <input id="import" type="text" class="@error('import') is-invalid @enderror" name="import" value="{{ old('import', $game->import) }}">
-
-                @error('import')
-                <span class="" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-                @enderror
-            </div>
+      <!-- import -->
+      <div class="flex flex-wrap mx-0 mb-6">
+        <div class="w-full px-3">
+          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="import">
+            Edit Game Import
+          </label>
+          <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          id="import"
+          type="text"
+          class="@error('import') border-red-500 @enderror"
+          name="import"
+          value="{{ old('import', $game->import) }}" placeholder="Import"
+          autocomplete="off">
+          @error('import')
+          <p class="text-red-500 text-xs italic">{{ $message }}</p>
+          @enderror
         </div>
+      </div>
 
-        <div class="">
-            <label for="publisher" class="">Publisher</label>
-            <div class="">
-                <input id="publisher" type="text" class="@error('publisher') is-invalid @enderror" name="publisher" value="{{ old('publisher', $game->publisher) }}">
-
-                @error('publisher')
-                <span class="" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-                @enderror
-            </div>
+      <!-- publisher -->
+      <div class="flex flex-wrap mx-0 mb-6">
+        <div class="w-full px-3">
+          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="publisher">
+            Edit Game Publisher
+          </label>
+          <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          id="publisher"
+          type="text"
+          class="@error('publisher') border-red-500 @enderror"
+          name="publisher"
+          value="{{ old('publisher', $game->publisher) }}" placeholder="Publisher"
+          autocomplete="off">
+          @error('publisher')
+          <p class="text-red-500 text-xs italic">{{ $message }}</p>
+          @enderror
         </div>
+      </div>
 
-        <div class="">
-            <label for="developer" class="">Developer</label>
-            <div class="">
-                <input id="developer" type="text" class="@error('developer') is-invalid @enderror" name="developer" value="{{ old('developer', $game->developer) }}">
-
-                @error('developer')
-                <span class="" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-                @enderror
-            </div>
+      <!-- developer -->
+      <div class="flex flex-wrap mx-0 mb-6">
+        <div class="w-full px-3">
+          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="developer">
+            Edit Game Developer
+          </label>
+          <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          id="developer"
+          type="text"
+          class="@error('developer') border-red-500 @enderror"
+          name="developer"
+          value="{{ old('developer', $game->developer) }}" placeholder="Developer"
+          autocomplete="off">
+          @error('developer')
+          <p class="text-red-500 text-xs italic">{{ $message }}</p>
+          @enderror
         </div>
+      </div>
 
-        <div class="">
-            <label for="modes" class="">Playing modes ex. singleplayer</label>
-            <div class="">
-                <input id="modes" type="text" class="@error('modes') is-invalid @enderror" name="modes" value="{{ old('modes', $game->modes) }}">
-
-                @error('modes')
-                <span class="" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-                @enderror
-            </div>
+      <!-- modes -->
+      <div class="flex flex-wrap mx-0 mb-6">
+        <div class="w-full px-3">
+          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="modes">
+            Edit Game modes
+          </label>
+          <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          id="modes"
+          type="text"
+          class="@error('modes') border-red-500 @enderror"
+          name="modes"
+          value="{{ old('modes', $game->modes) }}" placeholder="Single-player"
+          autocomplete="off">
+          @error('modes')
+          <p class="text-red-500 text-xs italic">{{ $message }}</p>
+          @enderror
         </div>
+      </div>
 
-        <div class="">
-            <label for="sweden_release" class="">sweden_release</label>
-            <div class="">
-                <input id="sweden_release" type="text" class="@error('sweden_release') is-invalid @enderror" name="sweden_release" value="{{ old('sweden_release', $game->sweden_release) }}">
-
-                @error('sweden_release')
-                <span class="" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-                @enderror
-            </div>
+      <!-- sweden_release -->
+      <div class="flex flex-wrap mx-0 mb-6">
+        <div class="w-full px-3">
+          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="sweden_release">
+            Edit Sweden Release
+          </label>
+          <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          id="sweden_release"
+          type="text"
+          class="@error('sweden_release') border-red-500 @enderror"
+          name="sweden_release"
+          value="{{ old('sweden_release', $game->sweden_release) }}" placeholder="yyyy-mm-dd"
+          autocomplete="off">
+          @error('sweden_release')
+          <p class="text-red-500 text-xs italic">{{ $message }}</p>
+          @enderror
         </div>
+      </div>
 
-        <div class="">
-            <label for="europe_release" class="">europe_release</label>
-            <div class="">
-                <input id="europe_release" type="text" class="@error('europe_release') is-invalid @enderror" name="europe_release" value="{{ old('europe_release', $game->europe_release) }}">
-
-                @error('europe_release')
-                <span class="" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-                @enderror
-            </div>
+      <!-- europe_release -->
+      <div class="flex flex-wrap mx-0 mb-6">
+        <div class="w-full px-3">
+          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="europe_release">
+            Edit Europe Release
+          </label>
+          <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          id="europe_release"
+          type="text"
+          class="@error('europe_release') border-red-500 @enderror"
+          name="europe_release"
+          value="{{ old('europe_release', $game->europe_release) }}" placeholder="yyyy-mm-dd"
+          autocomplete="off">
+          @error('europe_release')
+          <p class="text-red-500 text-xs italic">{{ $message }}</p>
+          @enderror
         </div>
+      </div>
 
-        <div class="">
-            <label for="japan_release" class="">japan_release</label>
-            <div class="">
-                <input id="japan_release" type="text" class="@error('japan_release') is-invalid @enderror" name="japan_release" value="{{ old('japan_release', $game->japan_release) }}">
-
-                @error('japan_release')
-                <span class="" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-                @enderror
-            </div>
+      <!-- japan_release -->
+      <div class="flex flex-wrap mx-0 mb-6">
+        <div class="w-full px-3">
+          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="japan_release">
+            Edit Japan Realease
+          </label>
+          <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          id="japan_release"
+          type="text"
+          class="@error('japan_release') border-red-500 @enderror"
+          name="japan_release"
+          value="{{ old('japan_release', $game->japan_release) }}" placeholder="yyyy-mm-dd"
+          autocomplete="off">
+          @error('japan_release')
+          <p class="text-red-500 text-xs italic">{{ $message }}</p>
+          @enderror
         </div>
+      </div>
 
-        <div class="">
-            <label for="usa_release" class="">usa_release</label>
-            <div class="">
-                <input id="usa_release" type="text" class="@error('usa_release') is-invalid @enderror" name="usa_release" value="{{ old('usa_release', $game->usa_release) }}">
-
-                @error('usa_release')
-                <span class="" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-                @enderror
-            </div>
+      <!-- usa_release -->
+      <div class="flex flex-wrap mx-0 mb-6">
+        <div class="w-full px-3">
+          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="usa_release">
+            Edit Usa Release
+          </label>
+          <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          id="usa_release"
+          type="text"
+          class="@error('usa_release') border-red-500 @enderror"
+          name="usa_release"
+          value="{{ old('usa_release', $game->usa_release) }}" placeholder="yyyy-mm-dd"
+          autocomplete="off">
+          @error('usa_release')
+          <p class="text-red-500 text-xs italic">{{ $message }}</p>
+          @enderror
         </div>
+      </div>
 
-        <div class="">
-            <label for="description" class="">Description</label>
-            <div class="">
-                <textarea id="description" class="@error('description') is-invalid @enderror" name="description" rows="10" cols="100">{{ old('description', $game->description) }}</textarea>
+      <!-- description -->
+      <div class="flex flex-wrap mx-0 mb-6">
+        <div class="w-full px-3">
+          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="description">
+            Edit Game Description
+          </label>
+          <textarea
+          id="description"
+          class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 @error('description') is-invalid @enderror"
+          name="description"
+          rows="10"
+          cols="100">{{ old('description', $game->description) }}</textarea>
 
-                @error('description')
-                <span class="" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-                @enderror
-            </div>
+          @error('description')
+          <p class="text-red-500 text-xs italic">{{ $message }}</p>
+          @enderror
         </div>
+      </div>
+
+      <!--add links -->
+      <div class="flex flex-wrap mx-0 mb-6">
+        <div class="w-full px-3">
+          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="url">
+            Edit Game External Links
+          </label>
         @forelse($game->urls as $url)
-        <div class="">
-            <label for="url" class="">{{ $url->host }}</label>
-            <div class="">
-                <input id="url"
-                type="text"
-                class="@error('url') is-invalid @enderror"
-                name="url[{{ $url->host }}]"
-                value="{{ old('url->url', $url->url) }}">
-
-                @error('url')
-                <span class="" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-                @enderror
-            </div>
+          <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            id="url"
+            type="text"
+            class="@error('url') border-red-500 @enderror"
+            name="url[{{ $url->host }}]"
+            value="{{ old('$url->url', $url->url) }}"
+            placeholder="yyyy-mm-dd"
+            autocomplete="off">
+          @error('url')
+            <p class="text-red-500 text-xs italic">{{ $message }}</p>
+          @enderror
+          @empty
+            Inga länkar
+          @endforelse
         </div>
-        @empty
-            No links
-        @endforelse
+    </div>
 
-    <input type="submit" value="Ändra">
+<input type="submit" class="bg-white text-gray-700 font-medium py-1 px-4 border border-gray-400 rounded-lg tracking-wide mr-1 hover:bg-gray-100" value="Ändra">
 </form>
 
-<form method="POST" action="{{ route('game.save.url', $game) }}" autocomplete="off">
+<form class="w-full max-w-lg" method="POST" action="{{ route('game.save.url', $game) }}" autocomplete="off">
     {{ csrf_field() }}
     {{ method_field('POST') }}
-        <div class="">
-            <label for="url_host" class="">Add link</label>
-            <div class="">
-                <input id="url_host"
+      <div class="flex flex-wrap mx-0 mb-6">
+        <div class="w-full px-3">
+          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="url_host">
+            Add Host
+          </label>
+                <input
+                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                id="url_host"
                 type="text"
-                class="@error('url_host') is-invalid @enderror"
+                class="@error('url_host') border-red-500 @enderror"
                 name="url_host"
-                value="{{ old('url_host') }}" placeholder="ex: wikipedia_url">
+                value="{{ old('url_host') }}"
+                placeholder="ex: wikipedia_url">
                 @error('url_host')
                 <span class="" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
                 @enderror
-
-                <input id="new_url"
+            </div>
+        </div>
+      <div class="flex flex-wrap mx-0 mb-6">
+        <div class="w-full px-3">
+          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="url_host">
+            Add Game Url
+          </label>
+                <input
+                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                id="new_url"
                 type="text"
-                class="@error('new_url') is-invalid @enderror"
+                class="@error('new_url') border-red-500 @enderror"
                 name="new_url"
-                value="{{ old('new_url') }}" placeholder="http://en.wikipedia.org/xxx">
+                value="{{ old('new_url') }}"
+                placeholder="http://en.wikipedia.org/xxx">
 
                 @error('new_url')
                 <span class="" role="alert">
@@ -261,6 +325,6 @@ form {
                 @enderror
             </div>
         </div>
-    <input type="submit" value="Lägg till">
+<input type="submit" class="bg-white text-gray-700 font-medium py-1 px-4 border border-gray-400 rounded-lg tracking-wide mr-1 hover:bg-gray-100" value="Lägg till URL">
 </form>
 @endsection
