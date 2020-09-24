@@ -113,9 +113,9 @@
     </div> <!-- end images grid -->
   </div> <!-- end images-container -->
 
-<div>
+<div class="similar pb-12 mt-8"> <!-- start similar games -->
 <h2 class="text-blue-500 uppercase tracking-wide font-semibold">Liknande spel</h2>
-  <div class="similar-games text-sm grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 border-b border-gray-800 pb-16"> <!-- start similar games -->
+  <div class="text-sm grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 border-b border-gray-800 pb-8">
     @forelse($gamesOfSameGenre as $game)
         <div class="game mt-5 text-left ml-5">
             <div class="relative inline-block">
@@ -128,14 +128,14 @@
         </div>
     </div>
       @empty
-      <div class="birthday-container space-y-12 mt-8">
+      <div class="similar-games-container space-y-12 mt-8">
           <p>Inga liknande spel funna ¯\_(ツ)_/¯</p>
       </div>
       @endforelse
   </div> <!-- end similar-container -->
-</div>
+  </div>
 
-  <div class="comments-container border-b border-gray-800 pb-12 mt-8"> <!-- comments  -->
+  <div class="comments-container border-gray-800"> <!-- comments  -->
     <h2 class="text-blue-500 uppercase tracking-wide font-semibold">Kommentarer, {{ $game->comments->count() }}</h2>
   @forelse($game->comments as $comment)
   <div class="mb-8">
@@ -172,6 +172,7 @@
       </div>
       </form>
     @endauth
+
     @guest
     <p class="mt-8">
     <a href="{{ route('login') }}">
