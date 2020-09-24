@@ -117,7 +117,7 @@
 <h2 class="text-blue-500 uppercase tracking-wide font-semibold">Liknande spel</h2>
   <div class="similar-games text-sm grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 border-b border-gray-800 pb-16"> <!-- start similar games -->
     @forelse($gamesOfSameGenre as $game)
-        <div class="game mt-5 text-left">
+        <div class="game mt-5 text-left ml-5">
             <div class="relative inline-block">
               <a href="{{ route('game.show', $game) }}" class="flex-shrink-0">
                   <img src="{{ asset('images/placeholder.png') }}" alt="game cover" class="w-16 hover:opacity-75 transition ease-in-out duration-150">
