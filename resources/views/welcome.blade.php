@@ -7,7 +7,7 @@
     <h2 class="text-blue-500 uppercase tracking-wide font-semibold">
         Senaste ändringarna
     </h2>
-    <div class="popular-games text-sm grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-12 border-b border-gray-800 pb-16">
+    <div class="popular-games text-sm grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5 border-b border-gray-800 pb-16">
         @forelse($games_history as $game)
         <div class="game mt-8 text-center sm:text-left">
             <div class="relative inline-block">
