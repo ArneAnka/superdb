@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Game;
 use App\Comment;
 use Illuminate\Http\Request;
+use App\Points\Actions\Commented;
 
 class GameCommentController extends Controller
 {
@@ -46,6 +47,9 @@ class GameCommentController extends Controller
         $comment->body = $request->get('body');
 
         $game->comments()->save($comment);
+
+        $request->user()->givePoints(new Commented());
+        
         return back();
     }
 

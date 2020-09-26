@@ -5,34 +5,6 @@ use Illuminate\Support\Facades\Auth;
 
 Auth::routes(['register' => false]);
 
-Route::get('/test', function(){
-$games = [
-];
-# "id" => 19 // SNES
-# "id" => 18 // NES
-# "id" => 21 // NGC
-# "id" => 4 // N64
-# "id" => 24" //GBA
-# "id" => 22 //GBC
-$lista = [];
-foreach($games as $game){
-    $response = Http::withHeaders([
-        'user-key' => '3e75e6c502e1f2ccfb06529bd77c363e'
-    ])->withOptions([
-    'body' => "
-        search \"{$game}\";
-        fields name, cover.url, popularity, platforms.abbreviation, rating;
-        where platforms = (18,19,4,21,24,22);
-        limit 1;
-    "])
-    ->get('https://api-v3.igdb.com/games')
-    ->json();
-    array_push($lista, $response);
-}
-
-    dd($lista);
-});
-
 /**
  * Normalt sätt så är utloggningen en POST.
  * (Ta bort denna för att återgå till normalt.)

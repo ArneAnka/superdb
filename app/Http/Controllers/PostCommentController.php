@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Post;
 use App\Comment;
 use Illuminate\Http\Request;
+use App\Points\Actions\Commented;
 
 class PostCommentController extends Controller
 {
@@ -46,6 +47,9 @@ class PostCommentController extends Controller
         $comment->body = $request->get('body');
 
         $post->comments()->save($comment);
+
+        $request->user()->givePoints(new Commented());
+        
         return back();
     }
 

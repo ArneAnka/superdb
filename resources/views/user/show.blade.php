@@ -9,6 +9,8 @@
         @can('update', $user)
             <a class="underline" href="{{ route('user.edit', $user) }}">Edit profile</a>
         @endcan
+        <div>
+        </div>
     </div> <!-- end container -->
 </div>
 @endsection

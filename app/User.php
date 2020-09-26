@@ -2,13 +2,14 @@
 
 namespace App;
 
+use App\Points\CollectsPoints;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, CollectsPoints;
 
     /**
      * nothing in line
@@ -64,6 +65,14 @@ class User extends Authenticatable
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+    /**
+     * [history description]
+     * @return [type] [description]
+     */
+    public function history(){
+        return $this->hasMany(History::class);
     }
 
     /**
