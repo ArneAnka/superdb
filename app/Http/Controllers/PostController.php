@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Tag;
 use App\Post;
 use Illuminate\Http\Request;
+use App\Points\Actions\Posted;
 
 class PostController extends Controller
 {
@@ -55,6 +56,8 @@ class PostController extends Controller
 
         // Handle Tags
         $this->handleTags($request, $post);
+
+        $request->user()->givePoints(new Posted());
 
         return redirect()
         ->route('welcome')
