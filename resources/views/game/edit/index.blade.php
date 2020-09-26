@@ -10,14 +10,15 @@
 <div class="container mx-auto px-4">
   <div class="w-full">
     <h2 class="text-blue-500 uppercase tracking-wide font-semibold">editera: {{ $game->title }}</h2>
-    <form class="w-full max-w-lg" method="POST" action="{{ route('game.update.edit', $game) }}">
+    <p>({{ $game->console->name }})</p>
+    <form class="w-full max-w-lg mt-10" method="POST" action="{{ route('game.update.edit', $game) }}">
       {{ csrf_field() }}
       {{ method_field('POST') }}
 
       <!-- title-->
       <div class="flex flex-wrap mx-0 mb-6">
         <div class="w-full px-3">
-          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="title">
+          <label class="block uppercase tracking-wide text-xs font-bold mb-2" for="title">
             Edit Game Title
           </label>
           <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -33,26 +34,20 @@
         </div>
       </div>
 
-      <!-- genre -->
+      <!-- import -->
       <div class="flex flex-wrap mx-0 mb-6">
         <div class="w-full px-3">
-          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="genre_id">
-            Edit Game Genre
+          <label class="block uppercase tracking-wide text-xs font-bold mb-2" for="import">
+            Edit Game Import
           </label>
-          <div class="relative">
-            <select
-            class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            name="genre_id"
-            id="genre_id">
-                @foreach($genres as $genre)
-                  <option value="{{ $genre->id }}" {{ old("genre_id", $game->genre_id) == $genre->id ? 'selected' : '' }}>{{ $genre->genre }}</option>
-                @endforeach
-            </select>
-           <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-            </div>
-          </div>
-          @error('genre_id')
+          <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          id="import"
+          type="text"
+          class="@error('import') border-red-500 @enderror"
+          name="import"
+          value="{{ old('import', $game->import) }}" placeholder="Import"
+          autocomplete="off">
+          @error('import')
           <p class="text-red-500 text-xs italic">{{ $message }}</p>
           @enderror
         </div>
@@ -61,7 +56,7 @@
       <!-- save -->
       <div class="flex flex-wrap mx-0 mb-6">
         <div class="w-full px-3">
-          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="save">
+          <label class="block uppercase tracking-wide text-xs font-bold mb-2" for="save">
             Edit Game Save modes
           </label>
           <div class="relative">
@@ -83,48 +78,11 @@
         </div>
       </div>
 
-      <!-- import -->
-      <div class="flex flex-wrap mx-0 mb-6">
-        <div class="w-full px-3">
-          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="import">
-            Edit Game Import
-          </label>
-          <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-          id="import"
-          type="text"
-          class="@error('import') border-red-500 @enderror"
-          name="import"
-          value="{{ old('import', $game->import) }}" placeholder="Import"
-          autocomplete="off">
-          @error('import')
-          <p class="text-red-500 text-xs italic">{{ $message }}</p>
-          @enderror
-        </div>
-      </div>
-
-      <!-- publisher -->
-      <div class="flex flex-wrap mx-0 mb-6">
-        <div class="w-full px-3">
-          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="publisher">
-            Edit Game Publisher
-          </label>
-          <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-          id="publisher"
-          type="text"
-          class="@error('publisher') border-red-500 @enderror"
-          name="publisher"
-          value="{{ old('publisher', $game->publisher) }}" placeholder="Publisher"
-          autocomplete="off">
-          @error('publisher')
-          <p class="text-red-500 text-xs italic">{{ $message }}</p>
-          @enderror
-        </div>
-      </div>
-
+      <div class="bg-blue-900 shadow-md rounded">
       <!-- developer -->
       <div class="flex flex-wrap mx-0 mb-6">
         <div class="w-full px-3">
-          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="developer">
+          <label class="block uppercase tracking-wide text-xs font-bold mb-2" for="developer">
             Edit Game Developer
           </label>
           <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -140,10 +98,54 @@
         </div>
       </div>
 
+      <!-- publisher -->
+      <div class="flex flex-wrap mx-0 mb-6">
+        <div class="w-full px-3">
+          <label class="block uppercase tracking-wide text-xs font-bold mb-2" for="publisher">
+            Edit Game Publisher
+          </label>
+          <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          id="publisher"
+          type="text"
+          class="@error('publisher') border-red-500 @enderror"
+          name="publisher"
+          value="{{ old('publisher', $game->publisher) }}" placeholder="Publisher"
+          autocomplete="off">
+          @error('publisher')
+          <p class="text-red-500 text-xs italic">{{ $message }}</p>
+          @enderror
+        </div>
+      </div>
+
+      <!-- genre -->
+      <div class="flex flex-wrap mx-0 mb-6">
+        <div class="w-full px-3">
+          <label class="block uppercase tracking-wide text-xs font-bold mb-2" for="genre_id">
+            Edit Game Genre
+          </label>
+          <div class="relative">
+            <select
+            class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            name="genre_id"
+            id="genre_id">
+                @foreach($genres as $genre)
+                  <option value="{{ $genre->id }}" {{ old("genre_id", $game->genre_id) == $genre->id ? 'selected' : '' }}>{{ $genre->genre }}</option>
+                @endforeach
+            </select>
+           <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+            </div>
+          </div>
+          @error('genre_id')
+          <p class="text-red-500 text-xs italic">{{ $message }}</p>
+          @enderror
+        </div>
+      </div>
+
       <!-- modes -->
       <div class="flex flex-wrap mx-0 mb-6">
         <div class="w-full px-3">
-          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="modes">
+          <label class="block uppercase tracking-wide text-xs font-bold mb-2" for="modes">
             Edit Game modes
           </label>
           <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -158,12 +160,13 @@
           @enderror
         </div>
       </div>
+</div>
 
       <!-- sweden_release -->
       <div class="flex flex-wrap mx-0 mb-6">
         <div class="w-full px-3">
-          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="sweden_release">
-            Edit Sweden Release
+          <label class="block uppercase tracking-wide text-xs font-bold mb-2" for="sweden_release">
+            Edit Sweden Release, (yyyy-mm-dd)
           </label>
           <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           id="sweden_release"
@@ -181,8 +184,8 @@
       <!-- europe_release -->
       <div class="flex flex-wrap mx-0 mb-6">
         <div class="w-full px-3">
-          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="europe_release">
-            Edit Europe Release
+          <label class="block uppercase tracking-wide text-xs font-bold mb-2" for="europe_release">
+            Edit Europe Release, (yyyy-mm-dd)
           </label>
           <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           id="europe_release"
@@ -200,8 +203,8 @@
       <!-- japan_release -->
       <div class="flex flex-wrap mx-0 mb-6">
         <div class="w-full px-3">
-          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="japan_release">
-            Edit Japan Realease
+          <label class="block uppercase tracking-wide text-xs font-bold mb-2" for="japan_release">
+            Edit Japan Release, (yyyy-mm-dd)
           </label>
           <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           id="japan_release"
@@ -219,8 +222,8 @@
       <!-- usa_release -->
       <div class="flex flex-wrap mx-0 mb-6">
         <div class="w-full px-3">
-          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="usa_release">
-            Edit Usa Release
+          <label class="block uppercase tracking-wide text-xs font-bold mb-2" for="usa_release">
+            Edit Usa Release, (yyyy-mm-dd)
           </label>
           <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           id="usa_release"
@@ -238,7 +241,7 @@
       <!-- description -->
       <div class="flex flex-wrap mx-0 mb-6">
         <div class="w-full px-3">
-          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="description">
+          <label class="block uppercase tracking-wide text-xs font-bold mb-2" for="description">
             Edit Game Description
           </label>
           <textarea
@@ -254,11 +257,11 @@
         </div>
       </div>
 
-      <!--add links -->
+      <!-- edit links -->
       <div class="flex flex-wrap mx-0 mb-6">
         <div class="w-full px-3">
-          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="url">
-            Edit Game External Links
+          <label class="block uppercase tracking-wide text-xs font-bold mb-2" for="url">
+            Edit External Links For Game
           </label>
         @forelse($game->urls as $url)
           <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -278,15 +281,20 @@
         </div>
     </div>
 
-<input type="submit" class="bg-white text-gray-700 font-medium py-1 px-4 border border-gray-400 rounded-lg tracking-wide mr-1 hover:bg-gray-100" value="Ändra">
+    <input type="submit" class="bg-white text-gray-700 font-medium py-1 px-4 border border-gray-400 rounded-lg tracking-wide mr-1 hover:bg-gray-100" value="Ändra">
 </form>
+</div>
+</div>
 
+<div class="container mx-auto px-4 mt-10">
+  <div class="w-full">
+<h2 class="text-blue-500 uppercase tracking-wide font-semibold">Lägg till länk</h2>
 <form class="w-full max-w-lg" method="POST" action="{{ route('game.save.url', $game) }}" autocomplete="off">
     {{ csrf_field() }}
     {{ method_field('POST') }}
       <div class="flex flex-wrap mx-0 mb-6">
         <div class="w-full px-3">
-          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="url_host">
+          <label class="block uppercase tracking-wide text-xs font-bold mb-2" for="url_host">
             Add Host
           </label>
                 <input
@@ -304,9 +312,10 @@
                 @enderror
             </div>
         </div>
+
       <div class="flex flex-wrap mx-0 mb-6">
         <div class="w-full px-3">
-          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="url_host">
+          <label class="block uppercase tracking-wide text-xs font-bold mb-2" for="url_host">
             Add Game Url
           </label>
                 <input
@@ -327,4 +336,6 @@
         </div>
 <input type="submit" class="bg-white text-gray-700 font-medium py-1 px-4 border border-gray-400 rounded-lg tracking-wide mr-1 hover:bg-gray-100" value="Lägg till URL">
 </form>
+</div>
+</div>
 @endsection
