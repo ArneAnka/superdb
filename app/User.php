@@ -77,6 +77,7 @@ class User extends Authenticatable
 
     /**
      * [getAvatarAttribute description]
+     * https://eu.ui-avatars.com/
      * @param  [type] $value [description]
      * @return [type]        [description]
      */

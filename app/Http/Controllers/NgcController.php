@@ -16,7 +16,7 @@ class NgcController extends Controller
     {
         $games = Game::whereHas('console', function ($query) {
             return $query->where('short', '=', 'ngc');
-        })->with(['images'])->withCount('releases')->get();
+        })->with(['images'])->withCount(['releases', 'history'])->get();
 
         // Group all games by the first letter
         $games = $games->reduce(function ($carry, $games) {
