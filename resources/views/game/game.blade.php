@@ -116,14 +116,14 @@
 <div class="similar pb-12 mt-8"> <!-- start similar games -->
 <h2 class="text-blue-500 uppercase tracking-wide font-semibold">Liknande spel</h2>
   <div class="text-sm grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 border-b border-gray-800 pb-8">
-    @forelse($gamesOfSameGenre as $game)
+    @forelse($gamesOfSameGenre as $gameGenre)
         <div class="game mt-5 text-left ml-5">
             <div class="relative inline-block">
-              <a href="{{ route('game.show', $game) }}" class="flex-shrink-0">
+              <a href="{{ route('game.show', $gameGenre) }}" class="flex-shrink-0">
                   <img src="{{ asset('images/placeholder.png') }}" alt="game cover" class="w-16 hover:opacity-75 transition ease-in-out duration-150">
               </a>
               <div class="">
-                  <a class="hover:opacity-75 transition ease-in-out duration-150" href="{{ route('game.show', $game) }}">{{ $game->title }}</a> ({{ $game->import }})
+                  <a class="hover:opacity-75 transition ease-in-out duration-150" href="{{ route('game.show', $gameGenre) }}">{{ $gameGenre->title }}</a> ({{ $gameGenre->import }})
               </div>
         </div>
     </div>
