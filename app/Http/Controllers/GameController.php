@@ -113,15 +113,12 @@ class GameController extends Controller
         $game->update([
             'title' => $request->get('title'),
             'genre_id' => $request->get('genre_id'),
-            // 'publisher' => $request->get('publisher'),
-            // 'developer' => $request->get('developer'),
             'sweden_release' => $request->get('sweden_release'),
             'europe_release' => $request->get('europe_release'),
             'japan_release' => $request->get('japan_release'),
             'usa_release' => $request->get('usa_release'),
             'save' => $request->get('save'),
             'import' => $request->get('import'),
-            // 'modes' => $request->get('modes'),
             'description' => $request->get('description'),
         ]);
 

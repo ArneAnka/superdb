@@ -50,7 +50,7 @@ class GameCommentController extends Controller
 
         $request->user()->givePoints(new Commented());
         
-        return back();
+        return back()->with('success', 'Kommentar inlagd!');;
     }
 
     /**
