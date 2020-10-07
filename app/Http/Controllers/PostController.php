@@ -158,26 +158,13 @@ class PostController extends Controller
          * Once the post has been saved, we deal with the tag logic.
          * Grab the tag or tags from the field, sync them with the post
          */
-        $tagsNames = explode(',', $request->get('tags'));
-        
-        $trimmedTags = [];
-        foreach ($tagsNames as $key => $tag) {
-            if(empty($tag)){
-                continue;
-            }
-            array_push($trimmedTags, trim($tag));
-        }
+        $keys = collect(explode(',', $request->input('tags')))
+            ->map(function($item) { 
+                return trim($item); 
+            }) // remove spaces around names
+            ->filter() // remove empty names
+            ->map(fn ($name) => Tag::firstOrCreate(['name' => $name])->getKey());
 
-        // Create all tags (unassociet)
-        foreach($trimmedTags as $tagName){
-            Tag::firstOrCreate([
-                'name' => $tagName
-            ])->save();
-        }
-
-        // Once all tags are created we can query them
-        $tags = Tag::whereIn('name', $trimmedTags)->get()->pluck('id');
-
-        $post->tags()->sync($tags);
+        $post->tags()->sync($keys);
     }
 }

@@ -82,17 +82,18 @@
       <!-- developer -->
       <div class="flex flex-wrap mx-0 mb-6">
         <div class="w-full px-3">
-          <label class="block uppercase tracking-wide text-xs font-bold mb-2" for="developer">
-            Edit Game Developer
+          <label class="block uppercase tracking-wide text-xs font-bold mb-2" for="developers">
+            Edit Game Developers
           </label>
           <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-          id="developer"
+          id="developers"
           type="text"
-          class="@error('developer') border-red-500 @enderror"
-          name="developer"
-          value="{{ old('developer', $game->developer) }}" placeholder="Developer"
+          class="@error('developers') border-red-500 @enderror"
+          name="developers"
+          value="{{ old('developers', $developers) }}" placeholder="Developers"
           autocomplete="off">
-          @error('developer')
+          <p class="text-gray-600 text-xs italic">Ett komma (,) separerar utvecklare.</p>
+          @error('developers')
           <p class="text-red-500 text-xs italic">{{ $message }}</p>
           @enderror
         </div>
@@ -101,17 +102,18 @@
       <!-- publisher -->
       <div class="flex flex-wrap mx-0 mb-6">
         <div class="w-full px-3">
-          <label class="block uppercase tracking-wide text-xs font-bold mb-2" for="publisher">
-            Edit Game Publisher
+          <label class="block uppercase tracking-wide text-xs font-bold mb-2" for="publishers">
+            Edit Game Publishers
           </label>
           <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-          id="publisher"
+          id="publishers"
           type="text"
           class="@error('publisher') border-red-500 @enderror"
-          name="publisher"
-          value="{{ old('publisher', $game->publisher) }}" placeholder="Publisher"
+          name="publishers"
+          value="{{ old('publishers', $publishers) }}" placeholder="Publisher"
           autocomplete="off">
-          @error('publisher')
+          <p class="text-gray-600 text-xs italic">Ett komma (,) separerar publishers.</p>
+          @error('publishers')
           <p class="text-red-500 text-xs italic">{{ $message }}</p>
           @enderror
         </div>
@@ -153,10 +155,11 @@
           type="text"
           class="@error('modes') border-red-500 @enderror"
           name="modes"
-          value="{{ old('modes', $game->modes) }}" placeholder="Single-player"
+          value="{{ old('modes', $modes) }}" placeholder="Single-player"
           autocomplete="off">
+          <p class="text-gray-600 text-xs italic">Ett komma (,) separerar modes.</p>
           @error('modes')
-          <p class="text-red-500 text-xs italic">{{ $message }}</p>
+            <p class="text-red-500 text-xs italic">{{ $message }}</p>
           @enderror
         </div>
       </div>

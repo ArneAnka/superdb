@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDevelopersTable extends Migration
+class CreateModesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateDevelopersTable extends Migration
      */
     public function up()
     {
-        Schema::create('developers', function (Blueprint $table) {
+        Schema::create('modes', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('mode')->unique();
         });
     }
 
@@ -26,6 +26,6 @@ class CreateDevelopersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('developers');
+        Schema::dropIfExists('modes');
     }
 }

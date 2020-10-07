@@ -16,6 +16,7 @@ class Game extends Model
 
     protected $guarded = [];
     protected $hidden = ['data'];
+    protected $with = ['modes', 'publishers', 'developers'];
 
     protected static function boot()
     {
@@ -113,6 +114,33 @@ class Game extends Model
     public function images()
     {
         return $this->morphToMany(Image::class, 'imageable');
+    }
+
+    /**
+     * [modes description]
+     * @return [type] [description]
+     */
+    public function modes() 
+    {
+        return $this->belongsToMany(Mode::class); 
+    }
+
+    /**
+     * [developers description]
+     * @return [type] [description]
+     */
+    public function developers() 
+    {
+        return $this->belongsToMany(Developer::class); 
+    }
+
+    /**
+     * [publishers description]
+     * @return [type] [description]
+     */
+    public function publishers() 
+    {
+        return $this->belongsToMany(Publisher::class); 
     }
     
     /**

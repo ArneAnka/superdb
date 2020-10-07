@@ -13,7 +13,7 @@
     <p>#{{ $post->id }}, <a class="underline" href="{{ route('user.show', $post->user) }}">{{ $post->user->name }}</a>, {{ $post->created_at }} ({{ $post->created_at->diffForHumans() }})</p>
     <div>{{ $post->body }}</div>
 
-  <div class="comments-container border-b border-gray-800 pb-12 mt-8"> <!-- comments  -->
+  <div class="comments-container mt-8"> <!-- comments  -->
     <h2 class="text-blue-500 uppercase tracking-wide font-semibold">Kommentarer, {{ $post->comments->count() }}</h2>
   @forelse($post->comments as $comment)
   <div class="mb-8">

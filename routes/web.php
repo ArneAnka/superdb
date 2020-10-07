@@ -5,6 +5,11 @@ use Illuminate\Support\Facades\Auth;
 
 Auth::routes(['register' => false]);
 
+Route::get('/test', function(){
+    $game = App\Game::find(1);
+    return view('test', compact('game'));
+});
+
 /**
  * Normalt sätt så är utloggningen en POST.
  * (Ta bort denna för att återgå till normalt.)
@@ -85,7 +90,8 @@ Route::get('tos', function(){
 Route::post('/search',function(Request $request){
     $q = $request->get('q');
 
-    $games = \App\Game::where('title','LIKE','%'.$q.'%')->orWhere('developer','LIKE','%'.$q.'%')->with('console')->limit('20')->get();
+    // $games = \App\Game::where('title','LIKE','%'.$q.'%')->orWhere('developer','LIKE','%'.$q.'%')->with('console')->limit('20')->get();
+    $games = \App\Game::where('title','LIKE','%'.$q.'%')->with('console')->limit('20')->get();
     // array_walk_recursive($games, function(&$item) { $item = mb_convert_encoding($item, 'UTF-8', 'UTF-8'); });
     return view('search', compact('games'));
 

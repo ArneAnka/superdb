@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Game;
+use App\Mode;
 use App\Genre;
+use App\Publisher;
+use App\Developer;
 use Illuminate\Http\Request;
 
 class GameController extends Controller
@@ -67,7 +70,12 @@ class GameController extends Controller
         $saves = ['unknown','battery','password','unsaveable'];
         $game->load('urls');
 
-        return view('game.edit.index', compact('game', 'genres', 'saves'));
+        // Get the tags associated with this post and convert to a comma seperated string
+        $publishers = $game->publishers->implode('name', ', ');
+        $developers = $game->developers->implode('name', ', ');
+        $modes = $game->modes->implode('mode', ', ');
+
+        return view('game.edit.index', compact('game', 'genres', 'saves', 'publishers', 'developers', 'modes'));
     }
 
     /**
@@ -105,17 +113,21 @@ class GameController extends Controller
         $game->update([
             'title' => $request->get('title'),
             'genre_id' => $request->get('genre_id'),
-            'publisher' => $request->get('publisher'),
-            'developer' => $request->get('developer'),
+            // 'publisher' => $request->get('publisher'),
+            // 'developer' => $request->get('developer'),
             'sweden_release' => $request->get('sweden_release'),
             'europe_release' => $request->get('europe_release'),
             'japan_release' => $request->get('japan_release'),
             'usa_release' => $request->get('usa_release'),
             'save' => $request->get('save'),
             'import' => $request->get('import'),
-            'modes' => $request->get('modes'),
+            // 'modes' => $request->get('modes'),
             'description' => $request->get('description'),
         ]);
+
+        $this->handlePublisher($request, $game);
+        $this->handleDeveloper($request, $game);
+        $this->handleModes($request, $game);
 
         return redirect()
         ->route('game.show', $game)
@@ -131,5 +143,51 @@ class GameController extends Controller
     public function destroy(Game $game)
     {
         //
+    }
+
+    /**
+     * Handle Publihsers for Game
+     * https://stackoverflow.com/questions/50529715/a-solution-for-adding-tags-in-laravel
+     * Also see handeDevelopers() and handeModes().
+     * This need to be refactored!
+     * @param  \Illuminate\Http\Request  $request
+     * @param \App\Game $game
+     * @return void
+     */
+    public function handlePublisher(Request $request, Game $game){
+        /**
+         * Once the game has been saved, we deal with the tag logic.
+         * Grab the tag or publishers from the field, sync them with the game
+         */
+        $keys = collect(explode(',', $request->input('publishers')))
+            ->map(function($item) { 
+                return trim($item); 
+            }) // remove spaces around names
+            ->filter() // remove empty names
+            ->map(fn ($name) => Publisher::firstOrCreate(['name' => $name])->getKey());
+
+        $game->publishers()->sync($keys);
+    }
+
+    public function handleDeveloper(Request $request, Game $game){
+        $keys = collect(explode(',', $request->input('developers')))
+            ->map(function($item) { 
+                return trim($item); 
+            }) // remove spaces around names
+            ->filter() // remove empty names
+            ->map(fn ($name) => Developer::firstOrCreate(['name' => $name])->getKey());
+
+        $game->developers()->sync($keys);
+    }
+
+    public function handleModes(Request $request, Game $game){
+        $keys = collect(explode(',', $request->input('modes')))
+            ->map(function($item) { 
+                return trim($item); 
+            }) // remove spaces around names
+            ->filter() // remove empty names
+            ->map(fn ($mode) => Mode::firstOrCreate(['mode' => $mode])->getKey());
+
+        $game->modes()->sync($keys);
     }
 }
