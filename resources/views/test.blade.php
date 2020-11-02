@@ -8,8 +8,11 @@
         <h2 class="text-blue-500 uppercase tracking-wide font-semibold">
         test
         </h2>
-        @foreach($game->MODES as $mode)
-            {{ $mode->mode }}@if(!$loop->last), @endif
+        @foreach($publishers as $publisher)
+            <h1 class="text-xl text-red-600">{{ $publisher->name }} ({{ $publisher->id }})@if(!$loop->last), @endif</h1>
+            @foreach($publisher->games as $game)
+                <a href="https://superdb.cc/g/{{ $game->slug }}" target="_blnak">{{ $game->title }} ({{ $game->console->name }})</a><br>
+            @endforeach
         @endforeach
     </div> <!-- end container -->
 </div>

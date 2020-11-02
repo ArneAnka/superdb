@@ -3,17 +3,18 @@
 @section('title', 'register')
 
 @section('content')
-<div class="">{{ __('Register') }}</div>
+<div class="container flex justify-center">
+    <div class="w-full max-w-xs">
 
-<div class="">
-    <form method="POST" action="{{ route('register') }}">
+    <div class="mb-6">{{ __('Register') }}</div>
+    <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" method="POST" action="{{ route('register') }}">
         @csrf
 
-        <div class="">
-            <label for="name" class="">{{ __('Name') }}</label>
+        <div class="mb-4">
+            <label for="name" class="block text-gray-700 text-sm font-bold mb-2">{{ __('Name') }}</label>
 
-            <div class="">
-                <input id="name" type="text" class="@error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+            <div class="mb-6">
+                <input id="name" type="text" class="shadow appearance-none border @error('email') border-red-500 @enderror rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="name" value="{{ old('name') }}" required autocomplete="name" placeholder="Name" autofocus>
 
                 @error('name')
                 <span class="" role="alert">
@@ -23,11 +24,11 @@
             </div>
         </div>
 
-        <div class="">
-            <label for="email" class="">{{ __('E-Mail Address') }}</label>
+        <div class="mb-6">
+            <label for="email" class="block text-gray-700 text-sm font-bold mb-2">{{ __('E-Mail Address') }}</label>
 
-            <div class="">
-                <input id="email" type="email" class="@error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+            <div class="mb-6">
+                <input id="email" type="email" class="shadow appearance-none border @error('email') border-red-500 @enderror rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="email" value="{{ old('email') }}" required placeholder="example@example.com" autocomplete="email">
 
                 @error('email')
                 <span class="" role="alert">
@@ -37,11 +38,11 @@
             </div>
         </div>
 
-        <div class="">
-            <label for="password" class="">{{ __('Password') }}</label>
+        <div class="mb-6">
+            <label for="password" class="block text-gray-700 text-sm font-bold mb-2">{{ __('Password') }}</label>
 
-            <div class="">
-                <input id="password" type="password" class="@error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+            <div class="mb-6">
+                <input id="password" type="password" class="shadow appearance-none border @error('email') border-red-500 @enderror rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="password" required placeholder="*******" autocomplete="new-password">
 
                 @error('password')
                 <span class="" role="alert">
@@ -51,21 +52,19 @@
             </div>
         </div>
 
-        <div class="">
-            <label for="password-confirm" class="">{{ __('Confirm Password') }}</label>
+        <div class="mb-6">
+            <label for="password-confirm" class="block text-gray-700 text-sm font-bold mb-2">{{ __('Confirm Password') }}</label>
 
-            <div class="">
-                <input id="password-confirm" type="password" class="" name="password_confirmation" required autocomplete="new-password">
+            <div class="mb-6">
+                <input id="password-confirm" type="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="password_confirmation" placeholder="*******" required autocomplete="new-password">
             </div>
         </div>
 
-        <div class="">
-            <div class="">
-                <button type="submit" class="primary">
+            <div class="flex items-center justify-between">
+                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
                     {{ __('Register') }}
                 </button>
             </div>
-        </div>
     </form>
 </div>
 @endsection

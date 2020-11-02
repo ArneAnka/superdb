@@ -43,14 +43,17 @@
             <img class="rounded-full w-8" src="{{ Auth::user()->avatar }}" alt="avatar">
           </a>
         </div>
+        <div class="ml-6">
+          Logout
+        </div>
         @else
         <div class="ml-6">
           <a href="{{ route('login') }}">Login</a>
         </div>
         @if (Route::has('register'))
-        <div class="ml-6">
-          <a href="{{ route('register') }}">Register</a>
-        </div>
+          <div class="ml-6">
+            <a href="{{ route('register') }}">Register</a>
+          </div>
         @endif
         @endauth
       </div>  <!-- /search -->

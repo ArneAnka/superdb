@@ -7,7 +7,7 @@
         <h2 class="text-blue-500 uppercase tracking-wide font-semibold">
             Sökresultat, {{ $games->count() }}
         </h2>
-        <div class="games-search text-sm grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-12 border-b border-gray-800 pb-16">
+        <div class="games-search text-sm grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-12">
         @forelse($games as $game)
         <div class="games-search-container mt-8 sm:text-left">
             <a href="{{ route('game.show', $game) }}">

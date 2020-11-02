@@ -14,8 +14,8 @@ class Game extends Model
     use Historyable;
     use SoftDeletes;
 
-    protected $guarded = [];
     protected $hidden = ['data'];
+    protected $guarded = [];
     protected $with = ['modes', 'publishers', 'developers'];
 
     protected static function boot()

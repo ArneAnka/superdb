@@ -3,11 +3,14 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-Auth::routes(['register' => false]);
+# Auth::routes(['register' => false]);
+Auth::routes();
 
 Route::get('/test', function(){
-    $game = App\Game::find(1);
-    return view('test', compact('game'));
+    $publishers = App\Publisher::with(['games' => function($q){
+        return $q->with('console')->get();
+    }])->get();
+    return view('test', compact('publishers'));
 });
 
 /**
@@ -68,6 +71,13 @@ Route::prefix('u')->group(function () {
     Route::get('/{user}', 'UserController@show')->name('user.show');
     Route::get('/{user}/edit', 'ProfileController@edit')->name('user.edit');
     Route::patch('/{user}/edit', 'ProfileController@update')->name('user.edit.update');
+});
+
+/**
+ * Developer
+ */
+Route::prefix('dev')->group(function () {
+    Route::get('/{developer}', 'DeveloperController@show')->name('developer.show');
 });
 
 /**
