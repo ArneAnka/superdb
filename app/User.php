@@ -88,4 +88,8 @@ class User extends Authenticatable
         }
         return asset($value);
     }
+
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
 }

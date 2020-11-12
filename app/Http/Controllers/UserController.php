@@ -47,6 +47,10 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+        $user = $user->load(['comments' => function($q){
+            return $q->orderBy('created_at', 'desc');
+        }]);
+
         return view('user.show', compact('user'));
     }
 

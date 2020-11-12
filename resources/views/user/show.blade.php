@@ -12,7 +12,13 @@
             <a class="underline" href="{{ route('user.edit', $user) }}">Edit profile</a>
         </div>
         @endcan
+        <h2 class="text-blue-500 uppercase tracking-wide font-semibold">Kommentarer, {{ count($user->comments) }}</h2>
         <div>
+        <ul class="list-disc">
+            @foreach($user->comments as $comment)
+                <li>{{ $comment->body }}</li>
+            @endforeach
+        </ul>
         </div>
     </div> <!-- end container -->
 </div>
