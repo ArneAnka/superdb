@@ -84,7 +84,8 @@ class User extends Authenticatable
     public function getAvatarAttribute($value)
     {
         if(!$value){
-            return asset('images/avatar.jpg');
+            //return asset('images/avatar.jpg');
+            return "https://www.gravatar.com/avatar/?d=mp&f=y";
         }
         return asset($value);
     }

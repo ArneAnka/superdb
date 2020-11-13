@@ -16,7 +16,7 @@
         <div>
         <ul class="list-disc">
             @foreach($user->comments as $comment)
-                <li>{{ $comment->body }}</li>
+                @include('user.comments.partials.' . strtolower('_' . class_basename($comment->commentable_type)))
             @endforeach
         </ul>
         </div>
