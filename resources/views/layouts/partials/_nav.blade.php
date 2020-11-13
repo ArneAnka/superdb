@@ -66,7 +66,7 @@
   </nav>
 
 @if ($message = Session::get('success'))
-  <div class="rounded-md bg-green-50 p-4 my-8"> <!-- början -->
+  <div class="rounded-md bg-green-50 p-4"> <!-- början -->
   <div class="flex">
     <div class="flex-shrink-0">
       <svg class="h-5 w-5 text-green-400" viewbox="0 0 20 20" fill ="currentColor">
