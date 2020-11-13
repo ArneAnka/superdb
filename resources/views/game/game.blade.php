@@ -150,15 +150,23 @@
   <div class="comments-container"> <!-- comments  -->
     <h2 class="text-blue-500 uppercase tracking-wide font-semibold">Kommentarer, {{ $game->comments->count() }}</h2>
   @forelse($game->comments as $comment)
-  <div class="mb-8">
-    <p>#{{ $comment->id }}, <a class="underline" href="{{ route('user.show', $comment->user) }}">{{ $comment->user->name }}</a>, {{ $comment->created_at }} ({{ $comment->created_at->diffForHumans() }})</p>
-    <p>{{ $comment->body }}</p>
+<!-- kommentar början -->
+<div class="flex mb-4 mt-4">
+    <img class="h-10 w-10 rounded-full" src="{{ Auth::user()->avatar }}" alt="avatar">
+    <div class="ml-4">
+        <div class="flex items-center">
+            <div class="font-semibold"><a class="underline" href="{{ route('user.show', $comment->user) }}">{{ $comment->user->name }}</a></div>
+            <div class="text-gray-500 ml-2">{{ $comment->created_at->diffForHumans() }}</div>
+        </div>
+        <div class="text-gray-700 mt-2">{{ $comment->body }}</div>
     @can('delete', $comment)
       <small class="flex mt-4">
           <svg class="mr-2 inline" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" width="15" height="15"><path d="M4.5 3V1.5a1 1 0 011-1h4a1 1 0 011 1V3M0 3.5h15m-13.5 0v10a1 1 0 001 1h10a1 1 0 001-1v-10M7.5 7v5m-3-3v3m6-3v3" stroke="currentColor"></path></svg> <a class="underline" href="{{ route('game.destory.comment', [$game, $comment]) }}">Radera</a>
       </small>
     @endcan
-  </div>
+    </div>
+</div> 
+<!-- kommentar slut -->
   @empty
     <p>Än så länge inga kommentarer.</p>
   @endforelse
