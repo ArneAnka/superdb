@@ -1,4 +1,4 @@
-<div class="flex">
+<div class="flex mb-4">
     <img class="h-10 w-10 rounded-full" src="{{ Auth::user()->avatar }}" alt="avatar">
     <div class="ml-4">
         <div class="flex items-center">
