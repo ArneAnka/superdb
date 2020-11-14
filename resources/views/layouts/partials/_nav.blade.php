@@ -41,7 +41,7 @@
         <div class="ml-6">
           <div class="flex space-x-2">
             <div class="relative w-8 h-8">
-              <a href="{{ route('user.show', Auth::user()) }}">
+              <a href="{{ route('home') }}">
                 <img class="rounded-full" src="{{ Auth::user()->avatar }}" alt="avatar">
               </a>
               @if(Auth::user()->unreadNotifications->isNotEmpty())
