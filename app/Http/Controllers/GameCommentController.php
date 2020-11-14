@@ -6,6 +6,7 @@ use App\Game;
 use App\Comment;
 use Illuminate\Http\Request;
 use App\Points\Actions\Commented;
+use App\Notifications\ReplyToUserComment;
 
 class GameCommentController extends Controller
 {
@@ -49,6 +50,21 @@ class GameCommentController extends Controller
         $game->comments()->save($comment);
 
         $request->user()->givePoints(new Commented());
+
+        // Get all users that has commented on a game
+        // https://laracasts.com/discuss/channels/laravel/get-users-those-comments-to-selected-post
+        $comments = $game->comments->load(['user']);
+
+        $users_commenting = $comments
+        ->filter(function($comments) use ($request){
+            return $comments->user->id != $request->user()->id;
+        })
+        ->map(function($comment){
+            return $comment->user;
+        })->unique();
+
+        // Send the notification
+        \Notification::send($users_commenting, new ReplyToUserComment($game, $comment, $request->user()));
         
         return back()->with('success', 'Kommentar inlagd!');;
     }

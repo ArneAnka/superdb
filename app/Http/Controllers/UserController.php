@@ -49,7 +49,7 @@ class UserController extends Controller
     {
         $user = $user->load(['comments' => function($q){
             return $q->with('commentable')->orderBy('created_at', 'desc');
-        }]);
+        }, 'unreadNotifications']);
         
         return view('user.show', compact('user'));
     }

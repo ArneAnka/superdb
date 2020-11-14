@@ -71,6 +71,11 @@ Route::prefix('u')->group(function () {
     Route::get('/{user}', 'UserController@show')->name('user.show');
     Route::get('/{user}/edit', 'ProfileController@edit')->name('user.edit');
     Route::patch('/{user}/edit', 'ProfileController@update')->name('user.edit.update');
+    # notifications
+    Route::get('/notifications/{user}/read', function(\App\User $user){
+        $user->unreadNotifications->markAsRead();
+        return back()->with('success', 'Alla kommentarer är markerade som lästa.');;
+    })->name('markAsRead');
 });
 
 /**

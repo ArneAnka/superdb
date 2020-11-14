@@ -36,6 +36,19 @@
         </div>
     </div>
 
+            <div class="flex flex-wrap -mx-3 mb-6">
+                <div class="w-full px-3">
+                  <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="description">
+                    Kort Beskrivning av dig
+                </label>
+                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border @error('description') border-red-500 @enderror rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="description" type="text" value="{{ old('description', $user->description) }}" name="description" placeholder="Hej jag bor i Stockholm" autocomplete="off">
+                      <p class="text-gray-600 text-xs italic">Du förfogar över 255 bokstäver för din beskrivning.</p>
+                @error('description')
+                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                @enderror
+            </div>
+        </div>
+
     <div class="flex flex-wrap -mx-3 mb-6">
         <div class="w-full px-3">
           <label class="block uppercase tracking-wide  @error('password') border-red-500 @enderror text-gray-700 text-xs font-bold mb-2" for="grid-password">
@@ -63,4 +76,44 @@
 </form>
 </div> <!-- end container -->
 </div>
+@endsection
+
+@section('scripts')
+<script>
+    //
+    // Variables
+    //
+
+    // Get the #text element
+    const textArea = document.querySelector('#text');
+
+    // Get the #character-count element
+    const characterCount = document.querySelector('#character-count');
+
+
+    //
+    // Functions
+    //
+    /**
+     * Get the number of characters inside a form field
+     * @param {HTMLInputElement|HTMLTextAreaElement} field The form field
+     * @returns {Number} The character count
+     */
+    function getCharacterCount (field) {
+      return field.value.length;
+    }
+
+    /**
+     * Handle input events
+     */
+    function handleInput () {
+      characterCount.textContent = getCharacterCount(this);
+    }
+
+    //
+    // Inits & Event Listeners
+    //
+    // Handle input events
+    textArea.addEventListener('input', handleInput);
+    </script>
 @endsection

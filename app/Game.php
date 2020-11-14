@@ -6,13 +6,13 @@ use DateTimeInterface;
 use App\Traits\Historyable;
 use App\Points\Actions\UpdatedGame;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Game extends Model
 {
-    use Historyable;
-    use SoftDeletes;
+    use Historyable, SoftDeletes, Notifiable;
 
     protected $hidden = ['data'];
     protected $guarded = [];

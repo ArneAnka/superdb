@@ -77,10 +77,12 @@ class ProfileController extends Controller
         $attributes = $request->validate([
             'user' => ['string', 'required', 'max:255', Rule::unique('users')->ignore($user)],
             'email' => ['string', 'required', 'max:255', 'email', Rule::unique('users')->ignore($user)],
+            'description' => ['max:255'],
             'password' => ['string', 'required', 'min:6', 'max:255', 'confirmed']
         ]);
 
         $user->update($attributes);
+
         return redirect()->route('user.show', $user);
     }
 

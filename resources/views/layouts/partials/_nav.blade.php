@@ -39,9 +39,16 @@
         @if (Route::has('login'))
         @auth
         <div class="ml-6">
-          <a href="{{ route('user.show', Auth::user()) }}">
-            <img class="rounded-full w-8" src="{{ Auth::user()->avatar }}" alt="avatar">
-          </a>
+          <div class="flex space-x-2">
+            <div class="relative w-8 h-8">
+              <a href="{{ route('user.show', Auth::user()) }}">
+                <img class="rounded-full" src="{{ Auth::user()->avatar }}" alt="avatar">
+              </a>
+              @if(Auth::user()->unreadNotifications->isNotEmpty())
+                <div class="absolute top-0 right-0 h-3 w-3 my-1 border-2 border-white rounded-full bg-green-400 z-2"></div>
+              @endif
+            </div>
+          </div>
         </div>
         <div class="ml-6">
         <a class="underline" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
