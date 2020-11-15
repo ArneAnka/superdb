@@ -68,6 +68,7 @@ Route::prefix('post')->group(function () {
  * User
  */
 Route::prefix('u')->group(function () {
+    Route::get('', 'UserController@index')->name('users');
     Route::get('/{user}', 'UserController@show')->name('user.show');
     Route::get('/{user}/edit', 'ProfileController@edit')->name('user.edit');
     Route::patch('/{user}/edit', 'ProfileController@update')->name('user.edit.update');

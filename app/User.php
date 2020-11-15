@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Cache;
 use App\Points\CollectsPoints;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -92,5 +93,9 @@ class User extends Authenticatable
 
     public function comments(){
         return $this->hasMany(Comment::class);
+    }
+
+    public function isOnline(){
+        return Cache::has('user-is-online-' . $this->id);
     }
 }
