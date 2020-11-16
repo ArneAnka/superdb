@@ -7,10 +7,7 @@ use Illuminate\Support\Facades\Auth;
 Auth::routes();
 
 Route::get('/test', function(){
-    $publishers = App\Developer::with(['games' => function($q){
-        return $q->with('console')->get();
-    }])->has('games')->get();
-    return view('test', compact('publishers'));
+    
 });
 
 /**

@@ -17,13 +17,28 @@
             </p>
         @endif
 
-        <h2 class="text-blue-500 uppercase tracking-wide font-semibold">Kommentarer, {{ count($user->comments) }}</h2>
+        <h2 class="text-blue-500 uppercase tracking-wide font-semibold">Senaste {{ count($user->comments) }} kommentarena</h2>
         <div>
         <ul class="list-disc">
             @foreach($user->comments as $comment)
                 @include('user.comments.partials._' . strtolower(class_basename($comment->commentable_type)))
             @endforeach
         </ul>
+
+        <h2 class="text-blue-500 uppercase tracking-wide font-semibold">Senaste {{ count($user->comments) }} redigeringarna</h2>
+        <div>
+        <ul class="list-disc">
+            @forelse($user->history as $history)
+                @include('user.history.partials._' . strtolower(class_basename($history->historyable_type)))
+            @empty
+                <div class="flex items-center">
+                    <div>
+                        &nbsp;Inga ändringar gjorda av denna användaren.
+                    </div>
+                </div>
+            @endforelse
+        </ul>
+
         </div>
     </div> <!-- end container -->
 </div>

@@ -6,6 +6,7 @@
 <div class="container mx-auto px-4">
     <div class="space-y-5">
         <h2 class="text-blue-500 uppercase tracking-wide font-semibold">Användare</h2>
+        <!-- https://tailwind-starter-kit.now.sh/docs/avatars -->
         @foreach($users as $user)
             <div>
                 <div class="relative inline-block">

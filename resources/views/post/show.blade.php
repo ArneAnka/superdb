@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Skapa post')
+@section('title', 'Visa post')
 
 @section('css')
 
@@ -8,10 +8,18 @@
 
 @section('content')
 <div class="container mx-auto px-4">
-  <div class="w-full">
-    <h2 class="text-blue-500 uppercase tracking-wide font-semibold">{{ $post->topic }}</h2>
-    <p>#{{ $post->id }}, <a class="underline" href="{{ route('user.show', $post->user) }}">{{ $post->user->name }}</a>, {{ $post->created_at }} ({{ $post->created_at->diffForHumans() }})</p>
-    <div>{{ $post->body }}</div>
+
+<div class="flex mb-4">
+    <img class="h-10 w-10 rounded-full" src="{{ $post->user->avatar }}" alt="avatar">
+    <div class="ml-4">
+        <h2 class="text-blue-500 uppercase tracking-wide font-semibold">#{{ $post->id }}, {{ $post->topic }}</h2>
+        <div class="flex items-center">
+            <div class="font-semibold"><a class="underline" href="{{ route('user.show', $post->user) }}">{{ $post->user->name }}</a></div>
+            <div class="text-gray-500 ml-2">{{ $post->created_at }} ({{ $post->created_at->diffForHumans() }})</div>
+        </div>
+        <div class="">{{ $post->body }}</div>
+    </div>
+</div>
 
   <div class="comments-container mt-8"> <!-- comments  -->
     <h2 class="text-blue-500 uppercase tracking-wide font-semibold">Kommentarer, {{ $post->comments->count() }}</h2>
