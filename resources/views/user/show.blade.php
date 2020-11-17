@@ -25,7 +25,7 @@
             @endforeach
         </ul>
 
-        <h2 class="text-blue-500 uppercase tracking-wide font-semibold">Senaste {{ count($user->comments) }} redigeringarna</h2>
+        <h2 class="text-blue-500 uppercase tracking-wide font-semibold">Senaste {{ count($user->history) }} redigeringarna</h2>
         <div>
         <ul class="list-disc">
             @forelse($user->history as $history)
