@@ -25,9 +25,9 @@ class Publisher extends Model
         static::creating(function($publisher){
             // Make a slug for the developer ex: {slug}
             $slug = $maybe_slug = str_slug($publisher->name);
-            while(Publisher::where('slug', '=', $slug)->first()) {
-                $slug = "{$maybe_slug}";
-            }
+            // while(Publisher::where('slug', '=', $slug)->first()) {
+            //     $slug = "{$maybe_slug}";
+            // }
             $publisher->slug = $slug;
             return true;
         });

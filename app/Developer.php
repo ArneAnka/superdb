@@ -25,9 +25,9 @@ class Developer extends Model
         static::creating(function($developer){
             // Make a slug for the developer ex: {slug}.{xx}
             $slug = $maybe_slug = str_slug($developer->name);
-            while(Developer::where('slug', '=', $slug)->first()) {
-                $slug = "{$maybe_slug}";
-            }
+            // while(Developer::where('slug', '=', $slug)->first()) {
+            //     $slug = "{$maybe_slug}";
+            // }
             $developer->slug = $slug;
             return true;
         });

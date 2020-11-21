@@ -24,7 +24,9 @@
         &middot;
         <!-- Developer ex Nintendo -->
         @forelse($game->developers as $developer)
-          <span><a class="underline" href="{{ route('developer.show', $developer) }}">{{ $developer->name }}</a>@if(!$loop->last),@endif</span>
+          <span>
+            <a class="underline" href="{{ route('developer.show', $developer) }}">{{ $developer->name }}</a>@if(!$loop->last),@endif
+          </span>
         @empty
           <span>Okänd utvecklare</span>
         @endforelse
