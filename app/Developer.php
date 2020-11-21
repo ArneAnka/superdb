@@ -10,6 +10,16 @@ class Developer extends Model
     public $timestamps = false;
 
     /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+    
+    /**
      * [games description]
      * @return [type] [description]
      */
