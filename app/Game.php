@@ -18,8 +18,7 @@ class Game extends Model
     protected $guarded = [];
     protected $with = ['modes', 'publishers', 'developers'];
 
-    protected static function boot()
-    {
+    protected static function boot(){
         parent::boot();
         // Order by title ASC
         static::addGlobalScope('order', function (Builder $builder) {
@@ -33,7 +32,7 @@ class Game extends Model
         static::creating(function($game){
             // Make a slug for the user ex: firstname.lastname.xx
             $slug = $maybe_slug = str_slug($game->title);
-            while (Game::where('slug', '=', $slug)->first()) {
+            while(Game::where('slug', '=', $slug)->first()) {
                 $slug = "{$maybe_slug}.{$game->console}";
             }
             $game->slug = $slug;
@@ -54,7 +53,6 @@ class Game extends Model
             return true;
           }
         );
-
     }
 
     /**
