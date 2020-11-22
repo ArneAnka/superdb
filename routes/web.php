@@ -38,9 +38,9 @@ Route::get('/gbc', 'GbcController@index')->name('gbc');
  */
 Route::prefix('g')->group(function () {
     Route::get('{game}', 'GameController@show')->name('game.show');
-    Route::get('/edit/{game}', 'GameController@edit')->name('game.show.edit');
-    Route::post('/edit/{game}/update', 'GameController@update')->name('game.update.edit');
-    Route::post('/url/{game}/save', 'UrlController@store')->name('game.save.url');
+    Route::get('/edit/{game}', 'GameController@edit')->middleware(['auth'])->name('game.show.edit');
+    Route::post('/edit/{game}/update', 'GameController@update')->middleware(['auth'])->name('game.update.edit');
+    Route::post('/url/{game}/save', 'UrlController@store')->middleware(['auth'])->name('game.save.url');
     # Comments
     Route::post('/{game}/comment/save', 'GameCommentController@store')->middleware(['auth'])->name('game.save.comment');
     Route::get('/{game}/comment/{comment}/delete', 'GameCommentController@destroy')->middleware(['auth'])->name('game.destory.comment');
@@ -50,12 +50,12 @@ Route::prefix('g')->group(function () {
  * Post
  */
 Route::prefix('post')->group(function () {
-    Route::get('/', 'PostController@create')->name('post.create');
-    Route::get('/edit/{post}', 'PostController@edit')->name('post.edit');
-    Route::post('/url/save', 'PostController@store')->name('post.store');
-    Route::post('/edit/{post}/update', 'PostController@update')->name('post.update');
-    Route::get('/delete/{post}', 'PostController@destroy')->name('post.delete');
     Route::get('/show/{post}', 'PostController@show')->name('post.show');
+    Route::get('/', 'PostController@create')->middleware(['auth'])->name('post.create');
+    Route::get('/edit/{post}', 'PostController@edit')->middleware(['auth'])->name('post.edit');
+    Route::post('/url/save', 'PostController@store')->middleware(['auth'])->name('post.store');
+    Route::post('/edit/{post}/update', 'PostController@update')->middleware(['auth'])->name('post.update');
+    Route::get('/delete/{post}', 'PostController@destroy')->middleware(['auth'])->name('post.delete');
     # Comments
     Route::post('/{post}/comment/save', 'PostCommentController@store')->middleware(['auth'])->name('post.save.comment');
     Route::get('/{post}/comment/{comment}/delete', 'PostCommentController@destroy')->middleware(['auth'])->name('post.destory.comment');
@@ -67,13 +67,13 @@ Route::prefix('post')->group(function () {
 Route::prefix('u')->group(function () {
     Route::get('', 'UserController@index')->name('users');
     Route::get('/{user}', 'UserController@show')->name('user.show');
-    Route::get('/{user}/edit', 'ProfileController@edit')->name('user.edit');
-    Route::patch('/{user}/edit', 'ProfileController@update')->name('user.edit.update');
+    Route::get('/{user}/edit', 'ProfileController@edit')->middleware(['auth'])->name('user.edit');
+    Route::patch('/{user}/edit', 'ProfileController@update')->middleware(['auth'])->name('user.edit.update');
     # notifications
     Route::get('/notifications/{user}/read', function(\App\User $user){
         $user->unreadNotifications->markAsRead();
         return back()->with('success', 'Alla kommentarer är markerade som lästa.');;
-    })->name('markAsRead');
+    })->middleware(['auth'])->name('markAsRead');
 });
 
 /**

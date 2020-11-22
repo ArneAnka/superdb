@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Visa post')
+@section('title', $post->topic)
 
 @section('css')
 
