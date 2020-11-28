@@ -23,9 +23,9 @@ class UrlController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Game $game)
     {
-        //
+        return view('game.edit.add_link', compact('game'));
     }
 
     /**
@@ -36,15 +36,13 @@ class UrlController extends Controller
      */
     public function store(Request $request, Game $game)
     {
-        #$this->authorize('create');
-
         $request->validate([
             'url_host' => 'required',
             'new_url' => 'required|url'
         ]);
 
         $url = new Url;
-# dd("{$game->id} {$request->get('url_host')} {$request->get('new_url')}");
+
         $url->create([
             'game_id' => $game->id,
             'host' => $request->get('url_host'),

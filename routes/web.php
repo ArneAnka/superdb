@@ -39,6 +39,8 @@ Route::prefix('g')->group(function () {
     Route::get('{game}', 'GameController@show')->name('game.show');
     Route::get('/edit/{game}', 'GameController@edit')->middleware(['auth'])->name('game.show.edit');
     Route::post('/edit/{game}/update', 'GameController@update')->middleware(['auth'])->name('game.update.edit');
+    # Url management
+    Route::get('/url/{game}/create', 'UrlController@create')->middleware(['auth'])->name('game.create.url');
     Route::post('/url/{game}/save', 'UrlController@store')->middleware(['auth'])->name('game.save.url');
     # Comments
     Route::post('/{game}/comment/save', 'GameCommentController@store')->middleware(['auth'])->name('game.save.comment');
