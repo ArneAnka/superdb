@@ -16,7 +16,7 @@ class Game extends Model
 
     protected $hidden = ['data'];
     protected $guarded = [];
-    protected $with = ['modes', 'publishers', 'developers'];
+    protected $with = ['modes', 'publishers', 'developers', 'history'];
 
     protected static function boot(){
         parent::boot();

@@ -4,11 +4,11 @@
 
 @section('content')
 <div class="container mx-auto px-4">
-  <div class="game-details border-b border-gray-400 pb-12 flex flex-col lg:flex-row">
+  <div class="game-details border-b border-gray-400 pb-12 flex flex-col md:flex-row lg:flex-row">
     <div class="flex-none">
       <img src="{{ asset('images/placeholder.png') }}" alt="cover">
     </div>
-    <div class="lg:ml-12 lg:mr-64">
+    <div class="ml-4 md:ml-4 lg:ml-12 lg:mr-64">
       <h2 class="font-semibold text-4xl leading-tight mt-1">
         {{ $game->title }}
         @auth
@@ -43,37 +43,37 @@
         &middot;
         <span>Sparfunktion: {{ $game->save }}</span>
       </div>
-      <div class="text-gray-400">
+      <div class="text-gray-400 flex flex-col md:flex-row mt-2">
         @if($game->sweden_release)
-        <span>
+        <span class="mr-2">
           <svg class="inline h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><circle cx="256" cy="256" r="256" fill="#ffda44"/><path fill="#0052b4" d="M200.3 222.6h309.5A256 256 0 0 0 256 0a256.9 256.9 0 0 0-55.7 6v216.6zm-66.7 0V31.1A256.2 256.2 0 0 0 2.2 222.6h131.4zm0 66.8H2.2a256.2 256.2 0 0 0 131.4 191.5V289.4zm66.7 0v216.5A256.9 256.9 0 0 0 256 512a256 256 0 0 0 253.8-222.6H200.3z"/></svg>
           {{ $game->sweden_release }}
         </span>
         @endif
 
         @if($game->europe_release)
-        <span>
+        <span class="mr-2">
           <svg class="inline h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><circle cx="256" cy="256" r="256" fill="#0052b4"/><path fill="#ffda44" d="M256 100.2l8.3 25.5H291l-21.7 15.7 8.3 25.6-21.7-15.8-21.7 15.8 8.3-25.6-21.7-15.7h26.8zm-110.2 45.6l24 12.2 18.9-19-4.2 26.5 23.9 12.2-26.5 4.2-4.2 26.5-12.2-24-26.5 4.3 19-19zM100.2 256l25.5-8.3V221l15.7 21.7 25.6-8.3-15.8 21.7 15.8 21.7-25.6-8.3-15.7 21.7v-26.8zm45.6 110.2l12.2-24-19-18.9 26.5 4.2 12.2-23.9 4.2 26.5 26.5 4.2-24 12.2 4.3 26.5-19-19zM256 411.8l-8.3-25.5H221l21.7-15.7-8.3-25.6 21.7 15.8 21.7-15.8-8.3 25.6 21.7 15.7h-26.8zm110.2-45.6l-24-12.2-18.9 19 4.2-26.5-23.9-12.2 26.5-4.2 4.2-26.5 12.2 24 26.5-4.3-19 19zM411.8 256l-25.5 8.3V291l-15.7-21.7-25.6 8.3 15.8-21.7-15.8-21.7 25.6 8.3 15.7-21.7v26.8zm-45.6-110.2l-12.2 24 19 18.9-26.5-4.2-12.2 23.9-4.2-26.5-26.5-4.2 24-12.2-4.3-26.5 19 19z"/></svg>
           {{ $game->europe_release }}
         </span>
         @endif
 
         @if($game->japan_release)
-        <span>
+        <span class="mr-2">
           <svg class="inline h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><circle cx="256" cy="256" r="256" fill="#eee"/><circle cx="256" cy="256" r="111.3" fill="#d80027"/></svg>
           {{ $game->japan_release }}
         </span>
         @endif
 
         @if($game->usa_release)
-        <span>
+        <span class="mr-2">
           <svg class="inline h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><circle cx="256" cy="256" r="256" fill="#eee"/><path fill="#d80027" d="M244.9 256H512c0-23.1-3-45.5-8.8-66.8H244.9V256zm0-133.6h229.5a257.4 257.4 0 0 0-59-66.7H244.9v66.7zM256 512c60.2 0 115.6-20.8 159.4-55.7H96.6A254.9 254.9 0 0 0 256 512zM37.6 389.6h436.8a254.5 254.5 0 0 0 28.8-66.8H8.8a254.5 254.5 0 0 0 28.8 66.8z"/><path fill="#0052b4" d="M118.6 40h23.3l-21.7 15.7 8.3 25.6-21.7-15.8-21.7 15.8 7.2-22a257.4 257.4 0 0 0-49.7 55.3h7.5l-13.8 10a255.6 255.6 0 0 0-6.2 11l6.6 20.2-12.3-9a253.6 253.6 0 0 0-8.4 20l7.3 22.3H50L28.4 205l8.3 25.5L15 214.6l-13 9.5A258.5 258.5 0 0 0 0 256h256V0c-50.6 0-97.7 14.7-137.4 40zm9.9 190.4l-21.7-15.8-21.7 15.8 8.3-25.5L71.7 189h26.8l8.3-25.5 8.3 25.5h26.8l-21.7 16 8.3 25.5zm-8.3-100l8.3 25.4-21.7-15.7-21.7 15.7 8.3-25.5-21.7-15.7h26.8l8.3-25.6 8.3 25.6h26.8l-21.7 15.7zm100.1 100l-21.7-15.8-21.7 15.8 8.3-25.5-21.7-15.8h26.8l8.3-25.5 8.3 25.5h26.8L212 205l8.3 25.5zm-8.3-100l8.3 25.4-21.7-15.7-21.7 15.7 8.3-25.5-21.7-15.7h26.8l8.3-25.6 8.3 25.6h26.8L212 130.3zm0-74.7l8.3 25.6-21.7-15.8L177 81.3l8.3-25.6L163.5 40h26.8l8.3-25.5L207 40h26.8L212 55.7z"/></svg>
           {{ $game->usa_release }}
         </span>
         @endif
       </div> <!-- end utgivningår -->
 
-      <div class="flex flex-wrap items-center mt-8">
+      <div class="flex flex-wrap items-center mt-1">
         <div class="flex hidden items-center">
           <div class="w-16 h-16 bg-gray-800 rounded-full">
             <div class="font-semibold text-xs flex justify-center items-center h-full">90%</div>
@@ -89,7 +89,7 @@
         </div>
 
 
-        <div class="flex items-center space-x-4 mt-4 sm:mt-0 sm:ml-12"> <!-- smol links -->
+        <div class="flex items-center space-x-4 mt-2 sm:mt-0 sm:ml-12"> <!-- smol links -->
           @foreach($game->urls as $key => $url)
           <a href="{{ $url->url }}" class="hover:text-gray-400" target="_blank" title="{{ $url->host }}">
             <div class="w-8 h-8 bg-gray-800 rounded-full flex justify-center items-center">
@@ -104,7 +104,7 @@
         @if($game->description)
           {{ $game->description }}
         @else
-          Ingen beskrivning..
+          <i>Beskrivning saknas.</i>
         @endif
       </p>
       <div class="mt-8 hidden">
@@ -121,7 +121,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mt-8">
       <div>
         <a href="">
-          <img src="{{ asset('images/placeholder.png') }}" alt="screenshot" class="hover:opacity-75 transition ease-in-out duration-150">
+          <img class="w-24" src="{{ asset('images/placeholder.png') }}" alt="screenshot" class="hover:opacity-75 transition ease-in-out duration-150">
         </a>
       </div>
     </div> <!-- end images grid -->

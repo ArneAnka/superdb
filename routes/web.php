@@ -3,11 +3,10 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-# Auth::routes(['register' => false]);
 Auth::routes();
 
 Route::get('/test', function(){
-    
+    //
 });
 
 /**
