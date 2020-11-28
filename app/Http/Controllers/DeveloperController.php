@@ -47,7 +47,13 @@ class DeveloperController extends Controller
     public function show(Developer $developer)
     {
         $developer = $developer->load(['games.console']);
-        return view('developer', compact('developer'));
+
+        $developer->games->each(function($game){
+            return $game->console = $game->console->name;
+        });
+        $grouped = $developer->games->groupBy('console');
+
+        return view('developer', compact('developer', 'grouped'));
     }
 
     /**
