@@ -78,9 +78,9 @@
         </div>
       </div>
 
-      <div class="bg-blue-900 shadow-md rounded">
+      <div class="bg-blue-900 shadow-md rounded py-4 mb-4">
       <!-- developer -->
-      <div class="flex flex-wrap mx-0 mb-6">
+      <div class="flex flex-wrap mx-0">
         <div class="w-full px-3">
           <label class="block uppercase tracking-wide text-xs font-bold mb-2" for="developers">
             Edit Game Developers
@@ -145,7 +145,7 @@
       </div>
 
       <!-- modes -->
-      <div class="flex flex-wrap mx-0 mb-6">
+      <div class="flex flex-wrap mx-0">
         <div class="w-full px-3">
           <label class="block uppercase tracking-wide text-xs font-bold mb-2" for="modes">
             Edit Game modes
@@ -261,12 +261,13 @@
       </div>
 
       <!-- edit links -->
-      <div class="flex flex-wrap mx-0 mb-6">
+      <div class="flex flex-row mx-0 mb-6">
         <div class="w-full px-3">
           <label class="block uppercase tracking-wide text-xs font-bold mb-2" for="url">
             Edit External Links For Game
           </label>
         @forelse($game->urls as $url)
+        <div class="flex items-center">
           <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
             id="url"
             type="text"
@@ -275,6 +276,13 @@
             value="{{ old('$url->url', $url->url) }}"
             placeholder="yyyy-mm-dd"
             autocomplete="off">
+            &nbsp;
+          <span class="colors-fill">
+          <a href="{{ route('game.destroy.url', ['url' => $url]) }}">
+              <svg viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" width="15" height="15"><path d="M4.5 6.5L1.328 9.672a2.828 2.828 0 104 4L8.5 10.5m2-2l3.172-3.172a2.829 2.829 0 00-4-4L6.5 4.5m-2 6l6-6M3 4.5H0M4.5 0v3m6 9v3m1.5-4.5h3" stroke="currentColor"></path></svg>
+            </a>
+          </span>
+        </div>
           @error('url')
             <p class="text-red-500 text-xs italic">{{ $message }}</p>
           @enderror

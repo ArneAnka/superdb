@@ -97,7 +97,7 @@
             </div>
           </a>
           @endforeach
-            <div class="w-8 h-8 bg-gray-800 rounded-full flex justify-center items-center">
+            <div class="w-8 h-8 flex justify-center items-center">
               <a href="{{ route('game.create.url', $game) }}" class="hover:text-gray-400" title="Lägg till länk">
                 <svg viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" width="15" height="15"><path d="M7.5 4v7M4 7.5h7m-3.5 7a7 7 0 110-14 7 7 0 010 14z" stroke="currentColor"></path></svg>
               </a>

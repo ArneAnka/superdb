@@ -96,6 +96,8 @@ class UrlController extends Controller
      */
     public function destroy(Url $url)
     {
-        //
+        $host = $url->host;
+        $url->delete();
+        return back()->with('success', 'Du tog bort en url som gick till: ' . $host);
     }
 }
