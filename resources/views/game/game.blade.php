@@ -136,8 +136,9 @@
               <a href="{{ route('game.show', $gameGenre) }}" class="flex-shrink-0">
                   <img src="{{ asset('images/placeholder.png') }}" alt="game cover" class="w-16 hover:opacity-75 transition ease-in-out duration-150">
               </a>
-              <div class="">
-                  <a class="hover:opacity-75 transition ease-in-out duration-150" href="{{ route('game.show', $gameGenre) }}">{{ $gameGenre->title }}</a> ({{ $gameGenre->import }})
+              <div class="flex flex-col">
+                  <a class="hover:opacity-75 transition ease-in-out duration-150 underline" href="{{ route('game.show', $gameGenre) }}">{{ $gameGenre->title }}</a>
+                  <span class="text-gray-400">{{ $gameGenre->import }}</span>
               </div>
         </div>
     </div>
