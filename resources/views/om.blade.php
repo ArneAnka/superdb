@@ -18,14 +18,14 @@
         </div>
         <div>
             <ul class="list-disc">
-                <li>Nintendo Entertainment System, 223 titlar</li>
-                <li>Super Nintendo Entertainment System, 247 titlar</li>
-                <li>Nintendo 64, 213 titlar</li>
-                <li>Nintendo Gamecube, 445 titlar</li>
-                <li>Game Boy, 247 titlar</li>
-                <li>Game Boy Advance, 718 titlar</li>
-                <li>Game Boy Color, 186 titlar</li>
+            @foreach($consoles as $console)
+               <li>{{ $console->name }}, {{ $console->games_count }} titlar</li>
+            @endforeach
             </ul>
+        </div>
+
+        <div>
+            Totalt: {{ $histories[0]->history }} redigeringar gjorda.
         </div>
 
         <h2 class="text-blue-500 uppercase tracking-wide font-semibold">Hjälp till</h2>

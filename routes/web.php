@@ -88,9 +88,7 @@ Route::prefix('dev')->group(function () {
 /**
  * Om-sidan
  */
-Route::get('om', function(){
-    return view('om');
-})->name('om');
+Route::get('om', 'AboutController@index')->name('om');
 
 /**
  * Integritetspolicy
