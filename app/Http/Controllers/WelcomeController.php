@@ -16,25 +16,15 @@ class WelcomeController extends Controller
      */
     public function index()
     {
-        # Count games for each console
-        $games_count = Console::withCount(['games' => function($q){
-            return $q->where('deleted_at','=', null);
-        }])->get();
-
-        # Count all rows in DB
-        $all_games_count = Game::withTrashed()->count();
-
         # Retrive the 10 last editet games
         $games_history = Game::with('console')->whereHas('history')->orderBy('updated_at', 'desc')->limit(10)->get();
 
         # Retrive Birthdays! :)
-        // $date = date_create("2013-07-28");
-        // $birthdays = Game::with('console')->releasedOn($date)->get();
         $birthdays = Game::releasedOnThisDay()->with('console')->get();
 
         # Post
-        $posts = Post::withCount(['comments'])->with(['user', 'tags', 'images'])->orderBy('created_at', 'desc')->simplePaginate(15);
+        $posts = Post::withCount(['comments'])->with(['user', 'tags', 'images'])->orderBy('created_at', 'desc')->simplePaginate(5);
 
-        return view('welcome', compact('games_history', 'games_count', 'birthdays', 'all_games_count', 'posts'));
+        return view('welcome', compact('games_history', 'birthdays', 'posts'));
     }
 }

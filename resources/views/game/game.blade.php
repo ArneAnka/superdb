@@ -12,9 +12,9 @@
       <h2 class="font-semibold text-4xl leading-tight mt-1">
         {{ $game->title }}
         @auth
-          <a href="{{ route('game.show.edit', $game) }}"><svg class="inline" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" width="15" height="15"><path d="M4.5 8.5l-.354-.354L4 8.293V8.5h.5zm4-4l.354-.354a.5.5 0 00-.708 0L8.5 4.5zm2 2l.354.354a.5.5 0 000-.708L10.5 6.5zm-4 4v.5h.207l.147-.146L6.5 10.5zm-2 0H4a.5.5 0 00.5.5v-.5zm3 3.5A6.5 6.5 0 011 7.5H0A7.5 7.5 0 007.5 15v-1zM14 7.5A6.5 6.5 0 017.5 14v1A7.5 7.5 0 0015 7.5h-1zM7.5 1A6.5 6.5 0 0114 7.5h1A7.5 7.5 0 007.5 0v1zm0-1A7.5 7.5 0 000 7.5h1A6.5 6.5 0 017.5 1V0zM4.854 8.854l4-4-.708-.708-4 4 .708.708zm3.292-4l2 2 .708-.708-2-2-.708.708zm2 1.292l-4 4 .708.708 4-4-.708-.708zM6.5 10h-2v1h2v-1zm-1.5.5v-2H4v2h1z" fill="currentColor"></path></svg></a>
+          <a class="hover:text-gray-400" href="{{ route('game.show.edit', $game) }}"><svg class="inline" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" width="15" height="15"><path d="M4.5 8.5l-.354-.354L4 8.293V8.5h.5zm4-4l.354-.354a.5.5 0 00-.708 0L8.5 4.5zm2 2l.354.354a.5.5 0 000-.708L10.5 6.5zm-4 4v.5h.207l.147-.146L6.5 10.5zm-2 0H4a.5.5 0 00.5.5v-.5zm3 3.5A6.5 6.5 0 011 7.5H0A7.5 7.5 0 007.5 15v-1zM14 7.5A6.5 6.5 0 017.5 14v1A7.5 7.5 0 0015 7.5h-1zM7.5 1A6.5 6.5 0 0114 7.5h1A7.5 7.5 0 007.5 0v1zm0-1A7.5 7.5 0 000 7.5h1A6.5 6.5 0 017.5 1V0zM4.854 8.854l4-4-.708-.708-4 4 .708.708zm3.292-4l2 2 .708-.708-2-2-.708.708zm2 1.292l-4 4 .708.708 4-4-.708-.708zM6.5 10h-2v1h2v-1zm-1.5.5v-2H4v2h1z" fill="currentColor"></path></svg></a>
         @else
-          <a href="{{ route('game.show.edit', $game) }}"><svg class="inline" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" width="15" height="15"><path d="M4.5 6.5v-3a3 3 0 016 0v3m-8 0h10a1 1 0 011 1v6a1 1 0 01-1 1h-10a1 1 0 01-1-1v-6a1 1 0 011-1z" stroke="currentColor"></path></svg></a>
+          <a class="hover:text-gray-400" href="{{ route('game.show.edit', $game) }}"><svg class="inline" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" width="15" height="15"><path d="M4.5 6.5v-3a3 3 0 016 0v3m-8 0h10a1 1 0 011 1v6a1 1 0 01-1 1h-10a1 1 0 01-1-1v-6a1 1 0 011-1z" stroke="currentColor"></path></svg></a>
         @endauth
       </h2>
       <div class="text-gray-400">
@@ -132,28 +132,33 @@
     </div> <!-- end images grid -->
   </div> <!-- end images-container -->
 
-<div class="similar pb-12 mt-8"> <!-- start similar games -->
-<h2 class="text-blue-500 uppercase tracking-wide font-semibold">Liknande spel</h2>
-  <div class="text-sm grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 border-b border-gray-800 pb-8">
-    @forelse($gamesOfSameGenre as $gameGenre)
-        <div class="game mt-5 text-left ml-5">
-            <div class="relative inline-block">
-              <a href="{{ route('game.show', $gameGenre) }}" class="flex-shrink-0">
-                  <img src="{{ asset('images/placeholder.png') }}" alt="game cover" class="w-16 hover:opacity-75 transition ease-in-out duration-150">
-              </a>
-              <div class="flex flex-col">
-                  <a class="hover:opacity-75 transition ease-in-out duration-150 underline" href="{{ route('game.show', $gameGenre) }}">{{ $gameGenre->title }}</a>
-                  <span class="text-gray-400">{{ $gameGenre->import }}</span>
-              </div>
-        </div>
-    </div>
-      @empty
-      <div class="similar-games-container space-y-12 mt-8">
-          <p>Inga liknande spel funna ¯\_(ツ)_/¯</p>
+<div class="similar pb-8 mt-8"> <!-- start similar games -->
+  <h2 class="text-blue-500 uppercase tracking-wide font-semibold">
+    Andra spel i genre "{{ $game->genre->genre }}"
+  </h2>
+  @if($gamesOfSameGenre->isNotEmpty())
+    <div class="text-sm grid grid-cols-3 md:grid-cols-5 lg:grid-cols-7 pb-8 border-b border-gray-400">
+      @foreach($gamesOfSameGenre as $gameGenre)
+          <div class="game mt-5 text-left ml-5">
+              <div class="relative inline-block">
+                <a href="{{ route('game.show', $gameGenre) }}" class="flex-shrink-0">
+                    <img src="{{ asset('images/placeholder.png') }}" alt="game cover" class="w-16 hover:opacity-75 transition ease-in-out duration-150">
+                </a>
+                <div class="flex flex-col">
+                    <a class="hover:opacity-75 transition ease-in-out duration-150 underline" href="{{ route('game.show', $gameGenre) }}">{{ $gameGenre->title }}</a>
+                    <span class="text-gray-400">{{ $gameGenre->import }}</span>
+                </div>
+          </div>
       </div>
-      @endforelse
-  </div> <!-- end similar-container -->
-  </div>
+        @endforeach
+    </div> <!-- end similar-container -->
+    @endif
+    @if($gamesOfSameGenre->isEmpty())
+        <div class="similar-games-container space-y-12 border-b border-gray-400 pb-8">
+            <p>Inga liknande spel funna ¯\_(ツ)_/¯</p>
+        </div>
+    @endif
+    </div> <!-- end simililar games -->
 
   <div class="comments-container"> <!-- comments  -->
     <h2 class="text-blue-500 uppercase tracking-wide font-semibold">Kommentarer, {{ $game->comments->count() }}</h2>
