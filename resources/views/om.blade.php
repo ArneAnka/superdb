@@ -17,7 +17,7 @@
             Datan är insamlad under en lång tidshorisont i en mängd olika format. SuperDB är i nuläget en "crowdsource-ad" databas då det finns möjlighet för enskilda användare att redigera enskild speltitlar. Ha som utgångspunkt att datan som presenteras <i>kan</i> vara direkt felaktig.
         </div>
         <div>
-            <ul class="list-disc">
+            <ul class="list-disc list-inside">
             @foreach($consoles as $console)
                <li>{{ $console->name }}, {{ $console->games_count }} titlar</li>
             @endforeach
