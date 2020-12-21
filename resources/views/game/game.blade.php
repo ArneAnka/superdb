@@ -132,6 +132,41 @@
     </div> <!-- end images grid -->
   </div> <!-- end images-container -->
 
+  <div class="releases-container border-b border-gray-800 pb-12 mt-8"> <!-- Releases grid -->
+    <h2 class="text-blue-500 uppercase tracking-wide font-semibold">Releaser</h2>
+    <div class="flex-col gap-12 mt-8">
+      <div>
+      @auth
+        @forelse($game->releases as $release)
+          <!-- This example requires Tailwind CSS v2.0+ -->
+          <div class="bg-gray-100 shadow overflow-hidden sm:rounded-lg mb-4">
+            <div class="px-4 py-5 sm:px-6">
+              <h3 class="text-lg leading-6 font-medium text-gray-900">
+                Release {{ $release->release }}
+              </h3>
+            </div>
+            <div class="border-t border-gray-200 text-black px-4 pb-2">
+            <p><span class="underline">Special:</span> {{ $release->special }}</p>
+            <p><span class="underline">Box:</span> {{ $release->box }}</p>
+            <p><span class="underline">Kasett:</span> {{ $release->cartridge }}</p>
+            <p><span class="underline">Inner box:</span> {{ $release->inner_box }}</p>
+              @forelse(json_decode($release->misc) as $key => $misc)
+                <p><span class="underline">{{ $key }}:</span> {{ $misc }}</p>
+              @empty
+                Ingen övrig data
+              @endforelse
+            </div>
+          </div>
+        @empty
+          Ingen data
+        @endforelse
+        @else
+          <a class="underline" href="{{ route('login') }}">Logga in</a> för att se {{ count($game->releases) }} releaser till {{ $game->title }}
+        @endauth
+      </div>
+    </div> <!-- end images grid -->
+  </div> <!-- end images-container -->
+
 <div class="similar pb-8 mt-8"> <!-- start similar games -->
   <h2 class="text-blue-500 uppercase tracking-wide font-semibold">
     Andra spel i genre "{{ $game->genre->genre }}"

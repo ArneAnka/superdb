@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Om superdb.cc')
+@section('title', 'Sök')
 
 @section('content')
 <div class="container mx-auto px-4">

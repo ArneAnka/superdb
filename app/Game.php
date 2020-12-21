@@ -55,6 +55,14 @@ class Game extends Model
         );
     }
 
+    public static function search($query)
+    {
+        return empty($query) ? static::query()
+            : static::where('title', 'like', '%'.$query.'%');
+
+            //    ->orWhere('email', 'like', '%'.$query.'%');
+    }
+
     /**
      * Get the route key for the model.
      *
