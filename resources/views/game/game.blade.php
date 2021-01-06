@@ -142,7 +142,7 @@
           <div class="bg-gray-100 shadow overflow-hidden sm:rounded-lg mb-4">
             <div class="px-4 py-5 sm:px-6">
               <h3 class="text-lg leading-6 font-medium text-gray-900">
-                Release {{ $release->release }}
+                Release {{ $release->release }} <a href="{{ route('game.release.edit', [$game, $release]) }}" class="underline">(ändra)</a>
               </h3>
             </div>
             <div class="border-t border-gray-200 text-black px-4 pb-2">
@@ -150,7 +150,7 @@
             <p><span class="underline">Box:</span> {{ $release->box }}</p>
             <p><span class="underline">Kasett:</span> {{ $release->cartridge }}</p>
             <p><span class="underline">Inner box:</span> {{ $release->inner_box }}</p>
-              @forelse(json_decode($release->misc) as $key => $misc)
+              @forelse($release->misc as $key => $misc)
                 <p><span class="underline">{{ $key }}:</span> {{ $misc }}</p>
               @empty
                 Ingen övrig data

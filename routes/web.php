@@ -46,6 +46,9 @@ Route::prefix('g')->group(function () {
     # Comments
     Route::post('/{game}/comment/save', 'GameCommentController@store')->middleware(['auth'])->name('game.save.comment');
     Route::get('/{game}/comment/{comment}/delete', 'GameCommentController@destroy')->middleware(['auth'])->name('game.destory.comment');
+    # Release
+    Route::get('/{game}/release/{release}', 'ReleaseController@edit')->name('game.release.edit');
+    Route::put('/{game}/release/{release}', 'ReleaseController@update')->name('game.release.update');
 });
 
 /**
