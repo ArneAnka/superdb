@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', "ändra asd")
+@section('title', "ändra release " . $release->release . " för " . $game->title)
 
 @section('css')
 

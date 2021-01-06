@@ -5,27 +5,29 @@
 @section('content')
 <div class="container mx-auto px-4">
     <div class="space-y-5">
-        <h1 class="text-blue-500 uppercase tracking-wide font-semibold mb">
+        <h1 class="text-xl text-blue-500 uppercase tracking-wide font-semibold mb">
             Integritetspolicy/Användarvillkor/Terms of service
         </h1>
-            <p>Senast uppdaterad: 2020-09-20</p>
+            <p class="">
+                Senast uppdaterad: 2021-01-06
+            </p>
 
             <h4 class="text-blue-500 uppercase tracking-wide font-semibold mb">1. Insamling av information</h4>
             <p>Vi samlar in information från dig när du registrerar dig på vår webbplats, loggar in på ditt konto, gör ett köp, deltar i en tävling och/eller när du loggar ut. Den insamlade informationen inkluderar ditt användarnamn och din e-postadress.</p>
 
-            <p>Dessutom tar vi automatiskt emot och sparar information från din dator och webbläsare, inklusive din IP-adress, uppgifter om programvara och hårdvara och den begärda sidan.</p>
+            <p>Dessutom tar vi automatiskt emot och sparar information från din dator och webbläsare, inklusive din IP-adress, uppgifter om programvara och hårdvara och den begärda sidan. (Uppgifter som din webläsare <a class="underline" href="https://en.wikipedia.org/wiki/User_agent">automatiskt</a> skickar varje gång du gör ett sidbesök, oavsett vart på Internet.)</p>
             
             <h4 class="text-blue-500 uppercase tracking-wide font-semibold mb">2. Användning av information</h4>
             <p>Den information vi samlar in från dig kan användas för att:
 
-            <ul class="list-disc">
-                <li>Göra din upplevelse personlig och tillgodose dina personliga behov</li>
-                <li>Tillhandahålla anpassade annonser</li>
-                <li>Förbättra vår hemsida</li>
-                <li>Förbättra vår kundservice och ditt behov av hjälp</li>
-                <li>Kontakta dig via e-post</li>
-                <li>Administrera en tävling, ett erbjudande eller en undersökning</li>
-                <li>För kontroll att flera konto inte används av en juridisk person</li>
+            <ul class="list-disc list-inside">
+                <li>Göra din upplevelse personlig och tillgodose dina personliga behov.</li>
+                <li>Tillhandahålla anpassade annonser.</li>
+                <li>Förbättra vår hemsida.</li>
+                <li>Förbättra vår kundservice och ditt behov av hjälp.</li>
+                <li>Kontakta dig via e-post.</li>
+                <li>Administrera en tävling, ett erbjudande eller en undersökning.</li>
+                <li>För kontroll att flera konto inte används av en (1) juridisk person.</li>
             </ul></p>
             
             <h4 class="text-blue-500 uppercase tracking-wide font-semibold mb">3. E-handelssäkerhet</h4>
@@ -51,10 +53,11 @@
             <p>Vi kan säga upp din åtkomst till webbplatsen utan orsak eller meddelande, vilket kan leda till förverkande och förstörelse av all information som är associerad med dig. Alla bestämmelser i detta avtal som enligt sin natur bör övergå uppsägning ska överstå uppsägning, inklusive, men inte begränsat, äganderätt, garantibeslutningar, ersättning och ansvarsbegränsningar.*</p>
 
             <h4 class="text-blue-500 uppercase tracking-wide font-semibold mb">7. Immateriella rättigheter</h4>
-            <p>Webbplatsen och dess ursprungliga innehåll, funktioner och funktionalitet ägs av superdb.cc och är skyddad av internationell upphovsrätt, varumärke, patent, affärshemlighet och annan immateriell äganderätt eller proprietär rättighetslagar.</p>
+            <p>Webbplatsen och dess ursprungliga innehåll, funktioner och funktionalitet ägs av superdb.cc och är skyddad av internationell upphovsrätt, varumärke, patent, affärshemlighet och annan immateriell äganderätt eller proprietär rättighetslagar. Den information du som användare väljer att dela med superdb.cc, ägs efter uppladdnign av superdb.cc.</p>
 
             <h4 class="text-blue-500 uppercase tracking-wide font-semibold mb">8. Samtycke</h4>
             <p>Genom att använda vår webbplats godkänner du vår Integritetspolicy/Användarvillkor/Terms of service.</p>
+            <p>Denna Integritetspolicy/Användarvillkor/Terms of service kan utan förvarning uppdateras utan föranmälan till dig som användare.</p>
         </div>
     </div>
 @endsection
