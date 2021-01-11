@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
-@section('title', $user->name)
+@section('title', " ändra profil för $user->name")
 
 @section('content')
 <div class="container mx-auto px-4">
     <div class="space-y-5">
         <h2 class="text-blue-500 uppercase tracking-wide font-semibold">Edit the profile, {{ $user->name }}</h2>
 
-
+        <!-- Ändra user-data -->
         <form class="w-full max-w-lg" method="POST" action="{{ route('user.edit.update', $user) }}">
             {{ csrf_field() }}
             {{ method_field('PATCH') }}
@@ -41,41 +41,70 @@
                   <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="description">
                     Kort Beskrivning av dig
                 </label>
-                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border @error('description') border-red-500 @enderror rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="description" type="text" value="{{ old('description', $user->description) }}" name="description" placeholder="Hej jag bor i Stockholm" autocomplete="off">
+                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border @error('description') border-red-500 @enderror rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="description" type="text" value="{{ old('description', $user->description) }}" name="description" placeholder="Hej, jag bor i Stockholm!" autocomplete="off">
                       <p class="text-gray-600 text-xs italic">Du förfogar över 255 bokstäver för din beskrivning.</p>
                 @error('description')
                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
                 @enderror
             </div>
         </div>
+        <!-- Save the form -->
+        <div class="flex items-center justify-between">
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                Spara
+            </button>
+        </div>
+    </form>
 
-    <div class="flex flex-wrap -mx-3 mb-6">
-        <div class="w-full px-3">
-          <label class="block uppercase tracking-wide  @error('password') border-red-500 @enderror text-gray-700 text-xs font-bold mb-2" for="grid-password">
-            Password
-        </label>
-        <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-password" type="password" name="password" placeholder="******************" required="" autocomplete="off">
-    @error('password')
-        <p class="text-red-500 text-xs italic">{{ $message }}</p>
-    @enderror
-    </div>
-</div>
-<div class="flex flex-wrap -mx-3 mb-6">
-    <div class="w-full px-3">
-      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
-        Password
-    </label>
-    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-password" type="password" name="password_confirmation" placeholder="******************" required="" autocomplete="off">
-</div>
-</div>
-<div class="flex items-center justify-between">
-  <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-    Spara
-</button>
-</div>
-</form>
+<h2 class="text-blue-500 uppercase tracking-wide font-semibold">Ändra lösenord</h2>
+    <form class="w-full max-w-lg" method="POST" action="{{ route('user.edit.update_password', $user) }}">
+        {{ csrf_field() }}
+        {{ method_field('PATCH') }}
+        <!-- Old password -->
+        <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="w-full px-3">
+              <label class="block uppercase tracking-wide  @error('password') border-red-500 @enderror text-gray-700 text-xs font-bold mb-2" for="grid-password">
+                Ditt gamla lösenord
+            </label>
+            <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-password" type="password" name="current_password" placeholder="******************" required="" autocomplete="off">
+            @error('current_password')
+                <p class="text-red-500 text-xs italic">{{ $message }}</p>
+            @enderror
+            </div>
+        </div>
+
+        <!-- new password -->
+        <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="w-full px-3">
+              <label class="block uppercase tracking-wide  @error('password') border-red-500 @enderror text-gray-700 text-xs font-bold mb-2" for="grid-password">
+                Nya lösenordet
+            </label>
+            <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-password" type="password" name="password" placeholder="******************" required="" autocomplete="off">
+            @error('password')
+                <p class="text-red-500 text-xs italic">{{ $message }}</p>
+            @enderror
+            </div>
+        </div>
+        <!-- confirm password -->
+        <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="w-full px-3">
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
+                    Bekräfta nya lösenordet
+                </label>
+                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-password" type="password" name="password_confirmation" placeholder="******************" required="" autocomplete="off">
+            </div>
+        </div>
+
+        <!-- Save form -->
+        <div class="flex items-center justify-between">
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                Spara
+            </button>
+        </div>
+    </form>
+
+</div> 
 </div> <!-- end container -->
-</div>
 @endsection
 
 @section('scripts')

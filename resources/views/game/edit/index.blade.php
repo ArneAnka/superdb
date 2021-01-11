@@ -235,6 +235,9 @@
           name="usa_release"
           value="{{ old('usa_release', $game->usa_release) }}" placeholder="yyyy-mm-dd"
           autocomplete="off">
+          <p class="text-gray-600 text-xs italic">
+            January, February, March, April, May, June, July, August, September, October, November, December
+          </p>
           @error('usa_release')
           <p class="text-red-500 text-xs italic">{{ $message }}</p>
           @enderror

@@ -72,8 +72,9 @@ Route::prefix('post')->group(function () {
 Route::prefix('u')->group(function () {
     Route::get('', 'UserController@index')->name('users');
     Route::get('/{user}', 'UserController@show')->name('user.show');
-    Route::get('/{user}/edit', 'ProfileController@edit')->middleware(['auth'])->name('user.edit');
-    Route::patch('/{user}/edit', 'ProfileController@update')->middleware(['auth'])->name('user.edit.update');
+    Route::get('/{user}/edit', 'ProfileController@edit')->middleware(['auth'])->name('user.edit'); # Same url, different route method
+    Route::patch('/{user}/edit', 'ProfileController@update')->middleware(['auth'])->name('user.edit.update'); # Same url, different route method
+    Route::patch('/{user}/edit_password', 'ProfileController@update_password')->middleware(['auth'])->name('user.edit.update_password');
     # notifications
     Route::get('/notifications/{user}/read', function(\App\User $user){
         $user->unreadNotifications->markAsRead();
