@@ -32,7 +32,7 @@
           <form method="POST" action="{{ route('search.game') }}">
             {{ csrf_field() }}
             {{ method_field('POST') }}
-            <input type="text" class="bg-gray-800 text-small rounded-full focus:outline-none focus:shadow-outline w-64 px-3 pl-8 py-1" placeholder="Search..." name="q" autocomplete="off" value="{{ old('q'), '' }}">
+            <input type="text" class="bg-gray-800 text-small rounded-full focus:outline-none focus:shadow-outline md:w-64 px-3 pl-8 py-1" placeholder="Search..." name="q" autocomplete="off" value="{{ old('q') }}">
           </form>
           <div class="absolute top-0 flex items-center h-full ml-2"><svg class="text-gray-400 w-4" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.5 14.5l-4-4m-4 2a6 6 0 110-12 6 6 0 010 12z" stroke="currentColor"></path></svg></div>
         </div>

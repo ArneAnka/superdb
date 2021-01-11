@@ -33,7 +33,7 @@
             Har du idéer på förbättringar eller vill hjälpa till i projektet? Hör av dig via mejl.
         </div>
         <div>
-            Projektet är byggt med <a class="underline" href="https://laravel.com/">Laravel</a>, <a class="underline" href="https://teenyicons.com/">Teenyicons</a> och <a class="underline" href="https://tailwindcss.com/">Tailwind CSS</a>. Projektet körs på nginx hos <a class="underline" href="https://www.digitalocean.com/">Digitalocean</a> på en ubuntu droplet.
+            Projektet är byggt med <a class="underline" href="https://laravel.com/">Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})</a>, <a class="underline" href="https://teenyicons.com/">Teenyicons</a> och <a class="underline" href="https://tailwindcss.com/">Tailwind CSS</a>. Projektet körs på nginx hos <a class="underline" href="https://www.digitalocean.com/">Digitalocean</a> på en ubuntu droplet.
         </div>
         <div>
             Projektet använder givetvis git för versionshantering 🔥

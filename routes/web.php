@@ -106,7 +106,6 @@ Route::get('tos', function(){
  */
 Route::post('/search',function(Request $request){
     $q = $request->get('q');
-    $games = \App\Game::search($q)->get();
-    // array_walk_recursive($games, function(&$item) { $item = mb_convert_encoding($item, 'UTF-8', 'UTF-8'); });
+    $games = \App\Game::search('title', $q)->get();
     return view('search', compact('games'));
 })->name('search.game');

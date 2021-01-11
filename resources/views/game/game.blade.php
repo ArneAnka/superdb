@@ -5,9 +5,9 @@
 @section('content')
 <div class="container mx-auto px-4">
   <div class="game-details border-b border-gray-400 pb-12 flex flex-col md:flex-row lg:flex-row">
-    <div class="flex-none">
-      <img src="{{ asset('images/placeholder.png') }}" alt="cover">
-    </div>
+    <div class=""> <!-- image -->
+      <img src="{{ asset('images/placeholder.png') }}" alt="{{ $game->title }}">
+    </div> <!-- /image -->
     <div class="ml-4 md:ml-4 lg:ml-12 lg:mr-64">
       <h2 class="font-semibold text-4xl leading-tight mt-1">
         {{ $game->title }}
@@ -124,7 +124,7 @@
   <div class="images-container border-b border-gray-800 pb-12 mt-8 hidden"> <!-- image grid -->
     <h2 class="text-blue-500 uppercase tracking-wide font-semibold">Bilder</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mt-8">
-      <div>
+      <div class="">
         <a href="">
           <img class="w-24" src="{{ asset('images/placeholder.png') }}" alt="screenshot" class="hover:opacity-75 transition ease-in-out duration-150">
         </a>
