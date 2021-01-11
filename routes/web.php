@@ -39,16 +39,23 @@ Route::prefix('g')->group(function () {
     Route::get('{game}', 'GameController@show')->name('game.show');
     Route::get('/edit/{game}', 'GameController@edit')->middleware(['auth'])->name('game.show.edit');
     Route::post('/edit/{game}/update', 'GameController@update')->middleware(['auth'])->name('game.update.edit');
+    Route::post('/edit/{game}/image_upload', 'GameImageController@store')->middleware(['auth'])->name('game.image_upload');
     # Url management
     Route::get('/url/{game}/create', 'UrlController@create')->middleware(['auth'])->name('game.create.url');
     Route::get('/url/{url}/destroy', 'UrlController@destroy')->middleware(['auth'])->name('game.destroy.url');
     Route::post('/url/{game}/save', 'UrlController@store')->middleware(['auth'])->name('game.save.url');
-    # Comments
+    # Image management
+    Route::get('image/{game}/create', 'GameImageController@create')->middleware(['auth'])->name('game.create.image');
+    # Game Comments
     Route::post('/{game}/comment/save', 'GameCommentController@store')->middleware(['auth'])->name('game.save.comment');
     Route::get('/{game}/comment/{comment}/delete', 'GameCommentController@destroy')->middleware(['auth'])->name('game.destory.comment');
     # Release
     Route::get('/{game}/release/{release}', 'ReleaseController@edit')->name('game.release.edit');
+    Route::get('/{game}/release/{release}/comments', 'ReleaseCommentController@index')->name('game.release.comment.index');
     Route::put('/{game}/release/{release}', 'ReleaseController@update')->name('game.release.update');
+    Route::post('/{game}/release/{release}/save', 'ReleaseCommentController@store')->middleware(['auth'])->name('release.save.comment');
+    Route::get('/{game}/release/{release}/comment/{comment}/delete', 'ReleaseCommentController@destroy')->middleware(['auth'])->name('release.destory.comment');
+
 });
 
 /**

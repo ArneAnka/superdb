@@ -29,11 +29,11 @@ class NotifyUsersOfNewComment
     public function handle(UserCommented $event)
     {
         User::whereHas('comments', function ($query) use ($event) {
-            return $query->where('commentable_id', $event->game->id);
+            return $query->where('commentable_id', $event->model->id);
         })
         ->where('id', '!=', $event->user->id)
         ->each(function (User $user) use ($event){
-            \Notification::send($user, new ReplyToUserComment($event->game, $event->comment, $event->user));
+            \Notification::send($user, new ReplyToUserComment($event->model, $event->comment, $event->user));
         });
     }
 }

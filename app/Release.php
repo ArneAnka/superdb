@@ -25,4 +25,29 @@ class Release extends Model
             "booklet",
             "special",
     ];
+
+    /**
+     * [comments description]
+     * @return [type] [description]
+     */
+    public function comments(){
+        return $this->morphMany(Comment::class, 'commentable');
+    }
+
+    /**
+     * [comments description]
+     * @return [type] [description]
+     */
+    public function game(){
+        return $this->belongsTo(Game::class);
+    }
+
+    /**
+     * [images description]
+     * @return [type] [description]
+     */
+    public function images()
+    {
+        return $this->morphToMany(Image::class, 'imageable');
+    }
 }

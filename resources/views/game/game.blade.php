@@ -5,7 +5,7 @@
 @section('content')
 <div class="container mx-auto px-4">
   <div class="game-details border-b border-gray-400 pb-12 flex flex-col md:flex-row lg:flex-row">
-    <div class=""> <!-- image -->
+    <div class="flex-none"> <!-- image -->
       <img src="{{ asset('images/placeholder.png') }}" alt="{{ $game->title }}">
     </div> <!-- /image -->
     <div class="ml-4 md:ml-4 lg:ml-12 lg:mr-64">
@@ -121,14 +121,23 @@
     </div> 
   </div> <!-- end game-details -->
 
-  <div class="images-container border-b border-gray-800 pb-12 mt-8 hidden"> <!-- image grid -->
-    <h2 class="text-blue-500 uppercase tracking-wide font-semibold">Bilder</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mt-8">
-      <div class="">
-        <a href="">
-          <img class="w-24" src="{{ asset('images/placeholder.png') }}" alt="screenshot" class="hover:opacity-75 transition ease-in-out duration-150">
-        </a>
-      </div>
+  <div class="images-container border-b border-gray-800 pb-12 mt-8"> <!-- image grid -->
+    <h2 class="text-blue-500 uppercase tracking-wide font-semibold flex items-center">
+    <span class="">Bilder</span>&nbsp;
+    <span class="inline"><a href="{{ route('game.create.image', $game) }}" class="hover:text-gray-400" title="Lägg till länk">
+        <svg class="" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" width="15" height="15"><path d="M7.5 4v7M4 7.5h7m-3.5 7a7 7 0 110-14 7 7 0 010 14z" stroke="currentColor"></path></svg>
+      </a></span>
+    </h2>
+    <div class="grid grid-cols-1 grid-cols-2 lg:grid-cols-3 gap-10 mt-8">
+        @forelse($game->images as $key => $image)
+        <div class="w-64 md:w-auto ">
+          <a href="{{ asset('images/test_folder/'.$image->full) }}" class="">
+            <img class="shadow-md over:opacity-75 transition ease-in-out duration-150 rounded-md" src="{{ asset('images/test_folder/thumbs/'.$image->thumb) }}" alt="{{ $image->full }}">
+          </a>
+        </div>
+        @empty
+          Inga bilder
+        @endforelse
     </div> <!-- end images grid -->
   </div> <!-- end images-container -->
 
@@ -142,7 +151,9 @@
           <div class="bg-gray-100 shadow overflow-hidden sm:rounded-lg mb-4">
             <div class="px-4 py-5 sm:px-6">
               <h3 class="text-lg leading-6 font-medium text-gray-900">
-                Release {{ $release->release }} <a href="{{ route('game.release.edit', [$game, $release]) }}" class="underline">(ändra)</a>
+                <p class="text-xl underline">Release {{ $release->release }} <a href="{{ route('game.release.edit', [$game, $release]) }}" class="underline">(ändra)</a></p>
+                <p>Bilder: {{ $release->images->count() }}</p>
+                <p>Kommentarer: <a class="underline" href="{{ route('game.release.comment.index', [$game, $release]) }}">{{ $release->comments->count() }}</a></p>
               </h3>
             </div>
             <div class="border-t border-gray-200 text-black px-4 pb-2">
@@ -159,7 +170,7 @@
           </div>
         @empty
           Ingen data
-        @endforelse
+        @endforelse 
         @else
           <a class="underline" href="{{ route('login') }}">Logga in</a> för att se {{ count($game->releases) }} releaser till {{ $game->title }}
         @endauth

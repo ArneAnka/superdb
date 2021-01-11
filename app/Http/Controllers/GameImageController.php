@@ -3,29 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Image;
+use App\Game;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image as Intervention;
 
-class ImageController extends Controller
+class GameImageController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Game $game)
     {
-        //
+        return view('game.edit.add_image', compact('game'));
     }
 
     /**
@@ -34,25 +28,31 @@ class ImageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Game $game)
     {
-        if ($request->hasFile('image')) {
-            //  Let's do everything here
-            if ($request->file('image')->isValid()) {
-                //
-                $validated = $request->validate([
-                    'image' => 'mimes:jpeg,png|max:1014',
-                ]);
-                $extension = $request->image->extension();
-                $request->image->storeAs('/public', $validated['name'].".".$extension);
-                $url = Storage::url($validated['name'].".".$extension);
-                $file = File::create([
-                    'name' => $validated['name'],
-                    'url' => $url,
-                ]);
-                Session::flash('success', "Success!");
-                return back();
-            }
+        if ($request->hasFile('game_image')) {
+            $request->validate([
+                'game_image' => 'mimes:jpeg,png|max:1014'
+            ]);
+
+            $file = $request->file('game_image');
+            $filename_thumbnail = "thumb_". $file->hashName();
+            $path_full = $request->file('game_image')->store('images/test_folder');
+            $path_thumb = $request->file('game_image')->storeAs('images/test_folder/thumbs', $filename_thumbnail);
+
+            // resize image
+            $path_thumb = Intervention::make("/Users/johannilsson/code/sdb3/storage/app/public/" . $path_thumb)->resize(300, 200);
+            $path_thumb->save();
+
+            $image = new Image;
+            $image->full = basename($path_full);
+            $image->thumb = $filename_thumbnail;
+
+            $game->images()->save($image);
+            
+            return back()->with('success', "Bild uppladdad!");
+        }else{
+            return back()->with('success', 'Ooops.. something went wrong.');
         }
         abort(500, 'Could not upload image :(');
     }

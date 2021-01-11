@@ -3,15 +3,16 @@
 namespace App\Events;
 
 use App\Game;
-use App\Comment;
 use App\User;
+use App\Comment;
 use Illuminate\Broadcasting\Channel;
-use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Broadcasting\PresenceChannel;
-use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Broadcasting\PrivateChannel;
+use Illuminate\Broadcasting\PresenceChannel;
+use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
 class UserCommented
 {
@@ -22,9 +23,9 @@ class UserCommented
      *
      * @return void
      */
-    public function __construct(Game $game, Comment $comment, User $user)
+    public function __construct(Model $model, Comment $comment, User $user)
     {
-        $this->game = $game;
+        $this->model = $model;
         $this->comment = $comment;
         $this->user = $user;
     }

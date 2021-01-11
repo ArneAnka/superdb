@@ -10,7 +10,7 @@
 <div class="container mx-auto px-4">
   <div class="w-full">
     <h2 class="text-blue-500 uppercase tracking-wide font-semibold">editera: {{ $game->title }}</h2>
-    <p>({{ $game->console->name }})</p>
+    <p>({{ $game->console->name }})</p>  
     <form class="w-full max-w-lg mt-10" method="POST" action="{{ route('game.update.edit', $game) }}">
       {{ csrf_field() }}
       {{ method_field('POST') }}
