@@ -41,7 +41,7 @@ class GameImageController extends Controller
             $path_thumb = $request->file('game_image')->storeAs('images/test_folder/thumbs', $filename_thumbnail);
 
             // resize image
-            $path_thumb = Intervention::make("/Users/johannilsson/code/sdb3/storage/app/public/" . $path_thumb)->resize(300, 200);
+            $path_thumb = Intervention::make(storage_path("app/public/") . $path_thumb)->resize(300, 200);
             $path_thumb->save();
 
             $image = new Image;
