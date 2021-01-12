@@ -39,17 +39,12 @@ class GameImageController extends Controller
 
             $file = $request->file('game_image');
             $filename_thumbnail = "thumb_". $file->hashName(); // thumb_asdasdasd.png
-            $path_full = $request->file('game_image')->store('images/games'); // images/games/s5xLCKUq7dAXacIPXVXM5Ozjbwf41EMpEAHG3bTt.png
+            $path_full = $file->store('images/games'); // images/games/s5xLCKUq7dAXacIPXVXM5Ozjbwf41EMpEAHG3bTt.png
 
             // resize image
             $thumbnail = Intervention::make('storage/'.$path_full)->resize(300, 200, function($constraint){
                 $constraint->aspectRatio();
             })->save('storage/images/games/thumbs/' . $filename_thumbnail);
-            // $thumbnail = Intervention::make($request->file('game_image'))->resize(300, 200, function($constraint){
-            //     $constraint->aspectRatio();
-            // })->encode('png');
-
-            // Storage::putFile('images/games/thumbs', $thumbnail);
 
             $image = new Image;
             $image->full = basename($path_full);
