@@ -132,7 +132,7 @@
         @forelse($game->images as $key => $image)
         <div class="w-64 md:w-auto ">
           <a href="{{ asset('storage/images/games/'.$image->full) }}" class="">
-            <img class="shadow-md over:opacity-75 transition ease-in-out duration-150 rounded-md" src="{{ asset('images/games/thumbs/'.$image->thumb) }}" alt="{{ $image->full }}">
+            <img class="shadow-md over:opacity-75 transition ease-in-out duration-150 rounded-md" src="{{ asset('storage/images/games/thumbs/'.$image->thumb) }}" alt="{{ $image->full }}">
           </a>
         </div>
         @empty
