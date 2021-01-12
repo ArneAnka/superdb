@@ -40,7 +40,7 @@ class GameImageController extends Controller
             $file = $request->file('game_image');
             $filename_thumbnail = "thumb_". $file->hashName(); // thumb_asdasdasd.png
             $path_full = $file->store('images/games'); // /images/games images/games/s5xLCKUq7dAXacIPXVXM5Ozjbwf41EMpEAHG3bTt.png
-
+// den hamnar i storage/app/images
             // storage_path() = /Users/johannilsson/code/sdb3/storage
             // resize image
             $thumbnail = Intervention::make(storage_path('app/public/images/games/'. basename($path_full)))->resize(300, 200, function($constraint){

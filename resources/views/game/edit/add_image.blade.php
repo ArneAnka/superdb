@@ -23,7 +23,7 @@
         <div class="">
             @if($game->has('images'))
               @forelse($game->images as $image)
-                  <img class="w-64 h-64" src="{{ asset('images/games/thumbs/'.$image->thumb) }}" alt="{{ $image->full }}">
+                  <img class="w-64 h-64" src="{{ asset('storage/images/games/thumbs/'.$image->thumb) }}" alt="{{ $image->full }}">
               @empty
                 inga bilder
               @endforelse
