@@ -1,7 +1,7 @@
     <nav class="container mx-auto flex flex-col lg:flex-row items-center justify-between px-4 py-6">
     <div class="flex flex-col lg:flex-row items-center"> <!-- start -->
         <a href="/">
-          <img class="w-32 flex-none" src="{{ asset('images/logo.png') }}">
+          <img class="w-32 flex-none" src="{{ asset('storage/images/logo.png') }}">
         </a>
         <ul class="flex ml-0 lg:ml-16 space-x-5 mt-6 lg:mt-0">
           <li>

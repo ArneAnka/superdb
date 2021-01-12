@@ -6,7 +6,7 @@
 <div class="container mx-auto px-4">
   <div class="game-details border-b border-gray-400 pb-12 flex flex-col md:flex-row lg:flex-row">
     <div class="flex-none"> <!-- image -->
-      <img src="{{ asset('images/placeholder.png') }}" alt="{{ $game->title }}">
+      <img src="{{ asset('storage/images/placeholder.png') }}" alt="{{ $game->title }}">
     </div> <!-- /image -->
     <div class="ml-4 md:ml-4 lg:ml-12 lg:mr-64">
       <h2 class="font-semibold text-4xl leading-tight mt-1">
@@ -188,7 +188,7 @@
           <div class="game mt-5 text-left ml-5">
               <div class="relative inline-block">
                 <a href="{{ route('game.show', $gameGenre) }}" class="flex-shrink-0">
-                    <img src="{{ asset('images/placeholder.png') }}" alt="game cover" class="w-16 hover:opacity-75 transition ease-in-out duration-150">
+                    <img src="{{ asset('storage/images/placeholder.png') }}" alt="game cover" class="w-16 hover:opacity-75 transition ease-in-out duration-150">
                 </a>
                 <div class="flex flex-col">
                     <a class="hover:opacity-75 transition ease-in-out duration-150 underline" href="{{ route('game.show', $gameGenre) }}">{{ $gameGenre->title }}</a>

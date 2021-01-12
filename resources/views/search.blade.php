@@ -11,7 +11,7 @@
         @forelse($games as $game)
         <div class="games-search-container mt-8 sm:text-left">
             <a href="{{ route('game.show', $game) }}">
-                <img src="{{ asset('images/placeholder.png') }}" alt="game cover" class="w-16 hover:opacity-75 transition ease-in-out duration-150">
+                <img src="{{ asset('storage/images/placeholder.png') }}" alt="game cover" class="w-16 hover:opacity-75 transition ease-in-out duration-150">
             </a>
             <div class="relative inline-block">
                 <a class="hover:text-gray-300 underline" href="{{ route('game.show', $game) }}">{{ $game->title }}</a>
