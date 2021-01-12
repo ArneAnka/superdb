@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image as Intervention;
+use App\Events\UserUploadedImage;
+use App\Points\Actions\UploadedImage;
 
 class GameImageController extends Controller
 {
@@ -37,18 +39,23 @@ class GameImageController extends Controller
 
             $file = $request->file('game_image');
             $filename_thumbnail = "thumb_". $file->hashName();
-            $path_full = $request->file('game_image')->store('images/test_folder');
-            $path_thumb = $request->file('game_image')->storeAs('images/test_folder/thumbs', $filename_thumbnail);
+            $path_full = $request->file('game_image')->store('images/games');
 
             // resize image
-            $path_thumb = Intervention::make(storage_path("app/public/") . $path_thumb)->resize(300, 200);
-            $path_thumb->save();
+            $thubmnail = Intervention::make(storage_path('app/public/'.$path_full))->resize(300, 200, function($constraint){
+                $constraint->aspectRatio();
+            })->save('storage/images/games/thumbs/' . $filename_thumbnail);
 
             $image = new Image;
             $image->full = basename($path_full);
             $image->thumb = $filename_thumbnail;
 
             $game->images()->save($image);
+
+            $request->user()->givePoints(new UploadedImage());
+
+            // Send notification to all other participants
+            event(new UserUploadedImage($game, $request->user()));
             
             return back()->with('success', "Bild uppladdad!");
         }else{
