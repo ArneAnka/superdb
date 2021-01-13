@@ -5,7 +5,17 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 class Image extends Model
-{    
+{
+    /**
+     * [boot description]
+     * @return [type] [description]
+     */
+    public static function boot() {
+        parent::boot();
+        static::creating(function($image) {
+            $image->user_id = auth()->id();
+        });
+    }
     /**
      * [posts description]
      * @return [type] [description]
@@ -22,6 +32,15 @@ class Image extends Model
     public function games()
     {
         return $this->morphedByMany(Game::class, 'imageable');
+    }
+
+    /**
+     * [user description]
+     * @return [type] [description]
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
     
     /**

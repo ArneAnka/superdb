@@ -29,6 +29,6 @@ class CreateConsolesGamesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('consoles');
+        Schema::dropIfExists('consoles_games');
     }
 }

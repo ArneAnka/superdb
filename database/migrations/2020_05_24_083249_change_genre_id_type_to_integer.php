@@ -14,7 +14,7 @@ class ChangeGenreIdTypeToInteger extends Migration
     public function up()
     {
         Schema::table('games', function (Blueprint $table) {
-            $table->integer('genre_id')->change();
+            $table->foreignId('genre_id')->change();
             $table->foreign('genre_id')->references('id')->on('games_genres');
         });
     }
@@ -27,7 +27,7 @@ class ChangeGenreIdTypeToInteger extends Migration
     public function down()
     {
         Schema::table('games', function (Blueprint $table) {
-            //
+            $table->dropForeign(['genre_id']);
         });
     }
 }

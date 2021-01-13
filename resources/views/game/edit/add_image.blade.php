@@ -20,16 +20,32 @@
                 <input type="submit" class="bg-white text-gray-700 font-medium py-1 px-4 border border-gray-400 rounded-lg tracking-wide mr-1 hover:bg-gray-100" value="Ladda upp bild">
         </form>
 
-        <div class="">
-            @if($game->has('images'))
-              @forelse($game->images as $image)
-                  <img class="w-64 h-64" src="{{ asset('storage/images/games/thumbs/'.$image->thumb) }}" alt="{{ $image->full }}">
-              @empty
-                inga bilder
-              @endforelse
-            @endif
-        </div>
-
-    </div>
-</div>
+      <div class="grid grid-cols-1 grid-cols-2 lg:grid-cols-3 gap-10 mt-8">
+          @forelse($game->images as $key => $image)
+          <div class="w-64 md:w-auto ">
+            <div>
+              <img class="shadow-md over:opacity-75 transition ease-in-out duration-150 rounded-md" src="{{ asset('storage/images/games/thumbs/'.$image->thumb) }}" alt="{{ $image->full }}">
+            </div>
+            <div class="text-md text-center">
+              Uppladdad av: {{ $image->user->name }}
+            </div>
+            <div class="text-md text-center">
+              Storlek: {{ $image->image_size }}
+            </div>
+            @can('delete', $image)
+              <div class="text-md text-center text-red-500">
+                <a href="{{ route('game.delete.image', [$game, $image]) }}">radera</a>
+              </div>
+            @else
+              <div class="text-md text-center text-red-500">
+                Du kan inte radera bilden
+              </div>
+            @endcan
+          </div>
+          @empty
+            Inga bilder
+          @endforelse
+      </div> <!-- end images grid -->
+    </div> <!-- end w-full -->
+</div> <!-- end container -->
 @endsection

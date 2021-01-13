@@ -15,12 +15,32 @@ use App\Points\Actions\UploadedImage;
 class GameImageController extends Controller
 {
     /**
+     * [humanFileSize description]
+     * @param  [type] $size [description]
+     * @param  string $unit [description]
+     * @return [type]       [description]
+     */
+    public function humanFileSize($size,$unit="") {
+      if( (!$unit && $size >= 1<<30) || $unit == "GB")
+        return number_format($size/(1<<30),2)."GB";
+      if( (!$unit && $size >= 1<<20) || $unit == "MB")
+        return number_format($size/(1<<20),2)."MB";
+      if( (!$unit && $size >= 1<<10) || $unit == "KB")
+        return number_format($size/(1<<10),2)."KB";
+      return number_format($size)." bytes";
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function create(Game $game)
     {
+        $game = $game->load('images');
+        $game->images->each(function($item, $key){
+            $item->image_size = $this->humanFileSize(Intervention::make(storage_path("app/public/images/games/" . $item->full))->filesize());
+        });
         return view('game.edit.add_image', compact('game'));
     }
 
@@ -105,8 +125,11 @@ class GameImageController extends Controller
      * @param  \App\Image  $image
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Image $image)
+    public function destroy(Game $game, Image $image)
     {
-        //
+        // https://stackoverflow.com/questions/28305553/how-to-remove-a-polymorphic-relation-in-eloquent
+        $image->games($game)->detach();
+        
+        return back()->with('success', 'Du tog bort en bild!');
     }
 }

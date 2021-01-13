@@ -11,9 +11,21 @@ class PointsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
+        DB::table('points')->insert([
             'key' => 'comment',
-            'points' => '20',
+            'points' => '5',
+        ]);
+        DB::table('points')->insert([
+            'key' => 'posted',
+            'points' => '10',
+        ]);
+        DB::table('points')->insert([
+            'key' => 'updated-game',
+            'points' => '2',
+        ]);
+        DB::table('points')->insert([
+            'key' => 'uploaded-image',
+            'points' => '12',
         ]);
     }
 }

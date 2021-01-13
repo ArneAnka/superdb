@@ -15,8 +15,8 @@ class CreateGamePublisherTable extends Migration
     {
         Schema::create('game_publisher', function (Blueprint $table) {
             $table->id();
-            $table->integer('game_id')->unsigned();
-            $table->bigInteger('publisher_id')->unsigned();
+            $table->foreignId('game_id');
+            $table->foreignId('publisher_id');
             $table->timestamps();
         });
        Schema::table('game_publisher', function($table) {

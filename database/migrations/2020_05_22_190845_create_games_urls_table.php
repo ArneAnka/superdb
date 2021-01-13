@@ -17,12 +17,13 @@ class CreateGamesUrlsTable extends Migration
     {
         Schema::create('games_urls', function (Blueprint $table) {
             $table->id();
-            $table->integer('game_id')->unsigned();
+            // $table->integer('game_id')->unsigned();
+            $table->foreignId('game_id')->constrained();
             $table->string('host');
             $table->string('url');
             $table->timestamps();
 
-            $table->foreign('game_id')->references('id')->on('games');
+            // $table->foreign('game_id')->references('id')->on('games');
         });
 
         $games = Game::all();
@@ -66,6 +67,6 @@ class CreateGamesUrlsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('game_urls');
+        Schema::dropIfExists('games_urls');
     }
 }

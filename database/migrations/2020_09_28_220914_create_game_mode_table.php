@@ -15,8 +15,8 @@ class CreateGameModeTable extends Migration
     {
         Schema::create('game_mode', function (Blueprint $table) {
             $table->id();
-            $table->integer('game_id')->unsigned();
-            $table->bigInteger('mode_id')->unsigned();
+            $table->foreignId('game_id');
+            $table->foreignId('mode_id');
             $table->timestamps();
         });
        Schema::table('game_mode', function($table) {

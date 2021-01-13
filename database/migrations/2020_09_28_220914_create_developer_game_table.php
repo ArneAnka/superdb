@@ -15,8 +15,8 @@ class CreateDeveloperGameTable extends Migration
     {
         Schema::create('developer_game', function (Blueprint $table) {
             $table->id();
-            $table->integer('game_id')->unsigned();
-            $table->bigInteger('developer_id')->unsigned();
+            $table->foreignId('game_id');
+            $table->foreignId('developer_id');
             $table->timestamps();
         });
        Schema::table('developer_game', function($table) {

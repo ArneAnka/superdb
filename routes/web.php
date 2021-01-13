@@ -46,6 +46,7 @@ Route::prefix('g')->group(function () {
     Route::post('/url/{game}/save', 'UrlController@store')->middleware(['auth'])->name('game.save.url');
     # Image management
     Route::get('image/{game}/create', 'GameImageController@create')->middleware(['auth'])->name('game.create.image');
+    Route::get('image/{game}/delete/{image}', 'GameImageController@destroy')->middleware(['auth'])->name('game.delete.image');
     # Game Comments
     Route::post('/{game}/comment/save', 'GameCommentController@store')->middleware(['auth'])->name('game.save.comment');
     Route::get('/{game}/comment/{comment}/delete', 'GameCommentController@destroy')->middleware(['auth'])->name('game.destory.comment');
