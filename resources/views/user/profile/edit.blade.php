@@ -8,10 +8,10 @@
         <h2 class="text-blue-500 uppercase tracking-wide font-semibold">Edit the profile, {{ $user->name }}</h2>
 
         <!-- Ändra user-data -->
-        <form class="w-full max-w-lg" method="POST" action="{{ route('user.edit.update', $user) }}">
+        <form class="w-full max-w-lg shadow sm:rounded-md sm:overflow-hidden" method="POST" action="{{ route('user.edit.update', $user) }}">
             {{ csrf_field() }}
             {{ method_field('PATCH') }}
-
+        <div class="shadow rounded-md sm:overflow-hidden px-4 py-5 bg-white space-y-6 sm:p-6">
             <div class="flex flex-wrap -mx-3 mb-6">
                 <div class="w-full px-3">
                   <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
@@ -33,8 +33,8 @@
                 @error('email')
                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
                 @enderror
+            </div>
         </div>
-    </div>
 
             <div class="flex flex-wrap -mx-3 mb-6">
                 <div class="w-full px-3">
@@ -46,13 +46,14 @@
                 @error('description')
                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
                 @enderror
+                </div>
             </div>
-        </div>
-        <!-- Save the form -->
-        <div class="flex items-center justify-between">
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-                Spara
-            </button>
+            <!-- Save the form -->
+            <div class="flex items-center justify-between">
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                    Spara
+                </button>
+            </div>
         </div>
     </form>
 
@@ -60,6 +61,7 @@
     <form class="w-full max-w-lg" method="POST" action="{{ route('user.edit.update_password', $user) }}">
         {{ csrf_field() }}
         {{ method_field('PATCH') }}
+        <div class="shadow rounded-md sm:overflow-hidden px-4 py-5 bg-white space-y-6 sm:p-6">
         <!-- Old password -->
         <div class="flex flex-wrap -mx-3 mb-6">
             <div class="w-full px-3">
@@ -101,9 +103,9 @@
                 Spara
             </button>
         </div>
-    </form>
+    </div>
+</form>
 
-</div> 
 </div> <!-- end container -->
 @endsection
 

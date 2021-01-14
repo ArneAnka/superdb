@@ -140,6 +140,19 @@ class Game extends Model
     {
         return $this->belongsToMany(Publisher::class); 
     }
+
+    /**
+     * [getCoverImageAttribute description]
+     * @param  [type] $value [description]
+     * @return [type]        [description]
+     */
+    public function getCoverImageAttribute($value)
+    {
+        if(!$value){
+            return asset('storage/images/placeholder.png');
+        }
+        return asset('storage/images/games/covers/thumbs/thumb_' . $value);
+    }
     
     /**
      * [scopeReleasedOn description]

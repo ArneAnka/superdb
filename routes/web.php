@@ -39,14 +39,17 @@ Route::prefix('g')->group(function () {
     Route::get('{game}', 'GameController@show')->name('game.show');
     Route::get('/edit/{game}', 'GameController@edit')->middleware(['auth'])->name('game.show.edit');
     Route::post('/edit/{game}/update', 'GameController@update')->middleware(['auth'])->name('game.update.edit');
-    Route::post('/edit/{game}/image_upload', 'GameImageController@store')->middleware(['auth'])->name('game.image_upload');
     # Url management
     Route::get('/url/{game}/create', 'UrlController@create')->middleware(['auth'])->name('game.create.url');
     Route::get('/url/{url}/destroy', 'UrlController@destroy')->middleware(['auth'])->name('game.destroy.url');
     Route::post('/url/{game}/save', 'UrlController@store')->middleware(['auth'])->name('game.save.url');
     # Image management
     Route::get('image/{game}/create', 'GameImageController@create')->middleware(['auth'])->name('game.create.image');
+    Route::post('/edit/{game}/image_upload', 'GameImageController@store')->middleware(['auth'])->name('game.image_upload');
     Route::get('image/{game}/delete/{image}', 'GameImageController@destroy')->middleware(['auth'])->name('game.delete.image');
+    Route::get('image/{game}/create/cover', 'GameCoverImageController@create')->middleware(['auth'])->name('game.cover.create');
+    Route::post('image/{game}/create/cover/store', 'GameCoverImageController@store')->middleware(['auth'])->name('game.cover.store');
+    Route::get('image/{game}/cover/delete', 'GameCoverImageController@destroy')->middleware(['auth'])->name('game.cover.destroy');
     # Game Comments
     Route::post('/{game}/comment/save', 'GameCommentController@store')->middleware(['auth'])->name('game.save.comment');
     Route::get('/{game}/comment/{comment}/delete', 'GameCommentController@destroy')->middleware(['auth'])->name('game.destory.comment');
@@ -101,6 +104,13 @@ Route::prefix('dev')->group(function () {
  * Om-sidan
  */
 Route::get('om', 'AboutController@index')->name('om');
+
+/**
+ * Poängsystemet
+ */
+Route::get('points', function(){
+    return view('points');
+})->name('points');
 
 /**
  * Integritetspolicy

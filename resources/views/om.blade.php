@@ -45,6 +45,6 @@
             </span>
         </div>
 
-        </div> <!-- end container -->
-    </div>
-    @endsection
+    </div> <!-- end container -->
+</div>
+@endsection
