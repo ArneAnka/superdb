@@ -12,7 +12,7 @@
         <div class="game mt-8 text-center sm:text-left">
             <div class="relative inline-block">
                 <a href="{{ route('game.show', $game) }}">
-                    <img src="{{ asset('storage/images/placeholder.png') }}" alt="cover art" class="hover:opacity-75 transition ease-in-out duration-150">
+                    <img src="{{ $game->cover_image }}" alt="cover art" class="hover:opacity-75 transition ease-in-out duration-150">
                 </a>
                 <div class="absolute bottom-0 right-0 w-16 h-16 bg-gray-800 rounded-full hidden" style="right: -2px; bottom: -20px;">
                     <div class="font-semibold text-xs flex justify-center items-center h-full">80%</div>
