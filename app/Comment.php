@@ -16,9 +16,9 @@ class Comment extends Model
         parent::boot();
     
         //while creating/inserting item into db  
-        static::creating(function ($model) { 
-            $model->ip = 'fooasdfasdfad'; //assigning value
-        });
+        // static::creating(function ($model) { 
+        //     $model->ip = $model->request->ip(); //assigning value
+        // });
     }
 
     /**

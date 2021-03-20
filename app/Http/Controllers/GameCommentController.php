@@ -46,6 +46,7 @@ class GameCommentController extends Controller
         
         $comment->user_id = $request->user()->id;
         $comment->body = $request->get('body');
+        $comment->ip = $request->ip();
 
         $game->comments()->save($comment);
 

@@ -45,6 +45,7 @@ class PostCommentController extends Controller
         
         $comment->user_id = $request->user()->id;
         $comment->body = $request->get('body');
+        $comment->ip = $request->ip();
 
         $post->comments()->save($comment);
 
