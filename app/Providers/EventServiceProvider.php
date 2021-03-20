@@ -13,6 +13,7 @@ class EventServiceProvider extends ServiceProvider
 {
     /**
      * The event listener mappings for the application.
+     * https://laravel.com/docs/8.x/authentication#events
      *
      * @var array
      */
@@ -22,6 +23,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         UserCommented::class => [
             NotifyUsersOfNewComment::class,
+        ],
+        'Illuminate\Auth\Events\Login' => [
+            'App\Listeners\LogSuccessfulLogin',
         ],
     ];
 

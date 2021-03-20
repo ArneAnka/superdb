@@ -14,8 +14,12 @@ class AddSlugColumnToTagsTable extends Migration
     public function up()
     {
         Schema::table('tags', function (Blueprint $table) {
-            $table->string('slug')->after('name');
+            $table->string('slug')->after('name')->nullable();
         });
+
+        Schema::table('tags', function (Blueprint $table) {
+            $table->string('slug')->nullable(false)->change();
+        });   
     }
 
     /**

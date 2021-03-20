@@ -3,6 +3,7 @@
 namespace App;
 
 use Cache;
+use App\Ip;
 use App\Points\CollectsPoints;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -94,11 +95,25 @@ class User extends Authenticatable
         return asset('storage/images/avatars/' . $value);
     }
 
+    /**
+     * 
+     */
     public function comments(){
         return $this->hasMany(Comment::class);
     }
 
+    /**
+     * 
+     */
     public function isOnline(){
         return Cache::has('user-is-online-' . $this->id);
+    }
+
+    /**
+     * 
+     */
+    public function ip()
+    {
+        return $this->hasMany(Ip::class);
     }
 }

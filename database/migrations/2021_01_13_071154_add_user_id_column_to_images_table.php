@@ -14,9 +14,7 @@ class AddUserIdColumnToImagesTable extends Migration
     public function up()
     {
         Schema::table('images', function (Blueprint $table) {
-            $table->foreignId('user_id')->after('full');
-
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreignId('user_id')->after('full')->constrained();
         });
     }
 
@@ -29,6 +27,8 @@ class AddUserIdColumnToImagesTable extends Migration
     {
         Schema::table('images', function (Blueprint $table) {
             $table->dropForeign(['user_id']);
+        });
+        Schema::table('images', function (Blueprint $table) {
             $table->dropColumn('user_id');
         });
     }

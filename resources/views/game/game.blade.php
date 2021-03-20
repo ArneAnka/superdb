@@ -27,7 +27,7 @@
       <div class="text-gray-400">
         <span class="uppercase">{{ $game->console->short ?? 'Okänd konsol' }}</span>
         &middot;
-        <span>{{ $game->genre->genre ?? 'Okänd genre' }}</span>
+        <span>Genre: {{ $game->genre->genre ?? 'Okänd genre' }}</span>
         &middot;
         <!-- Developer ex Nintendo -->
         @forelse($game->developers as $developer)

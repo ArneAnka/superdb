@@ -10,6 +10,18 @@ class Comment extends Model
     use SoftDeletes;
 
     /**
+     * 
+     */
+    public static function boot() {
+        parent::boot();
+    
+        //while creating/inserting item into db  
+        static::creating(function ($model) { 
+            $model->ip = 'fooasdfasdfad'; //assigning value
+        });
+    }
+
+    /**
      * Get all of the models that own comments.
      */
     public function commentable(){

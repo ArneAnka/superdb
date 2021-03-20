@@ -14,8 +14,13 @@ class AddAvatarAndDescriptionColumnToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('avatar')->after('slug');
-            $table->text('description')->after('slug');
+            $table->string('avatar')->after('slug')->nullable();
+            $table->text('description')->after('slug')->nullable();
+        });
+
+        Schema::table('users', function (Blueprint $table){
+            $table->string('avatar')->nullable(false)->change();
+            $table->text('description')->nullable(false)->change();
         });
     }
 
