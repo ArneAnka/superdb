@@ -1,4 +1,4 @@
-  <div class="edit-container mt-8 hidden">
+  <div class="edit-container hidden mt-8">
     <h2 class="text-blue-500 uppercase tracking-wide font-semibold">Edits</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mt-8">
       <div>
@@ -11,7 +11,9 @@
           @endforelse
 
         @can('update', $game)
-        <p><a href="{{ route('game.show.edit', $game) }}">edit</a></p>
+        <p>
+          <a href="{{ route('game.show.edit', $game) }}" class="underline">Ändra</a>
+        </p>
           @endcan
       </div>
     </div> <!-- end edit grid -->

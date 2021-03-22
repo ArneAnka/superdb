@@ -8,10 +8,10 @@
         <h2 class="text-blue-500 uppercase tracking-wide font-semibold">
         test
         </h2>
-        @foreach($publishers as $publisher)
-            <h1 class="text-xl text-red-600">{{ $publisher->name }} (# {{ $publisher->id }})</h1>
-            @foreach($publisher->games as $game)
-                <a href="https://superdb.cc/g/{{ $game->slug }}" target="_blnak">{{ $game->title }} ({{ $game->console->name }})</a><br>
+        @foreach($genres as $genre)
+            <h1 class="text-xl text-red-600">{{ $genre->genre }} (# {{ $genre->id }})</h1>
+            @foreach($genre->games as $game)
+                <a href="https://superdb.cc/g/{{ $game->slug }}" target="_blank">{{ $game->title }} ({{ $game->console->name }})</a><br>
             @endforeach
         @endforeach
     </div> <!-- end container -->

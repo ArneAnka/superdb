@@ -16,7 +16,7 @@ class Game extends Model
 
     protected $hidden = ['data'];
     protected $guarded = [];
-    protected $with = ['modes', 'publishers', 'developers', 'history'];
+    protected $with = ['modes', 'genres', 'publishers', 'developers', 'history'];
 
     protected static function boot(){
         parent::boot();
@@ -93,8 +93,8 @@ class Game extends Model
      * [genre description]
      * @return [type] [description]
      */
-    public function genre(){
-        return $this->belongsTo(Genre::class);
+    public function genres(){
+        return $this->belongsToMany(Genre::class);
     }
 
     /**

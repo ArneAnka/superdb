@@ -5,9 +5,10 @@ use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
 
-Route::get('/test', function(){
-    return "hej";
-});
+Route::get('/test/{tag}', function(\App\Tag $tag){
+    $tags = $tag->posts;
+    return view('tags.index', compact('tags'));
+})->name('test');
 
 /**
  * Normalt sätt så är utloggningen en POST.
@@ -94,6 +95,14 @@ Route::prefix('u')->group(function () {
 });
 
 /**
+ * Tags
+ */
+Route::get('/tag/{tag}', function(\App\Tag $tag){
+    $tags = $tag->posts;
+    return view('tags.index', compact('tags'));
+})->name('tags.show');
+
+/**
  * Developer
  */
 Route::prefix('dev')->group(function () {
@@ -118,6 +127,13 @@ Route::get('points', function(){
 Route::get('tos', function(){
     return view('tos');
 })->name('tos');
+
+/**
+ * Genres
+ */
+Route::get('genres', 'GenreController@index')->name('game.genres');
+Route::get('genres/delete/{genre}', 'GenreController@destroy')->name('game.genres.delete');
+
 
 /**
  * Search

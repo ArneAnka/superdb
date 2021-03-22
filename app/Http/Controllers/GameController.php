@@ -44,21 +44,20 @@ class GameController extends Controller
             return $q->with(['comments' => function($q){
                 return $q->with('user');
             }]);
-        }, 'urls', 'genre', 'images', 'history' => function($q){
+        }, 'urls', 'genres', 'images', 'history' => function($q){
             return $q->with('user');
             }, 'comments' => function($q){
                 return $q->with('user');
             }
         ]);
 
-        // https://stackoverflow.com/a/49160894/4892914
-        $gamesOfSameGenre = Game::whereHas('genre', function($query) use($game) {
-            $query->whereGenreId($game->genre_id)->where('genre', '!=', 'unknown');
-        })->where('id', '!=', $game->id)->whereHas('console', function($query) use($game) {
-            $query->whereConsoleId($game->console_id);
-        })->get();
-        
-        return view('game.game', compact('game','gamesOfSameGenre'));
+        // Fetch games for the genres
+        // https://www.javaer101.com/en/article/24939315.html
+        $game->genres->each(function($genre) {
+            $genre->sameGenre();
+        });
+
+        return view('game.game', compact('game'));
     }
 
     /**
@@ -70,7 +69,8 @@ class GameController extends Controller
     public function edit(Game $game)
     {
         $this->authorize('update', $game);
-        $genres = Genre::all();
+
+        $genres = Genre::withCount('games')->get();
         $saves = ['unknown','battery','password','unsaveable'];
         $game->load('urls');
 
@@ -103,7 +103,7 @@ class GameController extends Controller
             'europe_release' => 'nullable|date_format:Y-m-d',
             'japan_release' => 'nullable|date_format:Y-m-d',
             'usa_release' => 'nullable|date_format:Y-m-d',
-            'genre_id' => 'required|exists:games_genres,id'
+            'genre.*' => 'required|exists:genres,id'
         ], $messages);
 
         if ($request->has('url')) {
@@ -116,7 +116,6 @@ class GameController extends Controller
 
         $game->update([
             'title' => $request->get('title'),
-            'genre_id' => $request->get('genre_id'),
             'sweden_release' => $request->get('sweden_release'),
             'europe_release' => $request->get('europe_release'),
             'japan_release' => $request->get('japan_release'),
@@ -125,6 +124,8 @@ class GameController extends Controller
             'import' => $request->get('import'),
             'description' => $request->get('description'),
         ]);
+
+        $game->genres()->sync($request->get('genre'));
 
         $this->handlePublisher($request, $game);
         $this->handleDeveloper($request, $game);

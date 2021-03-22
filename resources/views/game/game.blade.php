@@ -27,7 +27,13 @@
       <div class="text-gray-400">
         <span class="uppercase">{{ $game->console->short ?? 'Okänd konsol' }}</span>
         &middot;
-        <span>Genre: {{ $game->genre->genre ?? 'Okänd genre' }}</span>
+        @forelse($game->genres as $genre)
+          <span>
+            {{ $genre->genre }}@if(!$loop->last),@endif
+          </span>
+        @empty
+          <span>Okänd genre</span>
+        @endforelse
         &middot;
         <!-- Developer ex Nintendo -->
         @forelse($game->developers as $developer)
@@ -184,33 +190,35 @@
       </div>
     </div> <!-- end images grid -->
   </div> <!-- end images-container -->
-
 <div class="similar pb-8 mt-8"> <!-- start similar games -->
   <h2 class="text-blue-500 uppercase tracking-wide font-semibold">
-    Andra spel i genre "{{ $game->genre->genre }}"
+    Andra spel i genre "{{ $game->genres->implode('genre', ', ') }}"
   </h2>
-  @if($gamesOfSameGenre->isNotEmpty())
-    <div class="text-sm grid grid-cols-3 md:grid-cols-5 lg:grid-cols-7 pb-8 border-b border-gray-400">
-      @foreach($gamesOfSameGenre as $gameGenre)
-          <div class="game mt-5 text-left ml-5">
+@if($game->genres->isNotEmpty())
+  <div class="text-sm grid grid-cols-3 md:grid-cols-5 lg:grid-cols-7 pb-8 border-b border-gray-400">
+    @forelse($game->genres as $gameGenres)
+      @foreach($gameGenres->games as $similarGame)
+      <div class="game mt-5 text-left ml-5">
               <div class="relative inline-block">
-                <a href="{{ route('game.show', $gameGenre) }}" class="flex-shrink-0">
+                <a href="{{ route('game.show', $similarGame) }}" class="flex-shrink-0">
                     <img src="{{ asset('storage/images/placeholder.png') }}" alt="game cover" class="w-16 hover:opacity-75 transition ease-in-out duration-150">
                 </a>
                 <div class="flex flex-col">
-                    <a class="hover:opacity-75 transition ease-in-out duration-150 underline" href="{{ route('game.show', $gameGenre) }}">{{ $gameGenre->title }}</a>
-                    <span class="text-gray-400">{{ $gameGenre->import }}</span>
+                    <a class="hover:opacity-75 transition ease-in-out duration-150 underline" href="{{ route('game.show', $similarGame) }}">{{ $similarGame->title }}</a>
+                    <span class="text-gray-400">{{ $similarGame->import }}</span>
                 </div>
           </div>
       </div>
-        @endforeach
-    </div> <!-- end similar-container -->
-    @endif
-    @if($gamesOfSameGenre->isEmpty())
-        <div class="similar-games-container space-y-12 border-b border-gray-400 pb-8">
-            <p>Inga liknande spel funna ¯\_(ツ)_/¯</p>
-        </div>
-    @endif
+      @endforeach
+    @empty
+    <div class="similar-games-container space-y-12 border-b border-gray-400 pb-8">
+      <p>Inga liknande spel funna ¯\_(ツ)_/¯</p>
+    </div>
+    @endforelse
+  </div>
+@endif
+
+
     </div> <!-- end simililar games -->
 
   <div class="comments-container"> <!-- comments  -->

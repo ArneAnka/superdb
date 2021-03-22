@@ -62,7 +62,7 @@
             @if($post->tags->isNotEmpty())
                 @foreach($post->tags as $tag)
                     <div class="bg-gray-700 w-auto inline-block ml-4 mt-5 rounded-full py-1 px-3">
-                        {{ $tag->name }}
+                        <a href="{{ route('tags.show', $tag) }}">{{ $tag->name }}</a>
                     </div>
                 @endforeach
             @endif
