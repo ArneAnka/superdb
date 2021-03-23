@@ -4,12 +4,14 @@ namespace App;
 
 use App\Traits\Historyable;
 use Illuminate\Database\Eloquent\Model;
+use CyrildeWit\EloquentViewable\InteractsWithViews;
+use CyrildeWit\EloquentViewable\Contracts\Viewable;
 
-class Post extends Model
+class Post extends Model implements Viewable
 {
     protected $fillable = ['topic', 'body', 'user_id'];
 
-    use Historyable;
+    use Historyable, InteractsWithViews;
     
     /**
      * nothing in line

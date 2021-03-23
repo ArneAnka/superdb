@@ -55,6 +55,8 @@
         @endforelse
         &middot;
         <span>Sparfunktion: {{ $game->save }}</span>
+        &middot;
+        <span>Visad {{ $views }} gånger</span>
       </div>
       <div class="text-gray-400 flex flex-col md:flex-row mt-2">
         @if($game->sweden_release)

@@ -72,11 +72,15 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+        views($post)->cooldown(15)->record();
+
+        $views = views($post)->count();
+
         $post = $post->load(['comments' => function($q){
             return $q->with('user');
         }, 'user']);
         
-        return view('post.show', compact('post'));
+        return view('post.show', compact('post', 'views'));
     }
 
     /**

@@ -9,10 +9,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use CyrildeWit\EloquentViewable\InteractsWithViews;
+use CyrildeWit\EloquentViewable\Contracts\Viewable;
 
-class Game extends Model
+class Game extends Model implements Viewable
 {
-    use Historyable, SoftDeletes, Notifiable;
+    use Historyable, SoftDeletes, Notifiable, InteractsWithViews;
 
     protected $hidden = ['data'];
     protected $guarded = [];

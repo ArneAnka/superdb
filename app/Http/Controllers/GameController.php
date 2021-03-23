@@ -40,6 +40,10 @@ class GameController extends Controller
      */
     public function show(Game $game)
     {
+        views($game)->cooldown(15)->record();
+
+        $views = views($game)->count();
+
         $game->load(['releases' => function($q){
             return $q->with(['comments' => function($q){
                 return $q->with('user');
@@ -57,7 +61,7 @@ class GameController extends Controller
             $genre->sameGenre();
         });
 
-        return view('game.game', compact('game'));
+        return view('game.game', compact('game', 'views'));
     }
 
     /**
