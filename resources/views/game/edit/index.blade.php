@@ -127,6 +127,7 @@
           </label>
 
           <div class="mt-4 space-y-4">
+          <!-- https://laracasts.com/discuss/channels/code-review/checkbox-array-oldvalue -->
             @foreach($genres as $genre)
                   <div class="flex items-start">
                     <div class="flex items-center h-5">
@@ -136,7 +137,7 @@
                       type="checkbox"
                       class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
                       value="{{ $genre->id }}"
-                      {{ old("genre", in_array($genre->id, $game->genres->pluck('id')->toArray())) ? 'checked' : '' }}
+                      {{ in_array($genre->id, old('genre', $game->genres->pluck('id')->toArray())) ? 'checked' : '' }}
                       >
                     </div>
                     <div class="ml-3 text-sm">
