@@ -12,6 +12,9 @@
 
   <!-- Scripts -->
   <script src="{{ asset('js/app.js') }}" defer></script>
+  @if (App::environment('production'))
+    @include ('layouts.partials._analytics')
+  @endif 
 
   <!-- Styles -->
   <link href="{{ asset('css/main.css') }}" rel="stylesheet">

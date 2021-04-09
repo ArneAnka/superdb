@@ -1,0 +1,1 @@
+<script async defer data-domain="superdb.cc" src="https://plausible.io/js/plausible.js"></script>
