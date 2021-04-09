@@ -60,7 +60,6 @@ Route::prefix('g')->group(function () {
     Route::put('/{game}/release/{release}', 'ReleaseController@update')->name('game.release.update');
     Route::post('/{game}/release/{release}/save', 'ReleaseCommentController@store')->middleware(['auth'])->name('release.save.comment');
     Route::get('/{game}/release/{release}/comment/{comment}/delete', 'ReleaseCommentController@destroy')->middleware(['auth'])->name('release.destory.comment');
-
 });
 
 /**
@@ -136,7 +135,7 @@ Route::get('genres/delete/{genre}', 'GenreController@destroy')->name('game.genre
 
 
 /**
- * Search
+ * The endpoint for the search bar in menu
  */
 Route::post('/search',function(Request $request){
     $q = $request->get('q');

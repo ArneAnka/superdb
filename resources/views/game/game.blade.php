@@ -280,7 +280,9 @@
     @endguest
   </div> <!-- end comments-container -->
 
+  <!-- History -->
   @include('game.partials._iterate_edits')
+  <!-- /History -->
 
 </div> <!-- end container -->
 

@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <title>SuperDB.cc - @yield('title')</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Free Nintendo Databse">
+  <meta name="keywords" content="nintendo 64, super nintendo, nintendo, game boy, game boy advance, game boy color, Bergsala, Sverige, Sweden">
 
   <!-- Icon -->
   <link rel="icon" href="{{ asset('favicon.ico') }}?v=2" />

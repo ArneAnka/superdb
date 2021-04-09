@@ -1,20 +1,16 @@
-  <div class="edit-container hidden mt-8">
-    <h2 class="text-blue-500 uppercase tracking-wide font-semibold">Edits</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mt-8">
-      <div>
-        @forelse($game->history as $item)
-          @include('game.partials.edits._' . $item->changed_column, $item)
-          @if($loop->last)
-          @endif
-          @empty
-            <p>Inga ändringar för detta spel.</p>
-          @endforelse
-
-        @can('update', $game)
-        <p>
-          <a href="{{ route('game.show.edit', $game) }}" class="underline">Ändra</a>
-        </p>
-          @endcan
+<div class="edit-container mt-8">
+  <h2 class="text-blue-500 uppercase tracking-wide font-semibold mt-4">Ändringar</h2>
+  <div class="grid grid-cols-1 md:grid-cols-1 gap-12">
+    <div class="divide-y">
+      @forelse($game->history as $item)
+      <div class="p-2">
+        @include('game.partials.edits._' . $item->changed_column, $item)
       </div>
-    </div> <!-- end edit grid -->
-  </div>
+      @empty
+        <p>Inga ändringar för detta spel.</p>
+      @endforelse
+    </div>
+  </div> <!-- end edit grid -->
+
+
+</div>

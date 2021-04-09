@@ -8,7 +8,7 @@
         <h2 class="text-blue-500 uppercase tracking-wide font-semibold text-4xl">
             <a id="start" class="uppercase">Genres</a>
         </h2>
-        <div class="grid grid-cols-3 gap-4">
+        <div class="grid md:grid-cols-3 gap-4">
             @forelse($genres as $genre)
             <div>
                 <h2 class="text-blue-500 tracking-wide font-semibold flex items-center">
