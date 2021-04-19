@@ -139,6 +139,14 @@ Route::get('genres/delete/{genre}', 'GenreController@destroy')->name('game.genre
  */
 Route::post('/search',function(Request $request){
     $q = $request->get('q');
+
+    // if (preg_match("/\[(.*?)\]/m", $q, $match)) {
+    //     $consoleID = $match[1];
+    // }else{
+    //     $consoleID = null;
+    // }
+    // return $q;
+
     $games = \App\Game::search('title', $q)->get();
     return view('search', compact('games'));
 })->name('search.game');

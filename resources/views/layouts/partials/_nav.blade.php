@@ -1,29 +1,29 @@
-    <nav class="container mx-auto flex flex-col lg:flex-row items-center justify-between px-4 py-6">
-    <div class="flex flex-col lg:flex-row items-center"> <!-- start -->
+    <nav class="container mx-auto flex flex-col items-center justify-between px-4 py-6 lg:flex-row">
+    <div class="flex flex-col items-center lg:flex-row"> <!-- start -->
         <a href="/">
           <img class="w-32 flex-none" src="{{ asset('storage/images/logo.png') }}">
         </a>
-        <ul class="flex ml-0 lg:ml-16 space-x-5 mt-6 lg:mt-0">
+        <ul class="flex ml-0 shadow space-x-1 mt-4 md:mt-4 lg:mt-0 lg:ml-10 lg:space-x-5">
           <li>
-            <a class="hover:text-gray-400 uppercase" href="{{ route('nes') }}">NES</a>
+            <a class="w-full flex flex-wrap items-center justify-center px-2 py-2 border border-transparent text-base font-medium rounded-md text-white hover:bg-green-500 md:py-2 md:text-lg md:px-2 uppercase {{ Request::is('nes') ? 'bg-green-500' : 'bg-green-700' }}" href="{{ route('nes') }}">NES</a>
           </li>
           <li>
-            <a class="hover:text-gray-400 uppercase" href="{{ route('snes') }}">SNES</a>
+            <a class="w-full flex items-center justify-center px-2 py-2 border border-transparent text-base font-medium rounded-md text-white hover:bg-green-500 md:py-2 md:text-lg md:px-2 uppercase {{ Request::is('snes') ? 'bg-green-500' : 'bg-green-700' }}" href="{{ route('snes') }}">SNES</a>
           </li>
           <li>
-            <a class="hover:text-gray-400 uppercase" href="{{ route('n64') }}">N64</a>
+            <a class="w-full flex items-center justify-center px-2 py-2 border border-transparent text-base font-medium rounded-md text-white hover:bg-green-500 md:py-2 md:text-lg md:px-2 uppercase {{ Request::is('n64') ? 'bg-green-500' : 'bg-green-700' }}" href="{{ route('n64') }}">N64</a>
           </li>
           <li>
-            <a class="hover:text-gray-400 uppercase" href="{{ route('ngc') }}">NGC</a>
+            <a class="w-full flex items-center justify-center px-2 py-2 border border-transparent text-base font-medium rounded-md text-white hover:bg-green-500 md:py-2 md:text-lg md:px-2 uppercase {{ Request::is('ngc') ? 'bg-green-500' : 'bg-green-700' }}" href="{{ route('ngc') }}">NGC</a>
           </li>
           <li>
-            <a class="hover:text-gray-400 uppercase" href="{{ route('gb') }}">GB</a>
+            <a class="w-full flex items-center justify-center px-2 py-2 border border-transparent text-base font-medium rounded-md text-white hover:bg-green-500 md:py-2 md:text-lg md:px-2 uppercase {{ Request::is('gb') ? 'bg-green-500' : 'bg-green-700' }}" href="{{ route('gb') }}">GB</a>
           </li>
           <li>
-            <a class="hover:text-gray-400 uppercase" href="{{ route('gba') }}">GBA</a>
+            <a class="w-full flex items-center justify-center px-2 py-2 border border-transparent text-base font-medium rounded-md text-white hover:bg-green-500 md:py-2 md:text-lg md:px-2 uppercase {{ Request::is('gba') ? 'bg-green-500' : 'bg-green-700' }}" href="{{ route('gba') }}">GBA</a>
           </li>
           <li>
-            <a class="hover:text-gray-400 uppercase" href="{{ route('gbc') }}">GBC</a>
+            <a class="w-full flex items-center justify-center px-2 py-2 border border-transparent text-base font-medium rounded-md text-white hover:bg-green-500 md:py-2 md:text-lg md:px-2 uppercase {{ Request::is('gbc') ? 'bg-green-500' : 'bg-green-700' }}" href="{{ route('gbc') }}">GBC</a>
           </li>
         </ul>
       </div> <!-- /start -->
