@@ -27,7 +27,7 @@ return [
     |
     */
 
-    'views' => true,
+    'views' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -41,7 +41,7 @@ return [
     |
     */
 
-    'extensions' => [],
+    'extensions' => [\App\Extensions\AddListStyleClassesExtension::class],
 
     /*
     |--------------------------------------------------------------------------
