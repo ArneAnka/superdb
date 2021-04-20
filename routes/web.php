@@ -5,9 +5,8 @@ use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
 
-Route::get('/test/{tag}', function(\App\Tag $tag){
-    $tags = $tag->posts;
-    return view('tags.index', compact('tags'));
+Route::get('/test/', function(){
+    return view('test');
 })->name('test');
 
 /**

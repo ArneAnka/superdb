@@ -166,7 +166,6 @@ return [
          * Package Service Providers...
          */
         Intervention\Image\ImageServiceProvider::class,
-        GrahamCampbell\Markdown\MarkdownServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -228,7 +227,6 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Intervention' => Intervention\Image\Facades\Image::class,
-        'Markdown' => GrahamCampbell\Markdown\Facades\Markdown::class,
     ],
 
 ];
