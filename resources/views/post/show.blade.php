@@ -18,7 +18,8 @@
             <div class="text-gray-500 ml-2">{{ $post->created_at }} ({{ $post->created_at->diffForHumans() }})</div>
             <div clasS="text-gray-500 ml-2">Visad {{ $views }} gånger</div>
         </div>
-        <div class="">{{ $post->body }}</div>
+        <div class="">
+          @markdown($post->body)</div>
     </div>
 </div>
 
