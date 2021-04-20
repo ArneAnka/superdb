@@ -6,7 +6,8 @@ use Illuminate\Support\Facades\Auth;
 Auth::routes();
 
 Route::get('/test/', function(){
-    return view('test');
+    $posts = \App\Post::all();
+    return view('test', compact('posts'));
 })->name('test');
 
 /**
