@@ -8,10 +8,12 @@ use App\Points\CollectsPoints;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use CyrildeWit\EloquentViewable\InteractsWithViews;
+use CyrildeWit\EloquentViewable\Contracts\Viewable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements Viewable
 {
-    use Notifiable, CollectsPoints;
+    use Notifiable, CollectsPoints, InteractsWithViews;
 
     /**
      * nothing in line

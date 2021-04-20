@@ -48,13 +48,17 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+        views($user)->cooldown(15)->record();
+
+        $views = views($user)->count();
+
         $user = $user->load(['comments' => function($q){
             return $q->with('commentable')->limit(20)->orderBy('created_at', 'desc');
         }, 'unreadNotifications', 'history' => function($q){
             return $q->with(['historyable'])->latest()->limit(20);
         }]);
 
-        return view('user.show', compact('user'));
+        return view('user.show', compact('user', 'views'));
     }
 
     /**
