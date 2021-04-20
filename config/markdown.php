@@ -41,7 +41,9 @@ return [
     |
     */
 
-    'extensions' => [\App\Extensions\AddListStyleClassesExtension::class],
+    'extensions' => [
+        \App\Extensions\AddListStyleClassesExtension::class,
+        \App\Extensions\AddLinkStyleClassesExtension::class],
 
     /*
     |--------------------------------------------------------------------------
