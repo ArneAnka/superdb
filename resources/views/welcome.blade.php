@@ -47,7 +47,7 @@
                 <h2 class="text-blue-500 uppercase tracking-wide font-semibold">#{{ $post->id }} {{ $post->topic }}</h2>    
             </div>
             <div class="ml-4">
-                @markdown($post->body)
+                {{ $post->body }}
             </div>
            <div class="ml-4 mt-5 ">
                <div class="flex items-center">
