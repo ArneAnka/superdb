@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
 use App\User;
-use Illuminate\Foundation\Auth\RegistersUsers;
+# use Illuminate\Http\Request; #
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http; #
+use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
@@ -64,10 +66,19 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $ipFromUserTryingToRegister = \Request::ip();
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'registration_ip' => $ipFromUserTryingToRegister,
+            'registration_country' => $this->getRegistrationCountry($ipFromUserTryingToRegister),
         ]);
+    }
+
+    protected function getRegistrationCountry($ipFromUserTryingToRegister)
+    {
+        return Http::get('https://api.country.is/' . $ipFromUserTryingToRegister)->json()['country'];
     }
 }

@@ -10,10 +10,11 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable implements Viewable
 {
-    use Notifiable, CollectsPoints, InteractsWithViews;
+    use Notifiable, CollectsPoints, InteractsWithViews, SoftDeletes;
 
     /**
      * nothing in line
@@ -44,7 +45,9 @@ class User extends Authenticatable implements Viewable
         'name',
         'email',
         'password',
-        'description'
+        'description',
+        'registration_ip',
+        'registration_country'
     ];
 
     /**
@@ -64,7 +67,7 @@ class User extends Authenticatable implements Viewable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    
+
     /**
      * Get the route key for the model.
      *
@@ -98,21 +101,21 @@ class User extends Authenticatable implements Viewable
     }
 
     /**
-     * 
+     *
      */
     public function comments(){
         return $this->hasMany(Comment::class);
     }
 
     /**
-     * 
+     *
      */
     public function isOnline(){
         return Cache::has('user-is-online-' . $this->id);
     }
 
     /**
-     * 
+     *
      */
     public function ip()
     {

@@ -54,7 +54,7 @@ class GameImageController extends Controller
     {
         if ($request->hasFile('game_image')) {
             $request->validate([
-                'game_image' => 'mimes:jpeg,png|max:1014'
+                'game_image' => 'mimes:jpeg,png,webp|max:1014'
             ]);
 
             $file = $request->file('game_image');
@@ -77,7 +77,7 @@ class GameImageController extends Controller
 
             // Send notification to all other participants
             event(new UserUploadedImage($game, $request->user()));
-            
+
             return back()->with('success', "Bild uppladdad!");
         }else{
             return back()->with('success', 'Ooops.. something went wrong.');
@@ -129,7 +129,7 @@ class GameImageController extends Controller
     {
         // https://stackoverflow.com/questions/28305553/how-to-remove-a-polymorphic-relation-in-eloquent
         $image->games($game)->detach();
-        
+
         return back()->with('success', 'Du tog bort en bild!');
     }
 }

@@ -29,6 +29,7 @@ class LogSuccessfulLogin
     public function handle(Login $event)
     {
         $user = $event->user;
+
         $user->ip()->save(new Ip([
             'address' => $this->request->ip(),
             'agent' => $this->request->server('HTTP_USER_AGENT')
