@@ -32,7 +32,7 @@ class GameCoverImageController extends Controller
     {
         if ($request->hasFile('game_cover_image')) {
             $request->validate([
-                'game_cover_image' => 'mimes:jpeg,png|max:1014'
+                'game_cover_image' => 'mimes:jpeg,png,webp|max:1014'
             ]);
 
             $file = $request->file('game_cover_image');
@@ -52,7 +52,7 @@ class GameCoverImageController extends Controller
 
             // Send notification to all other participants
             event(new UserUploadedImage($game, $request->user()));
-            
+
             return back()->with('success', "Bild uppladdad!");
         }else{
             return back()->with('success', 'Ooops.. something went wrong.');
@@ -92,7 +92,7 @@ class GameCoverImageController extends Controller
     public function destroy(Game $game)
     {
         $game->cover_image = NULL;
-        
+
         $game->update();
 
         return back()->with('success', "Bild borttagen!");

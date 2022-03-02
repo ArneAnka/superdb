@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 class Developer extends Model
 {
     protected $fillable = ['name', 'description'];
+    
     public $timestamps = false;
 
     protected static function boot(){
